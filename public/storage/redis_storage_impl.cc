@@ -28,8 +28,8 @@ bool RedisStorageEngineImpl::Connections(std::list<base::ConnAddr>& addrlist){
 		str = RedisConnections(&c_,addr.host().c_str(),addr.port(),addr.pwd().c_str());
         /*MIG_INFO(USER_LEVEL,"redis ip[%s] port[%d]",addr.host().c_str(),
                          addr.port());*/
-		RedisSelectDB(&c_,addr.source().c_str());
-		if(str!=NULL){ //
+    RedisSelectDB(&c_,addr.source().c_str());
+    if(str!=NULL){ //
 			MIG_INFO(USER_LEVEL,"Redis Conntions error %s",str);
 			return false;
 		}
@@ -84,8 +84,14 @@ bool RedisStorageEngineImpl::GetValue(const char* key,const size_t key_len,
 
     if(PingRedis()!=1)
     	return false;
-	MIG_DEBUG(USER_LEVEL,"key[%s] key_len[%d]",key,key_len);
-    return RedisGetValue(c_,key,key_len,val,val_len)==1?true:false;
+  	MIG_DEBUG(USER_LEVEL,"key[%s] key_len[%d]",key,key_len);
+    if (RedisGetValue(c_,key,key_len,val,val_len)==1) {
+      //MIG_DEBUG(USER_LEVEL,"val111:%s",*val);
+      return true;
+    } else {
+      return false;
+    }
+   // return RedisGetValue(c_,key,key_len,val,val_len)==1?true:false;
 }
 
 bool RedisStorageEngineImpl::DelValue(const char* key,const size_t key_len){
@@ -296,6 +302,35 @@ bool RedisStorageEngineImpl::GetAllHash(const char* hash_name,
 	   return false;
    RedisFreeReply(rp);
    return true;
+}
+
+bool RedisStorageEngineImpl::GetSortedSet(const char* hash_name,
+                         const size_t hash_name_len,
+                         const char *head,
+                         const char *tail,
+                         int order,
+                         std::map<std::string,std::string>& map) {
+  int r = 0;
+  if (PingRedis()!=1)
+    return false;
+  char** pptr = NULL;
+  int n;
+  warrper_redis_reply_t* rp = NULL;
+  rp = RedisGetSortedSet(c_, hash_name, hash_name_len, &pptr, &n, head, tail, order);
+  for (r = 0; r<n; r+=2){
+    std::string key;
+    std::string value;
+    if ((pptr[r]==NULL)||(pptr[r+1]==NULL))
+      continue;
+    key.assign(pptr[r]);
+    value.assign(pptr[r+1]);
+    map[key] = value;
+  }
+  free(pptr);
+  if (rp == NULL)
+    return false;
+  RedisFreeReply(rp);
+  return true;
 }
 
 bool RedisStorageEngineImpl::GetHashValues(const char* hash_name,

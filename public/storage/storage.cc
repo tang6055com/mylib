@@ -15,9 +15,9 @@ DictionaryStorageEngine* DictionaryStorageEngine::Create(int32 type){
         case IMPL_MEM:
             engine = new MemStorageEngineImpl();
             break;
-		case IMPL_RADIES:
-			engine = new RedisStorageEngineImpl();
-			break;
+	case IMPL_RADIES:
+	    engine = new RedisStorageEngineImpl();
+	    break;
         default:
         	break;
     }

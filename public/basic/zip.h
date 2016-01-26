@@ -5,7 +5,7 @@
 #define ENCODE_ZLIB_MIN_COMP_SIZE (17)
 typedef unsigned char       BYTE;
 #include "zlib.h"
-#include "basic/basictypes.h"
+#include "basictypes.h"//"basic/basictypes.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -2,8 +2,8 @@
 #include "logic/value_serializer.h"
 #include "logic/xml_serializer.h"
 #include "logic/json_serializer.h"
-#include "logic/http_serializer.h"
 #include "logic/jsonp_serializer.h"
+#include "logic/http_serializer.h"
 #include "basic/basic_util.h"
 #include "check/newmacro.h"
 
@@ -980,7 +980,7 @@ bool ListValue::Equals(const Value* other) const {
 
 
 
-ValueSerializer* ValueSerializer::Create(int32 type){
+ValueSerializer* ValueSerializer::Create(int32 type,std::string* str){
 	ValueSerializer* engine = NULL;
 	switch(type){
 	case IMPL_JSON:
@@ -992,9 +992,9 @@ ValueSerializer* ValueSerializer::Create(int32 type){
 	case IMPL_HTTP:
 		engine = new base_logic::HttpValueSerializer(str);
 		break;
-    case IMPL_JSONP:
-        engine = new base_logic::JsonpValueSerializer(str);
-        break;
+	case IMPL_JSONP:
+	    engine = new base_logic::JsonpValueSerializer(str);
+	    break;
 	default:
 		break;
 	}

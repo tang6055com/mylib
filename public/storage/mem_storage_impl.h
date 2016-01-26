@@ -90,6 +90,13 @@ public:
 		                    const size_t hash_name_len,
 		                    std::map<std::string,std::string>& map);
 
+  virtual bool GetSortedSet(const char* hash_name,
+                       const size_t hash_name_len,
+                                 const char *head,
+                                 const char *tail,
+                                        int order,
+           std::map<std::string,std::string>& map);
+
 	virtual bool GetListRange(const char* key,const size_t key_len,
 				int from, int to, std::list<std::string>& list,
 				const int flag) {}

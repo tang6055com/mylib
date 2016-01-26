@@ -602,7 +602,7 @@ void JsonpValueSerializer::EatWhitesspaceAndComments() {
 bool JsonpValueSerializer::Serialize(const Value& root){
   BuildJsonpString(&root,0,false);
   if (jsonp_call_ != "")
-	*json_string_ = jsonp_call_ + *json_string_;
+	*json_string_ = jsonp_call_ + std::string("(") + *json_string_ + std::string(")");
   return true;
 }
 

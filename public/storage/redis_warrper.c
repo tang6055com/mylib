@@ -1,4 +1,6 @@
 #include "redis_warrper.h"
+#include "log/mig_log.h"
+
 char* RedisConnections(warrper_redis_context_t** context ,
 				const char* host,const int port,const char* pwd){
 	struct timeval timeout = {1,500000};
@@ -11,14 +13,14 @@ char* RedisConnections(warrper_redis_context_t** context ,
 }
 
 int RedisSelectDB(warrper_redis_context_t** context,
-    const char* db_name) {
+        const char* db_name) {
   redisReply *reply;
 
   /* Switch to db_name for testing, now that we know we can chat. */
   reply = redisCommand((*context)->context,"SELECT %s", db_name);
-  assert(reply != NULL);
-  freeReplyObject(reply);
-  return 1;
+    assert(reply != NULL);
+      freeReplyObject(reply);
+        return 1;
 }
 
 int RedisAddValue(warrper_redis_context_t* context,
@@ -80,7 +82,9 @@ int RedisGetValue(warrper_redis_context_t* context,
 		}
 
 		*val = (char*)malloc(reply->len+1);
+    MIG_DEBUG(USER_LEVEL,"reply->str:%s %d",reply->str, reply->len);
 		memcpy(*val,reply->str,reply->len);
+    (*val)[reply->len] = '\0';
 		(*val_len) = reply->len+1;
 		freeReplyObject(reply);
 		return 1;
@@ -305,6 +309,52 @@ warrper_redis_reply_t* RedisGetAllHash(warrper_redis_context_t* context,
 	   return wa_re;
 	}
 	return NULL;
+}
+
+//  add by jiaoyognqing at 2016/7/ 15:00:00
+warrper_redis_reply_t* RedisGetSortedSet(warrper_redis_context_t* context, \
+                                                          const char* key, \ 
+                                                          const size_t key_len, \
+                                                          char***val, \
+                                                          int* val_len, \
+                                                          const char* head, \
+                                                          const char* tail, \
+                                                          int order) {
+  redisReply* reply;
+  int j =0; 
+  warrper_redis_reply_t* wa_re = NULL;
+  char command_head[12];
+  int len = 0;
+                
+  if (NULL == key || NULL == val) {
+    return NULL;
+  }
+
+  if (NULL == val_len || NULL == head || NULL == tail) {
+    return NULL;
+  }
+              
+  if (0 == order) {
+    len = strlen("ZRANGE");
+    strncpy(command_head, "ZRANGE", len);     
+  } else {
+    len = strlen("ZREVRANGE");
+    strncpy(command_head, "ZREVRANGE", len);
+  }
+  command_head[len] = '\0';
+
+  reply = redisCommand(context->context,"%s %s %s %s WITHSCORES",command_head, key, head, tail);
+  if(reply->type==REDIS_REPLY_ARRAY){
+    wa_re = (warrper_redis_reply_t*)malloc(sizeof(warrper_redis_reply_t));
+    wa_re->reply = reply;
+    (*val_len) = wa_re->reply->elements;
+    (*val) = (char**)malloc(sizeof(char*)*(wa_re->reply->elements));
+    for(j =0;j<reply->elements;j++){
+      (*val)[j] = reply->element[j]->str;
+    }
+    return wa_re;
+  }
+  return NULL;       
 }
 
 warrper_redis_reply_t* RedisGetHashValueAll(warrper_redis_context_t* context,

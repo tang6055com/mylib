@@ -288,6 +288,15 @@ bool MemStorageEngineImpl::GetAllHash(const char* hash_name,
     return true;
 }
 
+bool MemStorageEngineImpl::GetSortedSet(const char* hash_name,
+                     const size_t hash_name_len,
+                               const char *head,
+                               const char *tail,
+                                      int order,
+         std::map<std::string,std::string>& map) {
+    return true;
+}
+
 #if defined (MEM_POOL)
 bool MemStorageEngineImpl::MemPoolInit(int32 init,int32 max){ 
    cached_pool_ = (mcached_pool_t*)memcached_pool_create((memcached_st*)cache_,ini,max);

@@ -22,7 +22,7 @@ char* RedisConnections(warrper_redis_context_t** context ,
 					const char* host,const int port,const char* pwd);
 
 int RedisSelectDB(warrper_redis_context_t** context,
-    const char* db_name);
+        const char* db_name);
 
 int RedisAddValue(warrper_redis_context_t* context,
 				const char* key,const size_t key_len,
@@ -105,6 +105,17 @@ warrper_redis_reply_t* RedisGetHashValueAll(warrper_redis_context_t* context,
 warrper_redis_reply_t* RedisGetAllHash(warrper_redis_context_t* context,
 									   const char* key,const size_t key_len,
 									   char***val,int* val_len);
+
+//  add by jiaoyognqing at 2016/7/ 15:00:00
+//  head 和 tail 定位set中的一个范围。order指出顺序, order=0:从小到大, order = 1:从大到小
+warrper_redis_reply_t* RedisGetSortedSet(warrper_redis_context_t* context, \
+                                                          const char* key, \
+                                                          const size_t key_len, \
+                                                          char***val, \
+                                                          int* val_len, \
+                                                          const char* head, \
+                                                          const char* tail, \
+                                                          int order);
 
 int RedisFreeReply(warrper_redis_reply_t* wa);
 

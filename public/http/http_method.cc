@@ -5,7 +5,7 @@
 namespace http{
 
 struct CurlContent{
-	std::map<std::string,std::list<std::string>& >*   headers_;
+	std::map<std::string,std::list<std::string> >*   headers_;
 	std::vector<char>                   *content_;
 	int                                 code_;
 	int                                 subversion_;
@@ -77,14 +77,16 @@ static size_t HeaderFunction(void* ptr,size_t size,
 	value.assign(start, end+1-start);
 	 
 //	(*curl_content->headers_)[name] = value;
-    std::map<std::string, std::list<std::string> >::iterator it =
-        (*curl_content->headers_).find(name);
-    std::list<std::string> list;
-    if (it != (*curl_content->headers_).end()) {
-        list = it->second;
-    }
-    list.push_back(value);
-    (*curl_content->headers_)[name] = list;
+	std::map<std::string, std::list<std::string> >::iterator it = 
+		(*curl_content->headers_).find(name);
+	if (it != (*curl_content->headers_).end()) {
+		std::list<std::string> list = it->second;
+		list.push_back(value);
+	} else {
+		std::list<std::string> list;
+		list.push_back(value);
+		(*curl_content->headers_)[name] = list;
+	}
 	return size* nmemb;
 }
 
