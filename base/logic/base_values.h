@@ -26,7 +26,7 @@ typedef std::map<std::wstring, Value*> ValueMap;
 
 class Value{
 public:
-	~Value();
+	virtual ~Value();
 
 	static Value* CreateNullValue();
 	static Value* CreateBooleanValue(bool in_value);
