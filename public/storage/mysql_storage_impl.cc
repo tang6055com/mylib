@@ -53,12 +53,15 @@ bool MysqlStorageEngineImpl::Release(){
 
 bool MysqlStorageEngineImpl::FreeRes(){
     MYSQL_RES * result = (MYSQL_RES *)result_.get()->proc;
+    if(NULL == result)
+        return true;
+    mysql_free_result(result);
     MYSQL* mysql = (MYSQL*)conn_.get()->proc;
-	do{
+    while(!mysql_next_result(mysql)) {
 		result = mysql_store_result(mysql);
 		mysql_free_result(result);
-		result_.get()->proc = NULL;
-	}while(!mysql_next_result(mysql));
+        }
+    result_.get()->proc = NULL;
     return true;
 }
 
