@@ -1001,5 +1001,26 @@ ValueSerializer* ValueSerializer::Create(int32 type,std::string* str){
 	return engine;
 }
 
+void ValueSerializer::DeleteSerializer(int32 type, ValueSerializer* serializer) {
+	if(NULL == serializer)
+		return;
+	switch(type){
+		case IMPL_JSON:
+			delete (JsonValueSerializer*)serializer;
+			break;
+		case IMPL_XML:
+			delete (XMLValueSerializer*)serializer;
+			break;
+		case IMPL_HTTP:
+			delete (HttpValueSerializer*)serializer;
+			break;
+		case IMPL_JSONP:
+		    delete (JsonpValueSerializer*)serializer;
+		    break;
+		default:
+			break;
+		}
+}
+
 
 }

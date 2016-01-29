@@ -363,6 +363,7 @@ enum SerializerImplType{
 class ValueSerializer {
 public:
 	static ValueSerializer* Create(int32 type,std::string* str);
+	static void DeleteSerializer(int32 type, ValueSerializer* serializer);
 public:
   virtual ~ValueSerializer() {}
 

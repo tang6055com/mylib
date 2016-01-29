@@ -241,9 +241,9 @@ Value* JsonValueSerializer::Deserialize(int* error_code,std::string* error_str){
 			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,json_pos_);
 		}
 	}
-
-	if(error_code == 0)
-		SetErrorCode(SYNTAX_ERROR,json_pos_);
+	*error_code = error_code_;
+	//if(error_code == 0)
+	//	SetErrorCode(SYNTAX_ERROR,json_pos_);
 
 	return root.release();
 }
