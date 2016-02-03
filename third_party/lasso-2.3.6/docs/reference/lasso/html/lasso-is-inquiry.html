@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIsInquiry</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf2.html" title="Objects from ID-WSF 2.0 schemas">
+<link rel="prev" href="lasso-is-inquiry-element.html" title="LassoIsInquiryElement">
+<link rel="next" href="lasso-is-interaction-request.html" title="LassoIsInteractionRequest">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-is-inquiry-element.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-is-interaction-request.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-is-inquiry.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-is-inquiry.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-is-inquiry"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-is-inquiry.top_of_page"></a>LassoIsInquiry</span></h2>
+<p>LassoIsInquiry — &lt;is:Inquiry&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-is-inquiry.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">#define             <a class="link" href="lasso-is-inquiry.html#LASSO-IS-IS-INQUIRY:CAPS" title="LASSO_IS_IS_INQUIRY()">LASSO_IS_IS_INQUIRY</a>                 (obj)
+struct              <a class="link" href="lasso-is-inquiry.html#LassoIsInquiry" title="struct LassoIsInquiry">LassoIsInquiry</a>;
+<a class="link" href="lasso-is-inquiry.html#LassoIsInquiry" title="struct LassoIsInquiry"><span class="returnvalue">LassoIsInquiry</span></a> *    <a class="link" href="lasso-is-inquiry.html#lasso-is-inquiry-new" title="lasso_is_inquiry_new ()">lasso_is_inquiry_new</a>                (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-is-inquiry.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3181482"></a><p class="title"><b>Figure 191. Schema fragment for is:Inquiry</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:complexType name="InquiryType"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element ref="Help" minOccurs="0"/&gt;
+    &lt;xs:choice maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="Select" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="Confirm" type="InquiryElementType"
+        minOccurs="0" maxOccurs="unbounded"/&gt;
+        &lt;xs:element ref="Text" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="id" type="xs:ID" use="optional"/&gt;
+    &lt;xs:attribute name="title" type="xs:string" use="optional"/&gt;
+  &lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-is-inquiry.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LASSO-IS-IS-INQUIRY:CAPS"></a><h3>LASSO_IS_IS_INQUIRY()</h3>
+<pre class="programlisting">#define LASSO_IS_IS_INQUIRY(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), LASSO_TYPE_IS_INQUIRY))
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LassoIsInquiry"></a><h3>struct LassoIsInquiry</h3>
+<pre class="programlisting">struct LassoIsInquiry {
+	LassoNode parent;
+
+	GList *Help; /* of LassoNode */
+	GList *Select; /* of LassoNode */
+	GList *Confirm; /* of LassoNode */
+	GList *Text; /* of LassoNode */
+
+	char *id;
+	char *title;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-is-inquiry-new"></a><h3>lasso_is_inquiry_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-is-inquiry.html#LassoIsInquiry" title="struct LassoIsInquiry"><span class="returnvalue">LassoIsInquiry</span></a> *    lasso_is_inquiry_new                (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

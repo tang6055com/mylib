@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoLibRequestAuthnContext</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idff.html" title="Objects from ID-FF 1.2 schemas">
+<link rel="prev" href="lasso-LassoLibRegisterNameIdentifierResponse.html" title="LassoLibRegisterNameIdentifierResponse">
+<link rel="next" href="lasso-LassoLibScoping.html" title="LassoLibScoping">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoLibRegisterNameIdentifierResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoLibScoping.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoLibRequestAuthnContext.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoLibRequestAuthnContext.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoLibRequestAuthnContext"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoLibRequestAuthnContext.top_of_page"></a>LassoLibRequestAuthnContext</span></h2>
+<p>LassoLibRequestAuthnContext — &lt;lib:RequestAuthnContext&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoLibRequestAuthnContext.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoLibRequestAuthnContext.html#LassoLibRequestAuthnContext" title="struct LassoLibRequestAuthnContext">LassoLibRequestAuthnContext</a>;
+<a class="link" href="lasso-LassoLibRequestAuthnContext.html#LassoLibRequestAuthnContext" title="struct LassoLibRequestAuthnContext"><span class="returnvalue">LassoLibRequestAuthnContext</span></a> *  <a class="link" href="lasso-LassoLibRequestAuthnContext.html#lasso-lib-request-authn-context-new" title="lasso_lib_request_authn_context_new ()">lasso_lib_request_authn_context_new</a>
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibRequestAuthnContext.description"></a><h2>Description</h2>
+<p>
+Information describing which authentication context the requester desires the
+identity provider to use in authenticating the Principal.
+</p>
+<p>
+</p>
+<div class="figure">
+<a name="id3094135"></a><p class="title"><b>Figure 17. Schema fragment for lib:RequestAuthnContext</b></p>
+<div class="figure-contents"><pre class="programlisting">
+&lt;xs:element name="RequestAuthnContext"&gt;
+  &lt;xs:complexType&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:choice&gt;
+        &lt;xs:element name="AuthnContextClassRef" type="xs:anyURI" maxOccurs="unbounded"/&gt;
+        &lt;xs:element name="AuthnContextStatementRef" type="xs:anyURI" maxOccurs="unbounded"/&gt;
+      &lt;/xs:choice&gt;
+      &lt;xs:element name="AuthnContextComparison"
+          type="AuthnContextComparisonType" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibRequestAuthnContext.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoLibRequestAuthnContext"></a><h3>struct LassoLibRequestAuthnContext</h3>
+<pre class="programlisting">struct LassoLibRequestAuthnContext {
+	LassoNode parent;
+
+	/* &lt;xs:element name="AuthnContextClassRef" type="xs:anyURI" maxOccurs="unbounded"/&gt; */
+	GList *AuthnContextClassRef; /* of strings */
+	/* &lt;xs:element name="AuthnContextStatementRef" type="xs:anyURI" maxOccurs="unbounded"/&gt; */
+	GList *AuthnContextStatementRef; /* of strings */
+	/* &lt;xs:element name="AuthnContextComparison" type="AuthnContextComparisonType"
+	 *   minOccurs="0"/&gt; */
+	char *AuthnContextComparison;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-lib-request-authn-context-new"></a><h3>lasso_lib_request_authn_context_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoLibRequestAuthnContext.html#LassoLibRequestAuthnContext" title="struct LassoLibRequestAuthnContext"><span class="returnvalue">LassoLibRequestAuthnContext</span></a> *  lasso_lib_request_authn_context_new
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLibRequestAuthnContext.html#LassoLibRequestAuthnContext" title="struct LassoLibRequestAuthnContext"><span class="type">LassoLibRequestAuthnContext</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLibRequestAuthnContext.html#LassoLibRequestAuthnContext" title="struct LassoLibRequestAuthnContext"><span class="type">LassoLibRequestAuthnContext</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

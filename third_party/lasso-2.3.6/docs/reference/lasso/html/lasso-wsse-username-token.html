@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoWsseUsernameToken</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="ws-addr.html" title="Object from the WS-* schemas">
+<link rel="prev" href="lasso-LassoWsSec1TransformationParameters.html" title="LassoWsSec1TransformationParameters">
+<link rel="next" href="lasso-LassoWsUtil1Timestamp.html" title="LassoWsUtil1Timestamp">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoWsSec1TransformationParameters.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ws-addr.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoWsUtil1Timestamp.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-wsse-username-token.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-wsse-username-token.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-wsse-username-token"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-wsse-username-token.top_of_page"></a>LassoWsseUsernameToken</span></h2>
+<p>LassoWsseUsernameToken</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-wsse-username-token.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">enum                <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameTokenPasswordType" title="enum LassoWsseUsernameTokenPasswordType">LassoWsseUsernameTokenPasswordType</a>;
+struct              <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken">LassoWsseUsernameToken</a>;
+<a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="returnvalue">LassoWsseUsernameToken</span></a> *  <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-new" title="lasso_wsse_username_token_new ()">lasso_wsse_username_token_new</a> (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-reset-nonce" title="lasso_wsse_username_token_reset_nonce ()">lasso_wsse_username_token_reset_nonce</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-set-password-kind" title="lasso_wsse_username_token_set_password_kind ()">lasso_wsse_username_token_set_password_kind</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameTokenPasswordType" title="enum LassoWsseUsernameTokenPasswordType"><span class="type">LassoWsseUsernameTokenPasswordType</span></a> password_type</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-set-password" title="lasso_wsse_username_token_set_password ()">lasso_wsse_username_token_set_password</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-check-password" title="lasso_wsse_username_token_check_password ()">lasso_wsse_username_token_check_password</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"><span class="returnvalue">guchar</span></a> *            <a class="link" href="lasso-wsse-username-token.html#lasso-wsse-username-token-derive-key" title="lasso_wsse_username_token_derive_key ()">lasso_wsse_username_token_derive_key</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-wsse-username-token.description"></a><h2>Description</h2>
+<p>
+Transmit username and password credential as a WS-Security token. The password can be transmitted
+as cleartext or using a digest mode. It also allows to derive encryption and HMAC signing keys.
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-wsse-username-token.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoWsseUsernameTokenPasswordType"></a><h3>enum LassoWsseUsernameTokenPasswordType</h3>
+<pre class="programlisting">typedef enum {
+	LASSO_WSSE_USERNAME_TOKEN_PASSWORD_TYPE_UNKNOWN,
+	LASSO_WSSE_USERNAME_TOKEN_PASSWORD_TYPE_TEXT,
+	LASSO_WSSE_USERNAME_TOKEN_PASSWORD_TYPE_DIGEST,
+	LASSO_WSSE_USERNAME_TOKEN_PASSWORD_TYPE_LAST
+} LassoWsseUsernameTokenPasswordType;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LassoWsseUsernameToken"></a><h3>struct LassoWsseUsernameToken</h3>
+<pre class="programlisting">struct LassoWsseUsernameToken {
+	LassoNode parent;
+
+	char *Id;
+	char *Username;
+	char *Nonce;
+	char *Salt;
+	char *Created;
+	int Iteration;
+	GHashTable *attributes;
+};
+</pre>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> <em class="structfield"><code><a name="LassoWsseUsernameToken.parent"></a>parent</code></em>;</span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoWsseUsernameToken.Id"></a>Id</code></em>;</span></p></td>
+<td>the identifier of the UsernameToken</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoWsseUsernameToken.Username"></a>Username</code></em>;</span></p></td>
+<td>the username</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoWsseUsernameToken.Nonce"></a>Nonce</code></em>;</span></p></td>
+<td>a nonce used to compute the digest of the password</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoWsseUsernameToken.Salt"></a>Salt</code></em>;</span></p></td>
+<td>the salt for generating derived key</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoWsseUsernameToken.Created"></a>Created</code></em>;</span></p></td>
+<td>the timestamp for the generation of the token, also used in the digest of the password</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">int</span> <em class="structfield"><code><a name="LassoWsseUsernameToken.Iteration"></a>Iteration</code></em>;</span></p></td>
+<td>how many times to apply SHA1 for generating derivated key</td>
+</tr>
+<tr>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> *<em class="structfield"><code><a name="LassoWsseUsernameToken.attributes"></a>attributes</code></em>;</span></p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-new"></a><h3>lasso_wsse_username_token_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="returnvalue">LassoWsseUsernameToken</span></a> *  lasso_wsse_username_token_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-reset-nonce"></a><h3>lasso_wsse_username_token_reset_nonce ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_wsse_username_token_reset_nonce
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>);</pre>
+<p>
+Generate a random nonce.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>wsse_username_token</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-set-password-kind"></a><h3>lasso_wsse_username_token_set_password_kind ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_wsse_username_token_set_password_kind
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameTokenPasswordType" title="enum LassoWsseUsernameTokenPasswordType"><span class="type">LassoWsseUsernameTokenPasswordType</span></a> password_type</code></em>);</pre>
+<p>
+Set the way to transmit password, that is either cleartext or digest.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wsse_username_token</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password_type</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameTokenPasswordType" title="enum LassoWsseUsernameTokenPasswordType"><span class="type">LassoWsseUsernameTokenPasswordType</span></a> enumeration</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-set-password"></a><h3>lasso_wsse_username_token_set_password ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_wsse_username_token_set_password
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);</pre>
+<p>
+Set the password using the given UTF-8 string. If password kind is digest, compute the digest
+SHA1(nonce + created + password), convert to Base64 and set it as the password. If nonce or
+created are NULL, the empty string is used.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wsse_username_token</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password</code></em> :</span></p></td>
+<td>an UTF-8 string</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successfull, an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-check-password"></a><h3>lasso_wsse_username_token_check_password ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_wsse_username_token_check_password
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-wsse-username-token-derive-key"></a><h3>lasso_wsse_username_token_derive_key ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"><span class="returnvalue">guchar</span></a> *            lasso_wsse_username_token_derive_key
+                                                        (<em class="parameter"><code><a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> *wsse_username_token</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *password</code></em>);</pre>
+<p>
+Generate a derived 128bit key using the password and setting from the UsernameToken.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wsse_username_token</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-wsse-username-token.html#LassoWsseUsernameToken" title="struct LassoWsseUsernameToken"><span class="type">LassoWsseUsernameToken</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password</code></em> :</span></p></td>
+<td>the known password</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a 20 byte octet string.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

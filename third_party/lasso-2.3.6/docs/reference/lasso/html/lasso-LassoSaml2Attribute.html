@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSaml2Attribute</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-samlv2.html" title="Objects from SAML 2.0 schemas">
+<link rel="prev" href="lasso-LassoSaml2AttributeValue.html" title="LassoSaml2AttributeValue">
+<link rel="next" href="lasso-LassoSaml2AudienceRestriction.html" title="LassoSaml2AudienceRestriction">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSaml2AttributeValue.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-samlv2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSaml2AudienceRestriction.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSaml2Attribute.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSaml2Attribute.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSaml2Attribute"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSaml2Attribute.top_of_page"></a>LassoSaml2Attribute</span></h2>
+<p>LassoSaml2Attribute — &lt;saml2:Attribute&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSaml2Attribute.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSaml2Attribute.html#LassoSaml2Attribute" title="struct LassoSaml2Attribute">LassoSaml2Attribute</a>;
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSaml2Attribute.html#lasso-saml2-attribute-new" title="lasso_saml2_attribute_new ()">lasso_saml2_attribute_new</a>           (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2Attribute.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3173806"></a><p class="title"><b>Figure 47. Schema fragment for saml2:Attribute</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;complexType name="AttributeType"&gt;
+  &lt;sequence&gt;
+    &lt;element ref="saml:AttributeValue" minOccurs="0" maxOccurs="unbounded"/&gt;
+  &lt;/sequence&gt;
+  &lt;attribute name="Name" type="string" use="required"/&gt;
+  &lt;attribute name="NameFormat" type="anyURI" use="optional"/&gt;
+  &lt;attribute name="FriendlyName" type="string" use="optional"/&gt;
+  &lt;anyAttribute namespace="##other" processContents="lax"/&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2Attribute.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSaml2Attribute"></a><h3>struct LassoSaml2Attribute</h3>
+<pre class="programlisting">struct LassoSaml2Attribute {
+	LassoNode parent;
+
+	/* elements */
+	GList *AttributeValue; /* of LassoNode */
+	/* attributes */
+	char *Name;
+	char *NameFormat;
+	char *FriendlyName;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-attribute-new"></a><h3>lasso_saml2_attribute_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_saml2_attribute_new           (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSaml2Attribute.html#LassoSaml2Attribute" title="struct LassoSaml2Attribute"><span class="type">LassoSaml2Attribute</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSaml2Attribute.html#LassoSaml2Attribute" title="struct LassoSaml2Attribute"><span class="type">LassoSaml2Attribute</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

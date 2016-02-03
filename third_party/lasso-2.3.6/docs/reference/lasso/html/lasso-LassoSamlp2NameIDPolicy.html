@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSamlp2NameIDPolicy</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-samlv2.html" title="Objects from SAML 2.0 schemas">
+<link rel="prev" href="lasso-LassoSamlp2NameIDMappingResponse.html" title="LassoSamlp2NameIDMappingResponse">
+<link rel="next" href="lasso-LassoSamlp2RequestAbstract.html" title="LassoSamlp2RequestAbstract">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSamlp2NameIDMappingResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-samlv2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSamlp2RequestAbstract.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSamlp2NameIDPolicy.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSamlp2NameIDPolicy.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSamlp2NameIDPolicy"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSamlp2NameIDPolicy.top_of_page"></a>LassoSamlp2NameIDPolicy</span></h2>
+<p>LassoSamlp2NameIDPolicy — &lt;samlp2:NameIDPolicy&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSamlp2NameIDPolicy.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSamlp2NameIDPolicy.html#LassoSamlp2NameIDPolicy" title="struct LassoSamlp2NameIDPolicy">LassoSamlp2NameIDPolicy</a>;
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSamlp2NameIDPolicy.html#lasso-samlp2-name-id-policy-new" title="lasso_samlp2_name_id_policy_new ()">lasso_samlp2_name_id_policy_new</a>     (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlp2NameIDPolicy.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3179195"></a><p class="title"><b>Figure 81. Schema fragment for samlp2:NameIDPolicy</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;complexType name="NameIDPolicyType"&gt;
+  &lt;attribute name="Format" type="anyURI" use="optional"/&gt;
+  &lt;attribute name="SPNameQualifier" type="string" use="optional"/&gt;
+  &lt;attribute name="AllowCreate" type="boolean" use="optional"/&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlp2NameIDPolicy.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSamlp2NameIDPolicy"></a><h3>struct LassoSamlp2NameIDPolicy</h3>
+<pre class="programlisting">struct LassoSamlp2NameIDPolicy {
+	LassoNode parent;
+
+	/* attributes */
+	char *Format;
+	char *SPNameQualifier;
+	gboolean AllowCreate;
+};
+</pre>
+<p>
+NameIDPolicy element is part of AuthnRequest and allows to give hint to the identity provider
+about the NameID the service provider desire to receive.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> <em class="structfield"><code><a name="LassoSamlp2NameIDPolicy.parent"></a>parent</code></em>;</span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoSamlp2NameIDPolicy.Format"></a>Format</code></em>;</span></p></td>
+<td>the name-identifier format, see <a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-EMAIL:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_EMAIL"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_EMAIL</span></a>,
+<a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-X509:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_X509"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_X509</span></a>, <a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-WINDOWS:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_WINDOWS"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_WINDOWS</span></a>,
+<a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-KERBEROS:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_KERBEROS"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_KERBEROS</span></a>, <a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-ENTITY:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_ENTITY"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_ENTITY</span></a>,
+<a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-PERSISTENT:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_PERSISTENT"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_PERSISTENT</span></a>, <a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-TRANSIENT:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_TRANSIENT"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_TRANSIENT</span></a> or
+<a class="link" href="lasso-SAML-2.0-Strings.html#LASSO-SAML2-NAME-IDENTIFIER-FORMAT-ENCRYPTED:CAPS" title="LASSO_SAML2_NAME_IDENTIFIER_FORMAT_ENCRYPTED"><span class="type">LASSO_SAML2_NAME_IDENTIFIER_FORMAT_ENCRYPTED</span></a>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="type">char</span> *<em class="structfield"><code><a name="LassoSamlp2NameIDPolicy.SPNameQualifier"></a>SPNameQualifier</code></em>;</span></p></td>
+<td>other providerID to use as SPNameQualifier in the returned assertion. By
+default an IdP create a NameID for the requesting entity, this field allows to obtain a NameID
+qualified for a third party.</td>
+</tr>
+<tr>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> <em class="structfield"><code><a name="LassoSamlp2NameIDPolicy.AllowCreate"></a>AllowCreate</code></em>;</span></p></td>
+<td>authorize the identity provider to create a new federation, otherwise it must
+report a failure in case no existing federation is found (status code of
+<a class="link" href="lasso-Strings-for-ID-FF-1.2.html#LASSO-LIB-STATUS-CODE-FEDERATION-DOES-NOT-EXIST:CAPS" title="LASSO_LIB_STATUS_CODE_FEDERATION_DOES_NOT_EXIST"><span class="type">LASSO_LIB_STATUS_CODE_FEDERATION_DOES_NOT_EXIST</span></a> and error code of
+<a class="link" href="lasso-Error-Codes.html#LASSO-PROFILE-ERROR-FEDERATION-NOT-FOUND:CAPS" title="LASSO_PROFILE_ERROR_FEDERATION_NOT_FOUND"><span class="type">LASSO_PROFILE_ERROR_FEDERATION_NOT_FOUND</span></a>).</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-samlp2-name-id-policy-new"></a><h3>lasso_samlp2_name_id_policy_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_samlp2_name_id_policy_new     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSamlp2NameIDPolicy.html#LassoSamlp2NameIDPolicy" title="struct LassoSamlp2NameIDPolicy"><span class="type">LassoSamlp2NameIDPolicy</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSamlp2NameIDPolicy.html#LassoSamlp2NameIDPolicy" title="struct LassoSamlp2NameIDPolicy"><span class="type">LassoSamlp2NameIDPolicy</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

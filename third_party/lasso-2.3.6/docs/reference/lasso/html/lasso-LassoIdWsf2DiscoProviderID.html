@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIdWsf2DiscoProviderID</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf2.html" title="Objects from ID-WSF 2.0 schemas">
+<link rel="prev" href="lasso-LassoIdWsf2DiscoKeys.html" title="LassoIdWsf2DiscoKeys">
+<link rel="next" href="lasso-LassoIdWsf2DiscoRequestedService.html" title="LassoIdWsf2DiscoRequestedService">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoIdWsf2DiscoKeys.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoIdWsf2DiscoRequestedService.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoIdWsf2DiscoProviderID.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoIdWsf2DiscoProviderID.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoIdWsf2DiscoProviderID"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoIdWsf2DiscoProviderID.top_of_page"></a>LassoIdWsf2DiscoProviderID</span></h2>
+<p>LassoIdWsf2DiscoProviderID — &lt;disco:ProviderID&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoIdWsf2DiscoProviderID.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID">LassoIdWsf2DiscoProviderID</a>;
+<a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="returnvalue">LassoIdWsf2DiscoProviderID</span></a> *  <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#lasso-idwsf2-disco-provider-id-new" title="lasso_idwsf2_disco_provider_id_new ()">lasso_idwsf2_disco_provider_id_new</a>
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="returnvalue">LassoIdWsf2DiscoProviderID</span></a> * <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#lasso-idwsf2-disco-provider-id-new-with-string" title="lasso_idwsf2_disco_provider_id_new_with_string ()">lasso_idwsf2_disco_provider_id_new_with_string</a>
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *content</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2DiscoProviderID.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3223013"></a><p class="title"><b>Figure 142. Schema fragment for disco:ProviderID</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:element name="ProviderID" type="xs:anyURI"/&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2DiscoProviderID.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoIdWsf2DiscoProviderID"></a><h3>struct LassoIdWsf2DiscoProviderID</h3>
+<pre class="programlisting">struct LassoIdWsf2DiscoProviderID {
+	LassoNode parent;
+
+	/* elements */
+	char *content;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-disco-provider-id-new"></a><h3>lasso_idwsf2_disco_provider_id_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="returnvalue">LassoIdWsf2DiscoProviderID</span></a> *  lasso_idwsf2_disco_provider_id_new
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="type">LassoIdWsf2DiscoProviderID</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="type">LassoIdWsf2DiscoProviderID</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-disco-provider-id-new-with-string"></a><h3>lasso_idwsf2_disco_provider_id_new_with_string ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="returnvalue">LassoIdWsf2DiscoProviderID</span></a> * lasso_idwsf2_disco_provider_id_new_with_string
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *content</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="type">LassoIdWsf2DiscoProviderID</span></a> object and initializes it
+with <em class="parameter"><code>content</code></em> as content.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content</code></em> :</span></p></td>
+<td>the content string</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2DiscoProviderID.html#LassoIdWsf2DiscoProviderID" title="struct LassoIdWsf2DiscoProviderID"><span class="type">LassoIdWsf2DiscoProviderID</span></a> object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

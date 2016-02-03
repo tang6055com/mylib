@@ -1,0 +1,355 @@
+TYPEMAP
+
+string_or_null	T_STRING_OR_NULL
+string_non_null	T_STRING_NON_NULL
+const gchar *	T_PV
+gchar *	T_PV
+gboolean	T_IV
+const LassoProvider *	T_GOBJECT_WRAPPER
+xmlNode*	T_XMLNODE
+const xmlNode*	T_XMLNODE
+GList_string	T_GLIST_STRING
+GList_xmlnode	T_GLIST_XMLNODE
+GList_gobject	T_GLIST_GOBJECT
+GList_string_const	T_GLIST_STRING
+GList_gobject_const	T_GLIST_GOBJECT
+const GList*	T_GLIST_STRING
+GHashTable*	T_PTRREF
+
+
+lasso_error_t                  T_IV
+int                            T_IV
+gint                           T_IV
+long                           T_IV
+glong                          T_IV
+LassoCheckVersionMode          T_IV
+LassoAssertionQueryRequestType T_IV
+LassoSaml2AssertionValidationState T_IV
+LassoLoginProtocolProfile      T_IV
+LassoRequestType               T_IV
+LassoProfileSignatureHint      T_IV
+LassoProfileSignatureVerifyHint T_IV
+LassoHttpMethod                T_IV
+LassoMdProtocolType            T_IV
+LassoProviderRole              T_IV
+LassoProtocolConformance       T_IV
+LassoEncryptionMode            T_IV
+LassoEncryptionSymKeyType      T_IV
+LassoMessageFormat             T_IV
+LassoSignatureType             T_IV
+LassoSignatureMethod           T_IV
+LassoNode*                     T_GOBJECT_WRAPPER
+const LassoNode*                     T_GOBJECT_WRAPPER
+LassoIdentity*                 T_GOBJECT_WRAPPER
+const LassoIdentity*                 T_GOBJECT_WRAPPER
+LassoSession*                  T_GOBJECT_WRAPPER
+const LassoSession*                  T_GOBJECT_WRAPPER
+LassoFederation*               T_GOBJECT_WRAPPER
+const LassoFederation*               T_GOBJECT_WRAPPER
+LassoProfile*                  T_GOBJECT_WRAPPER
+const LassoProfile*                  T_GOBJECT_WRAPPER
+LassoEcp*                      T_GOBJECT_WRAPPER
+const LassoEcp*                      T_GOBJECT_WRAPPER
+LassoAssertionQuery*           T_GOBJECT_WRAPPER
+const LassoAssertionQuery*           T_GOBJECT_WRAPPER
+LassoNameIdManagement*         T_GOBJECT_WRAPPER
+const LassoNameIdManagement*         T_GOBJECT_WRAPPER
+LassoLogout*                   T_GOBJECT_WRAPPER
+const LassoLogout*                   T_GOBJECT_WRAPPER
+LassoLogin*                    T_GOBJECT_WRAPPER
+const LassoLogin*                    T_GOBJECT_WRAPPER
+LassoNameIdentifierMapping*    T_GOBJECT_WRAPPER
+const LassoNameIdentifierMapping*    T_GOBJECT_WRAPPER
+LassoNameRegistration*         T_GOBJECT_WRAPPER
+const LassoNameRegistration*         T_GOBJECT_WRAPPER
+LassoProvider*                 T_GOBJECT_WRAPPER
+const LassoProvider*                 T_GOBJECT_WRAPPER
+LassoServer*                   T_GOBJECT_WRAPPER
+const LassoServer*                   T_GOBJECT_WRAPPER
+LassoLecp*                     T_GOBJECT_WRAPPER
+const LassoLecp*                     T_GOBJECT_WRAPPER
+LassoDefederation*             T_GOBJECT_WRAPPER
+const LassoDefederation*             T_GOBJECT_WRAPPER
+LassoMiscTextNode*             T_GOBJECT_WRAPPER
+const LassoMiscTextNode*             T_GOBJECT_WRAPPER
+LassoSamlAuthorityBinding*     T_GOBJECT_WRAPPER
+const LassoSamlAuthorityBinding*     T_GOBJECT_WRAPPER
+LassoSamlNameIdentifier*       T_GOBJECT_WRAPPER
+const LassoSamlNameIdentifier*       T_GOBJECT_WRAPPER
+LassoSamlAttributeDesignator*  T_GOBJECT_WRAPPER
+const LassoSamlAttributeDesignator*  T_GOBJECT_WRAPPER
+LassoSamlAttribute*            T_GOBJECT_WRAPPER
+const LassoSamlAttribute*            T_GOBJECT_WRAPPER
+LassoDsRsaKeyValue*            T_GOBJECT_WRAPPER
+const LassoDsRsaKeyValue*            T_GOBJECT_WRAPPER
+LassoLibAuthnResponseEnvelope* T_GOBJECT_WRAPPER
+const LassoLibAuthnResponseEnvelope* T_GOBJECT_WRAPPER
+LassoSamlSubject*              T_GOBJECT_WRAPPER
+const LassoSamlSubject*              T_GOBJECT_WRAPPER
+LassoLibSubject*               T_GOBJECT_WRAPPER
+const LassoLibSubject*               T_GOBJECT_WRAPPER
+LassoSamlAttributeValue*       T_GOBJECT_WRAPPER
+const LassoSamlAttributeValue*       T_GOBJECT_WRAPPER
+LassoSamlStatementAbstract*    T_GOBJECT_WRAPPER
+const LassoSamlStatementAbstract*    T_GOBJECT_WRAPPER
+LassoSamlSubjectStatementAbstract* T_GOBJECT_WRAPPER
+const LassoSamlSubjectStatementAbstract* T_GOBJECT_WRAPPER
+LassoSamlAttributeStatement*   T_GOBJECT_WRAPPER
+const LassoSamlAttributeStatement*   T_GOBJECT_WRAPPER
+LassoDsKeyValue*               T_GOBJECT_WRAPPER
+const LassoDsKeyValue*               T_GOBJECT_WRAPPER
+LassoDsKeyInfo*                T_GOBJECT_WRAPPER
+const LassoDsKeyInfo*                T_GOBJECT_WRAPPER
+LassoLibIDPEntry*              T_GOBJECT_WRAPPER
+const LassoLibIDPEntry*              T_GOBJECT_WRAPPER
+LassoSamlpStatusCode*          T_GOBJECT_WRAPPER
+const LassoSamlpStatusCode*          T_GOBJECT_WRAPPER
+LassoSamlpRequestAbstract*     T_GOBJECT_WRAPPER
+const LassoSamlpRequestAbstract*     T_GOBJECT_WRAPPER
+LassoLibNameIdentifierMappingRequest* T_GOBJECT_WRAPPER
+const LassoLibNameIdentifierMappingRequest* T_GOBJECT_WRAPPER
+LassoLibFederationTerminationNotification* T_GOBJECT_WRAPPER
+const LassoLibFederationTerminationNotification* T_GOBJECT_WRAPPER
+LassoLibRegisterNameIdentifierRequest* T_GOBJECT_WRAPPER
+const LassoLibRegisterNameIdentifierRequest* T_GOBJECT_WRAPPER
+LassoLibAuthnRequest*          T_GOBJECT_WRAPPER
+const LassoLibAuthnRequest*          T_GOBJECT_WRAPPER
+LassoLibAuthnContext*          T_GOBJECT_WRAPPER
+const LassoLibAuthnContext*          T_GOBJECT_WRAPPER
+LassoLibScoping*               T_GOBJECT_WRAPPER
+const LassoLibScoping*               T_GOBJECT_WRAPPER
+LassoLibIDPEntries*            T_GOBJECT_WRAPPER
+const LassoLibIDPEntries*            T_GOBJECT_WRAPPER
+LassoLibLogoutRequest*         T_GOBJECT_WRAPPER
+const LassoLibLogoutRequest*         T_GOBJECT_WRAPPER
+LassoLibIDPList*               T_GOBJECT_WRAPPER
+const LassoLibIDPList*               T_GOBJECT_WRAPPER
+LassoSamlConditionAbstract*    T_GOBJECT_WRAPPER
+const LassoSamlConditionAbstract*    T_GOBJECT_WRAPPER
+LassoSamlAudienceRestrictionCondition* T_GOBJECT_WRAPPER
+const LassoSamlAudienceRestrictionCondition* T_GOBJECT_WRAPPER
+LassoLibAuthnRequestEnvelope*  T_GOBJECT_WRAPPER
+const LassoLibAuthnRequestEnvelope*  T_GOBJECT_WRAPPER
+LassoLibRequestAuthnContext*   T_GOBJECT_WRAPPER
+const LassoLibRequestAuthnContext*   T_GOBJECT_WRAPPER
+LassoSamlAdvice*               T_GOBJECT_WRAPPER
+const LassoSamlAdvice*               T_GOBJECT_WRAPPER
+LassoSamlAssertion*            T_GOBJECT_WRAPPER
+const LassoSamlAssertion*            T_GOBJECT_WRAPPER
+LassoLibAssertion*             T_GOBJECT_WRAPPER
+const LassoLibAssertion*             T_GOBJECT_WRAPPER
+LassoSamlConditions*           T_GOBJECT_WRAPPER
+const LassoSamlConditions*           T_GOBJECT_WRAPPER
+LassoSamlSubjectStatement*     T_GOBJECT_WRAPPER
+const LassoSamlSubjectStatement*     T_GOBJECT_WRAPPER
+LassoSamlpRequest*             T_GOBJECT_WRAPPER
+const LassoSamlpRequest*             T_GOBJECT_WRAPPER
+LassoSamlSubjectConfirmation*  T_GOBJECT_WRAPPER
+const LassoSamlSubjectConfirmation*  T_GOBJECT_WRAPPER
+LassoSamlpStatus*              T_GOBJECT_WRAPPER
+const LassoSamlpStatus*              T_GOBJECT_WRAPPER
+LassoSamlAuthenticationStatement* T_GOBJECT_WRAPPER
+const LassoSamlAuthenticationStatement* T_GOBJECT_WRAPPER
+LassoLibAuthenticationStatement* T_GOBJECT_WRAPPER
+const LassoLibAuthenticationStatement* T_GOBJECT_WRAPPER
+LassoSamlSubjectLocality*      T_GOBJECT_WRAPPER
+const LassoSamlSubjectLocality*      T_GOBJECT_WRAPPER
+LassoSamlpResponseAbstract*    T_GOBJECT_WRAPPER
+const LassoSamlpResponseAbstract*    T_GOBJECT_WRAPPER
+LassoLibNameIdentifierMappingResponse* T_GOBJECT_WRAPPER
+const LassoLibNameIdentifierMappingResponse* T_GOBJECT_WRAPPER
+LassoSamlpResponse*            T_GOBJECT_WRAPPER
+const LassoSamlpResponse*            T_GOBJECT_WRAPPER
+LassoLibStatusResponse*        T_GOBJECT_WRAPPER
+const LassoLibStatusResponse*        T_GOBJECT_WRAPPER
+LassoLibLogoutResponse*        T_GOBJECT_WRAPPER
+const LassoLibLogoutResponse*        T_GOBJECT_WRAPPER
+LassoLibRegisterNameIdentifierResponse* T_GOBJECT_WRAPPER
+const LassoLibRegisterNameIdentifierResponse* T_GOBJECT_WRAPPER
+LassoLibAuthnResponse*         T_GOBJECT_WRAPPER
+const LassoLibAuthnResponse*         T_GOBJECT_WRAPPER
+LassoSamlp2RequestAbstract*    T_GOBJECT_WRAPPER
+const LassoSamlp2RequestAbstract*    T_GOBJECT_WRAPPER
+LassoSamlp2AssertionIDRequest* T_GOBJECT_WRAPPER
+const LassoSamlp2AssertionIDRequest* T_GOBJECT_WRAPPER
+LassoSaml2SubjectConfirmationData* T_GOBJECT_WRAPPER
+const LassoSaml2SubjectConfirmationData* T_GOBJECT_WRAPPER
+LassoSaml2SubjectLocality*     T_GOBJECT_WRAPPER
+const LassoSaml2SubjectLocality*     T_GOBJECT_WRAPPER
+LassoSaml2ConditionAbstract*   T_GOBJECT_WRAPPER
+const LassoSaml2ConditionAbstract*   T_GOBJECT_WRAPPER
+LassoSamlp2NameIDPolicy*       T_GOBJECT_WRAPPER
+const LassoSamlp2NameIDPolicy*       T_GOBJECT_WRAPPER
+LassoSaml2Subject*             T_GOBJECT_WRAPPER
+const LassoSaml2Subject*             T_GOBJECT_WRAPPER
+LassoSamlp2Scoping*            T_GOBJECT_WRAPPER
+const LassoSamlp2Scoping*            T_GOBJECT_WRAPPER
+LassoSamlp2LogoutRequest*      T_GOBJECT_WRAPPER
+const LassoSamlp2LogoutRequest*      T_GOBJECT_WRAPPER
+LassoSaml2BaseIDAbstract*      T_GOBJECT_WRAPPER
+const LassoSaml2BaseIDAbstract*      T_GOBJECT_WRAPPER
+LassoSamlp2IDPEntry*           T_GOBJECT_WRAPPER
+const LassoSamlp2IDPEntry*           T_GOBJECT_WRAPPER
+LassoSaml2AudienceRestriction* T_GOBJECT_WRAPPER
+const LassoSaml2AudienceRestriction* T_GOBJECT_WRAPPER
+LassoSaml2AuthnContext*        T_GOBJECT_WRAPPER
+const LassoSaml2AuthnContext*        T_GOBJECT_WRAPPER
+LassoSamlp2IDPList*            T_GOBJECT_WRAPPER
+const LassoSamlp2IDPList*            T_GOBJECT_WRAPPER
+LassoSaml2ProxyRestriction*    T_GOBJECT_WRAPPER
+const LassoSaml2ProxyRestriction*    T_GOBJECT_WRAPPER
+LassoSamlp2SubjectQueryAbstract* T_GOBJECT_WRAPPER
+const LassoSamlp2SubjectQueryAbstract* T_GOBJECT_WRAPPER
+LassoSamlp2AttributeQuery*     T_GOBJECT_WRAPPER
+const LassoSamlp2AttributeQuery*     T_GOBJECT_WRAPPER
+LassoSamlp2ManageNameIDRequest* T_GOBJECT_WRAPPER
+const LassoSamlp2ManageNameIDRequest* T_GOBJECT_WRAPPER
+LassoSamlp2Extensions*         T_GOBJECT_WRAPPER
+const LassoSamlp2Extensions*         T_GOBJECT_WRAPPER
+LassoSamlp2StatusResponse*     T_GOBJECT_WRAPPER
+const LassoSamlp2StatusResponse*     T_GOBJECT_WRAPPER
+LassoSamlp2ManageNameIDResponse* T_GOBJECT_WRAPPER
+const LassoSamlp2ManageNameIDResponse* T_GOBJECT_WRAPPER
+LassoSamlp2ArtifactResponse*   T_GOBJECT_WRAPPER
+const LassoSamlp2ArtifactResponse*   T_GOBJECT_WRAPPER
+LassoSaml2Attribute*           T_GOBJECT_WRAPPER
+const LassoSaml2Attribute*           T_GOBJECT_WRAPPER
+LassoSamlp2Status*             T_GOBJECT_WRAPPER
+const LassoSamlp2Status*             T_GOBJECT_WRAPPER
+LassoSaml2SubjectConfirmation* T_GOBJECT_WRAPPER
+const LassoSaml2SubjectConfirmation* T_GOBJECT_WRAPPER
+LassoSamlp2Terminate*          T_GOBJECT_WRAPPER
+const LassoSamlp2Terminate*          T_GOBJECT_WRAPPER
+LassoSaml2Evidence*            T_GOBJECT_WRAPPER
+const LassoSaml2Evidence*            T_GOBJECT_WRAPPER
+LassoSaml2Advice*              T_GOBJECT_WRAPPER
+const LassoSaml2Advice*              T_GOBJECT_WRAPPER
+LassoSamlp2Response*           T_GOBJECT_WRAPPER
+const LassoSamlp2Response*           T_GOBJECT_WRAPPER
+LassoSamlp2AuthnRequest*       T_GOBJECT_WRAPPER
+const LassoSamlp2AuthnRequest*       T_GOBJECT_WRAPPER
+LassoSaml2Assertion*           T_GOBJECT_WRAPPER
+const LassoSaml2Assertion*           T_GOBJECT_WRAPPER
+LassoSamlp2NameIDMappingRequest* T_GOBJECT_WRAPPER
+const LassoSamlp2NameIDMappingRequest* T_GOBJECT_WRAPPER
+LassoSamlp2AuthnQuery*         T_GOBJECT_WRAPPER
+const LassoSamlp2AuthnQuery*         T_GOBJECT_WRAPPER
+LassoSamlp2LogoutResponse*     T_GOBJECT_WRAPPER
+const LassoSamlp2LogoutResponse*     T_GOBJECT_WRAPPER
+LassoSamlp2StatusCode*         T_GOBJECT_WRAPPER
+const LassoSamlp2StatusCode*         T_GOBJECT_WRAPPER
+LassoSaml2EncryptedElement*    T_GOBJECT_WRAPPER
+const LassoSaml2EncryptedElement*    T_GOBJECT_WRAPPER
+LassoSamlp2AuthzDecisionQuery* T_GOBJECT_WRAPPER
+const LassoSamlp2AuthzDecisionQuery* T_GOBJECT_WRAPPER
+LassoSaml2StatementAbstract*   T_GOBJECT_WRAPPER
+const LassoSaml2StatementAbstract*   T_GOBJECT_WRAPPER
+LassoSaml2AttributeStatement*  T_GOBJECT_WRAPPER
+const LassoSaml2AttributeStatement*  T_GOBJECT_WRAPPER
+LassoSaml2AuthnStatement*      T_GOBJECT_WRAPPER
+const LassoSaml2AuthnStatement*      T_GOBJECT_WRAPPER
+LassoSaml2AuthzDecisionStatement* T_GOBJECT_WRAPPER
+const LassoSaml2AuthzDecisionStatement* T_GOBJECT_WRAPPER
+LassoSaml2AttributeValue*      T_GOBJECT_WRAPPER
+const LassoSaml2AttributeValue*      T_GOBJECT_WRAPPER
+LassoSaml2Action*              T_GOBJECT_WRAPPER
+const LassoSaml2Action*              T_GOBJECT_WRAPPER
+LassoSaml2OneTimeUse*          T_GOBJECT_WRAPPER
+const LassoSaml2OneTimeUse*          T_GOBJECT_WRAPPER
+LassoSaml2NameID*              T_GOBJECT_WRAPPER
+const LassoSaml2NameID*              T_GOBJECT_WRAPPER
+LassoSaml2KeyInfoConfirmationData* T_GOBJECT_WRAPPER
+const LassoSaml2KeyInfoConfirmationData* T_GOBJECT_WRAPPER
+LassoSamlp2StatusDetail*       T_GOBJECT_WRAPPER
+const LassoSamlp2StatusDetail*       T_GOBJECT_WRAPPER
+LassoSamlp2ArtifactResolve*    T_GOBJECT_WRAPPER
+const LassoSamlp2ArtifactResolve*    T_GOBJECT_WRAPPER
+LassoSamlp2NameIDMappingResponse* T_GOBJECT_WRAPPER
+const LassoSamlp2NameIDMappingResponse* T_GOBJECT_WRAPPER
+LassoSamlp2RequestedAuthnContext* T_GOBJECT_WRAPPER
+const LassoSamlp2RequestedAuthnContext* T_GOBJECT_WRAPPER
+LassoSaml2Conditions*          T_GOBJECT_WRAPPER
+const LassoSaml2Conditions*          T_GOBJECT_WRAPPER
+LassoSoapEnvelope*             T_GOBJECT_WRAPPER
+const LassoSoapEnvelope*             T_GOBJECT_WRAPPER
+LassoSoapBody*                 T_GOBJECT_WRAPPER
+const LassoSoapBody*                 T_GOBJECT_WRAPPER
+LassoSoapHeader*               T_GOBJECT_WRAPPER
+const LassoSoapHeader*               T_GOBJECT_WRAPPER
+LassoSoapFault*                T_GOBJECT_WRAPPER
+const LassoSoapFault*                T_GOBJECT_WRAPPER
+LassoSoapDetail*               T_GOBJECT_WRAPPER
+const LassoSoapDetail*               T_GOBJECT_WRAPPER
+INPUT
+T_STRING_OR_NULL
+    $var = SvPOK($arg) ? SvPV_nolen($arg) : NULL;
+
+T_STRING_NON_NULL
+    $var = SvPOK($arg) ? SvPV_nolen($arg) : (croak(\"$var cannot be undef\"), NULL);
+
+T_GOBJECT_WRAPPER
+    $var = ($type)gperl_get_object($arg);
+
+T_XMLNODE
+    $var = pv_to_xmlnode($arg);
+
+T_GLIST_STRING
+    $var = array_to_glist_string((AV*)SvRV($arg));
+
+T_GLIST_GOBJECT
+    $var = array_to_glist_gobject((AV*)SvRV($arg));
+OUTPUT
+
+T_GOBJECT_WRAPPER
+    $arg = gperl_new_object((GObject*)$var, FALSE);
+
+T_XMLNODE_OWN
+    $arg = xmlnode_to_pv($var, TRUE);
+
+T_XMLNODE
+    $arg = xmlnode_to_pv($var, FALSE);
+
+T_GLIST_STRING
+    {
+      I32 ix, length;
+      length = g_list_length((GList*)$var);
+      EXTEND(SP, length);
+      for (ix = 0; ix < length; ++ix) {
+          ST(ix) = sv_2mortal(newSVpv((char*)$var->data, 0));
+          $var = $var->next;
+      }
+      if (length)
+          XSRETURN(length);
+      else
+          XSRETURN_EMPTY;
+    }
+
+T_GLIST_XMLNODE
+    {
+      I32 ix, length;
+      length = g_list_length((GList*)$var);
+      EXTEND(SP, length);
+      for (ix = 0; ix < length; ++ix) {
+          ST(ix) = sv_2mortal(xmlnode_to_pv((xmlNode*)$var->data, FALSE));
+          $var = $var->next;
+      }
+      if (length)
+          XSRETURN(length);
+      else
+          XSRETURN_EMPTY;
+    }
+
+T_GLIST_GOBJECT
+    {
+      I32 ix, length;
+      length = g_list_length((GList*)$var);
+      EXTEND(SP, length);
+      for (ix = 0; ix < length; ++ix) {
+          ST(ix) = sv_2mortal(gperl_new_object((GObject*)$var->data, FALSE));
+          $var = $var->next;
+      }
+      if (length)
+          XSRETURN(length);
+      else
+          XSRETURN_EMPTY;
+    }

@@ -1,0 +1,6 @@
+*.test
+test.conf
+merged
+core
+vgcore.*
+core.*

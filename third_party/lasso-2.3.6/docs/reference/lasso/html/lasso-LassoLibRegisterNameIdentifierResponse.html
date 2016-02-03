@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoLibRegisterNameIdentifierResponse</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idff.html" title="Objects from ID-FF 1.2 schemas">
+<link rel="prev" href="lasso-LassoLibRegisterNameIdentifierRequest.html" title="LassoLibRegisterNameIdentifierRequest">
+<link rel="next" href="lasso-LassoLibRequestAuthnContext.html" title="LassoLibRequestAuthnContext">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoLibRegisterNameIdentifierRequest.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoLibRequestAuthnContext.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoLibRegisterNameIdentifierResponse.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoLibRegisterNameIdentifierResponse.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoLibRegisterNameIdentifierResponse"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoLibRegisterNameIdentifierResponse.top_of_page"></a>LassoLibRegisterNameIdentifierResponse</span></h2>
+<p>LassoLibRegisterNameIdentifierResponse — &lt;lib:RegisterNameIdentifierResponse&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoLibRegisterNameIdentifierResponse.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#LassoLibRegisterNameIdentifierResponse" title="struct LassoLibRegisterNameIdentifierResponse">LassoLibRegisterNameIdentifierResponse</a>;
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#lasso-lib-register-name-identifier-response-new" title="lasso_lib_register_name_identifier_response_new ()">lasso_lib_register_name_identifier_response_new</a>
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#lasso-lib-register-name-identifier-response-new-full" title="lasso_lib_register_name_identifier_response_new_full ()">lasso_lib_register_name_identifier_response_new_full</a>
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *statusCodeValue</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoLibRegisterNameIdentifierRequest.html#LassoLibRegisterNameIdentifierRequest" title="struct LassoLibRegisterNameIdentifierRequest"><span class="type">LassoLibRegisterNameIdentifierRequest</span></a> *request</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoSignatureType" title="enum LassoSignatureType"><span class="type">LassoSignatureType</span></a> sign_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoSignatureMethod" title="enum LassoSignatureMethod"><span class="type">LassoSignatureMethod</span></a> sign_method</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibRegisterNameIdentifierResponse.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3129726"></a><p class="title"><b>Figure 16. Schema fragment for lib:RegisterNameIdentifierResponse</b></p>
+<div class="figure-contents"><pre class="programlisting">
+&lt;xs:element name="RegisterNameIdentifierResponse" type="StatusResponseType"/&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibRegisterNameIdentifierResponse.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoLibRegisterNameIdentifierResponse"></a><h3>struct LassoLibRegisterNameIdentifierResponse</h3>
+<pre class="programlisting">struct LassoLibRegisterNameIdentifierResponse {
+	LassoLibStatusResponse parent;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-lib-register-name-identifier-response-new"></a><h3>lasso_lib_register_name_identifier_response_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_lib_register_name_identifier_response_new
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#LassoLibRegisterNameIdentifierResponse" title="struct LassoLibRegisterNameIdentifierResponse"><span class="type">LassoLibRegisterNameIdentifierResponse</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#LassoLibRegisterNameIdentifierResponse" title="struct LassoLibRegisterNameIdentifierResponse"><span class="type">LassoLibRegisterNameIdentifierResponse</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-lib-register-name-identifier-response-new-full"></a><h3>lasso_lib_register_name_identifier_response_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_lib_register_name_identifier_response_new_full
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *statusCodeValue</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoLibRegisterNameIdentifierRequest.html#LassoLibRegisterNameIdentifierRequest" title="struct LassoLibRegisterNameIdentifierRequest"><span class="type">LassoLibRegisterNameIdentifierRequest</span></a> *request</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoSignatureType" title="enum LassoSignatureType"><span class="type">LassoSignatureType</span></a> sign_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoSignatureMethod" title="enum LassoSignatureMethod"><span class="type">LassoSignatureMethod</span></a> sign_method</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#LassoLibRegisterNameIdentifierResponse" title="struct LassoLibRegisterNameIdentifierResponse"><span class="type">LassoLibRegisterNameIdentifierResponse</span></a> object and initializes
+it with the parameters.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the providerID of the responder</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>statusCodeValue</code></em> :</span></p></td>
+<td>a response status code</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>request</code></em> :</span></p></td>
+<td>the request which is answered by this response</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sign_type</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-node.html#LassoSignatureType" title="enum LassoSignatureType"><span class="type">LassoSignatureType</span></a> value</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sign_method</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-node.html#LassoSignatureMethod" title="enum LassoSignatureMethod"><span class="type">LassoSignatureMethod</span></a> value</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLibRegisterNameIdentifierResponse.html#LassoLibRegisterNameIdentifierResponse" title="struct LassoLibRegisterNameIdentifierResponse"><span class="type">LassoLibRegisterNameIdentifierResponse</span></a> object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

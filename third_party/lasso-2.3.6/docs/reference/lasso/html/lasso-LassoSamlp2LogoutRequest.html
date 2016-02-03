@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSamlp2LogoutRequest</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-samlv2.html" title="Objects from SAML 2.0 schemas">
+<link rel="prev" href="lasso-LassoSamlp2IDPList.html" title="LassoSamlp2IDPList">
+<link rel="next" href="lasso-LassoSamlp2LogoutResponse.html" title="LassoSamlp2LogoutResponse">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSamlp2IDPList.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-samlv2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSamlp2LogoutResponse.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSamlp2LogoutRequest.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSamlp2LogoutRequest.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSamlp2LogoutRequest"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSamlp2LogoutRequest.top_of_page"></a>LassoSamlp2LogoutRequest</span></h2>
+<p>LassoSamlp2LogoutRequest — &lt;samlp2:LogoutRequest&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSamlp2LogoutRequest.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest">LassoSamlp2LogoutRequest</a>;
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#lasso-samlp2-logout-request-new" title="lasso_samlp2_logout_request_new ()">lasso_samlp2_logout_request_new</a>     (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#lasso-samlp2-logout-request-get-session-indexes" title="lasso_samlp2_logout_request_get_session_indexes ()">lasso_samlp2_logout_request_get_session_indexes</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> *logout_request</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#lasso-samlp2-logout-request-set-session-indexes" title="lasso_samlp2_logout_request_set_session_indexes ()">lasso_samlp2_logout_request_set_session_indexes</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> *logout_request</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *session_index</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlp2LogoutRequest.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3162567"></a><p class="title"><b>Figure 75. Schema fragment for samlp2:LogoutRequest</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;complexType name="LogoutRequestType"&gt;
+  &lt;complexContent&gt;
+    &lt;extension base="samlp:RequestAbstractType"&gt;
+      &lt;sequence&gt;
+        &lt;choice&gt;
+          &lt;element ref="saml:BaseID"/&gt;
+          &lt;element ref="saml:NameID"/&gt;
+          &lt;element ref="saml:EncryptedID"/&gt;
+        &lt;/choice&gt;
+        &lt;element ref="samlp:SessionIndex" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;/sequence&gt;
+      &lt;attribute name="Reason" type="string" use="optional"/&gt;
+      &lt;attribute name="NotOnOrAfter" type="dateTime" use="optional"/&gt;
+    &lt;/extension&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlp2LogoutRequest.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSamlp2LogoutRequest"></a><h3>struct LassoSamlp2LogoutRequest</h3>
+<pre class="programlisting">struct LassoSamlp2LogoutRequest {
+	LassoSamlp2RequestAbstract parent;
+
+	/* elements */
+	LassoSaml2BaseIDAbstract *BaseID;
+	LassoSaml2NameID *NameID;
+	LassoSaml2EncryptedElement *EncryptedID;
+	char *SessionIndex;
+	/* attributes */
+	char *Reason;
+	char *NotOnOrAfter;
+
+	/* This field is deprecated do not use it,
+	 * kept for ABI compatibility */
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-samlp2-logout-request-new"></a><h3>lasso_samlp2_logout_request_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_samlp2_logout_request_new     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-samlp2-logout-request-get-session-indexes"></a><h3>lasso_samlp2_logout_request_get_session_indexes ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             lasso_samlp2_logout_request_get_session_indexes
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> *logout_request</code></em>);</pre>
+<p>
+If the logout request contains more than one SessionIndex element, this method must be used to
+retrieve due to historical circonstances. It will a return a list of the content of the
+SessionIndex elements.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout_request</code></em> :</span></p></td>
+<td>a <span class="type">LogoutRequest</span> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of sessions index. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-samlp2-logout-request-set-session-indexes"></a><h3>lasso_samlp2_logout_request_set_session_indexes ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_samlp2_logout_request_set_session_indexes
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSamlp2LogoutRequest.html#LassoSamlp2LogoutRequest" title="struct LassoSamlp2LogoutRequest"><span class="type">LassoSamlp2LogoutRequest</span></a> *logout_request</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *session_index</code></em>);</pre>
+<p>
+If you want to set more than one SessionIndex on a LogoutRequest, use this method. Beware that
+the public field named SessionIndex corresponds to the last element in this list. This is an
+symptom of the way elements are parsed by Lasso.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout_request</code></em> :</span></p></td>
+<td>a <span class="type">LogoutRequest</span> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session_index</code></em> :</span></p></td>
+<td>a list of session index. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

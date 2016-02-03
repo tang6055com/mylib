@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSamlNameIdentifier</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idff.html" title="Objects from ID-FF 1.2 schemas">
+<link rel="prev" href="lasso-LassoSamlConditions.html" title="LassoSamlConditions">
+<link rel="next" href="lasso-LassoSamlpRequestAbstract.html" title="LassoSamlpRequestAbstract">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSamlConditions.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSamlpRequestAbstract.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSamlNameIdentifier.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSamlNameIdentifier.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSamlNameIdentifier"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSamlNameIdentifier.top_of_page"></a>LassoSamlNameIdentifier</span></h2>
+<p>LassoSamlNameIdentifier — &lt;saml:NameIdentifier&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSamlNameIdentifier.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier">LassoSamlNameIdentifier</a>;
+<a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="returnvalue">LassoSamlNameIdentifier</span></a> *  <a class="link" href="lasso-LassoSamlNameIdentifier.html#lasso-saml-name-identifier-new" title="lasso_saml_name_identifier_new ()">lasso_saml_name_identifier_new</a>
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="returnvalue">LassoSamlNameIdentifier</span></a> *  <a class="link" href="lasso-LassoSamlNameIdentifier.html#lasso-saml-name-identifier-new-from-xmlNode" title="lasso_saml_name_identifier_new_from_xmlNode ()">lasso_saml_name_identifier_new_from_xmlNode</a>
+                                                        (<em class="parameter"><code><span class="type">xmlNode</span> *xmlnode</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlNameIdentifier.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3152840"></a><p class="title"><b>Figure 30. Schema fragment for saml:NameIdentifier</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;element name="NameIdentifier" type="saml:NameIdentifierType"/&gt;
+&lt;complexType name="NameIdentifierType"&gt;
+  &lt;simpleContent&gt;
+    &lt;extension base="string"&gt;
+      &lt;attribute name="NameQualifier" type="string" use="optional"/&gt;
+      &lt;attribute name="Format" type="anyURI" use="optional"/&gt;
+    &lt;/extension&gt;
+  &lt;/simpleContent&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlNameIdentifier.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSamlNameIdentifier"></a><h3>struct LassoSamlNameIdentifier</h3>
+<pre class="programlisting">struct LassoSamlNameIdentifier {
+	LassoNode parent;
+
+	char *NameQualifier;
+	char *Format;
+	char *content;
+};
+</pre>
+<p>
+<em class="parameter"><code>NameQualifier</code></em> is the provider ID of the provider that created the name
+identifier.
+</p>
+<p>
+<em class="parameter"><code>Format</code></em> is a string constant defined by the Liberty
+Alliance.  The following constants are defined:
+<a class="link" href="lasso-Strings-for-ID-FF-1.2.html#LASSO-LIB-NAME-IDENTIFIER-FORMAT-FEDERATED:CAPS" title="LASSO_LIB_NAME_IDENTIFIER_FORMAT_FEDERATED"><span class="type">LASSO_LIB_NAME_IDENTIFIER_FORMAT_FEDERATED</span></a>,
+<a class="link" href="lasso-Strings-for-ID-FF-1.2.html#LASSO-LIB-NAME-IDENTIFIER-FORMAT-ONE-TIME:CAPS" title="LASSO_LIB_NAME_IDENTIFIER_FORMAT_ONE_TIME"><span class="type">LASSO_LIB_NAME_IDENTIFIER_FORMAT_ONE_TIME</span></a>,
+<a class="link" href="lasso-Strings-for-ID-FF-1.2.html#LASSO-LIB-NAME-IDENTIFIER-FORMAT-ENCRYPTED:CAPS" title="LASSO_LIB_NAME_IDENTIFIER_FORMAT_ENCRYPTED"><span class="type">LASSO_LIB_NAME_IDENTIFIER_FORMAT_ENCRYPTED</span></a> (when providers transmit name
+identifiers) and
+<a class="link" href="lasso-Strings-for-ID-FF-1.2.html#LASSO-LIB-NAME-IDENTIFIER-FORMAT-ENTITYID:CAPS" title="LASSO_LIB_NAME_IDENTIFIER_FORMAT_ENTITYID"><span class="type">LASSO_LIB_NAME_IDENTIFIER_FORMAT_ENTITYID</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml-name-identifier-new"></a><h3>lasso_saml_name_identifier_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="returnvalue">LassoSamlNameIdentifier</span></a> *  lasso_saml_name_identifier_new
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="type">LassoSamlNameIdentifier</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="type">LassoSamlNameIdentifier</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml-name-identifier-new-from-xmlNode"></a><h3>lasso_saml_name_identifier_new_from_xmlNode ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSamlNameIdentifier.html#LassoSamlNameIdentifier" title="struct LassoSamlNameIdentifier"><span class="returnvalue">LassoSamlNameIdentifier</span></a> *  lasso_saml_name_identifier_new_from_xmlNode
+                                                        (<em class="parameter"><code><span class="type">xmlNode</span> *xmlnode</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

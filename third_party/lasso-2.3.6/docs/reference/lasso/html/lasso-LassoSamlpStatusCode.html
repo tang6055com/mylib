@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSamlpStatusCode</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idff.html" title="Objects from ID-FF 1.2 schemas">
+<link rel="prev" href="lasso-LassoSamlpResponse.html" title="LassoSamlpResponse">
+<link rel="next" href="lasso-LassoSamlpStatus.html" title="LassoSamlpStatus">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSamlpResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSamlpStatus.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSamlpStatusCode.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSamlpStatusCode.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSamlpStatusCode"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSamlpStatusCode.top_of_page"></a>LassoSamlpStatusCode</span></h2>
+<p>LassoSamlpStatusCode — &lt;samlp:StatusCode&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSamlpStatusCode.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSamlpStatusCode.html#LassoSamlpStatusCode" title="struct LassoSamlpStatusCode">LassoSamlpStatusCode</a>;
+<a class="link" href="lasso-LassoSamlpStatusCode.html#LassoSamlpStatusCode" title="struct LassoSamlpStatusCode"><span class="returnvalue">LassoSamlpStatusCode</span></a> *  <a class="link" href="lasso-LassoSamlpStatusCode.html#lasso-samlp-status-code-new" title="lasso_samlp_status_code_new ()">lasso_samlp_status_code_new</a>     (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlpStatusCode.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3111773"></a><p class="title"><b>Figure 35. Schema fragment for samlp:StatusCode</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;element name="StatusCode" type="samlp:StatusCodeType"/&gt;
+&lt;complexType name="StatusCodeType"&gt;
+  &lt;sequence&gt;
+    &lt;element ref="samlp:StatusCode" minOccurs="0"/&gt;
+  &lt;/sequence&gt;
+  &lt;attribute name="Value" type="QName" use="required"/&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSamlpStatusCode.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSamlpStatusCode"></a><h3>struct LassoSamlpStatusCode</h3>
+<pre class="programlisting">struct LassoSamlpStatusCode {
+	LassoNode parent;
+
+	/* &lt;element ref="samlp:StatusCode" minOccurs="0"/&gt; */
+	LassoSamlpStatusCode *StatusCode;
+	/* &lt;attribute name="Value" type="QName" use="required"/&gt; */
+	char *Value;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-samlp-status-code-new"></a><h3>lasso_samlp_status_code_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSamlpStatusCode.html#LassoSamlpStatusCode" title="struct LassoSamlpStatusCode"><span class="returnvalue">LassoSamlpStatusCode</span></a> *  lasso_samlp_status_code_new     (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSamlpStatusCode.html#LassoSamlpStatusCode" title="struct LassoSamlpStatusCode"><span class="type">LassoSamlpStatusCode</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSamlpStatusCode.html#LassoSamlpStatusCode" title="struct LassoSamlpStatusCode"><span class="type">LassoSamlpStatusCode</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

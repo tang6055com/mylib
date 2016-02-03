@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoLibAssertion</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idff.html" title="Objects from ID-FF 1.2 schemas">
+<link rel="prev" href="lasso-Strings-for-ID-FF-1.2.html" title="Strings for ID-FF 1.2">
+<link rel="next" href="lasso-LassoLibAuthenticationStatement.html" title="LassoLibAuthenticationStatement">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-Strings-for-ID-FF-1.2.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoLibAuthenticationStatement.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoLibAssertion.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoLibAssertion.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoLibAssertion"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoLibAssertion.top_of_page"></a>LassoLibAssertion</span></h2>
+<p>LassoLibAssertion — &lt;lib:Assertion&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoLibAssertion.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion">LassoLibAssertion</a>;
+<a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="returnvalue">LassoLibAssertion</span></a> *  <a class="link" href="lasso-LassoLibAssertion.html#lasso-lib-assertion-new" title="lasso_lib_assertion_new ()">lasso_lib_assertion_new</a>            (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="returnvalue">LassoLibAssertion</span></a> *  <a class="link" href="lasso-LassoLibAssertion.html#lasso-lib-assertion-new-full" title="lasso_lib_assertion_new_full ()">lasso_lib_assertion_new_full</a>       (<em class="parameter"><code>const <span class="type">char</span> *issuer</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *requestID</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *audience</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *notBefore</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *notOnOrAfter</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibAssertion.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="blockquote"><blockquote class="blockquote">
+Authentication assertions provided in an AuthnResponse element MUST be of
+type AssertionType, which is an extension of saml:AssertionType, so that the
+RequestID attribute from the original AuthnRequest MAY be included in the
+InResponseTo attribute in the Assertion element. This is done because it is
+not required that the AuthnResponse element itself be signed. Instead, the
+individual Assertion elements contained MUST each be signed. Note that it is
+optional for the InResponseTo to be present. Its absence indicates that the
+AuthnResponse has been unilaterally sent by the identity provider without a
+corresponding AuthnRequest message from the service provider. If the
+attribute is present, it MUST be set to the RequestID of the original
+AuthnRequest.
+</blockquote></div>
+<p>
+</p>
+<p>
+</p>
+<div class="figure">
+<a name="id3132756"></a><p class="title"><b>Figure 1. Schema fragment for lib:Assertion</b></p>
+<div class="figure-contents"><pre class="programlisting">
+&lt;xs:element name="Assertion" type="AssertionType" substitutionGroup="saml:Assertion" /&gt;
+&lt;xs:complexType name="AssertionType"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="saml:AssertionType"&gt;
+      &lt;xs:attribute name="InResponseTo" type="xs:NCName" use="optional"/&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLibAssertion.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoLibAssertion"></a><h3>struct LassoLibAssertion</h3>
+<pre class="programlisting">struct LassoLibAssertion {
+	LassoSamlAssertion parent;
+
+	char *InResponseTo;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-lib-assertion-new"></a><h3>lasso_lib_assertion_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="returnvalue">LassoLibAssertion</span></a> *  lasso_lib_assertion_new            (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="type">LassoLibAssertion</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="type">LassoLibAssertion</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-lib-assertion-new-full"></a><h3>lasso_lib_assertion_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="returnvalue">LassoLibAssertion</span></a> *  lasso_lib_assertion_new_full       (<em class="parameter"><code>const <span class="type">char</span> *issuer</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *requestID</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *audience</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *notBefore</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *notOnOrAfter</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="type">LassoLibAssertion</span></a> object and initializes its Issuer, InResponseTo,
+AudienceRestrictionCondition, notBefore and notOnOrAfter fields or attributes.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>issuer</code></em> :</span></p></td>
+<td>the issuer entityID string</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>requestID:(allow-none)</code></em> :</span></p></td>
+<td>the identifier of the request which initiated the creation of this
+assertion</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audience:(allow-none)</code></em> :</span></p></td>
+<td>the entityID of the receiver of this assertion</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notBefore</code></em> :</span></p></td>
+<td>a timestamp formatted as iso-8601</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notOnOrAfter</code></em> :</span></p></td>
+<td>a timestamp formatted as iso-8601</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLibAssertion.html#LassoLibAssertion" title="struct LassoLibAssertion"><span class="type">LassoLibAssertion</span></a> object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

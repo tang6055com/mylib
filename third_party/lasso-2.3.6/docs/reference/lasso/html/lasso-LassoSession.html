@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSession</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="architecture.html" title="Lasso Architecture">
+<link rel="prev" href="lasso-LassoFederation.html" title="LassoFederation">
+<link rel="next" href="lasso-LassoProfile.html" title="LassoProfile">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoFederation.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="architecture.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoProfile.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSession.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSession.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSession"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSession.top_of_page"></a>LassoSession</span></h2>
+<p>LassoSession — Principal Session</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSession.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession">LassoSession</a>;
+<a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="returnvalue">LassoSession</span></a> *      <a class="link" href="lasso-LassoSession.html#lasso-session-new" title="lasso_session_new ()">lasso_session_new</a>                   (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="returnvalue">LassoSession</span></a> *      <a class="link" href="lasso-LassoSession.html#lasso-session-new-from-dump" title="lasso_session_new_from_dump ()">lasso_session_new_from_dump</a>         (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoSession.html#lasso-session-dump" title="lasso_session_dump ()">lasso_session_dump</a>                  (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSession.html#lasso-session-destroy" title="lasso_session_destroy ()">lasso_session_destroy</a>               (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="lasso-LassoSession.html#lasso-session-get-assertions" title="lasso_session_get_assertions ()">lasso_session_get_assertions</a>        (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *provider_id</code></em>);
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSession.html#lasso-session-get-assertion" title="lasso_session_get_assertion ()">lasso_session_get_assertion</a>         (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *providerID</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSession.html#lasso-session-remove-assertion" title="lasso_session_remove_assertion ()">lasso_session_remove_assertion</a>      (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *providerID</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSession.html#lasso-session-add-assertion" title="lasso_session_add_assertion ()">lasso_session_add_assertion</a>         (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *assertion</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoSession.html#lasso-session-get-provider-index" title="lasso_session_get_provider_index ()">lasso_session_get_provider_index</a>    (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="lasso-LassoSession.html#lasso-session-is-empty" title="lasso_session_is_empty ()">lasso_session_is_empty</a>              (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSession.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSession.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSession"></a><h3>struct LassoSession</h3>
+<pre class="programlisting">struct LassoSession {
+	LassoNode parent;
+
+	/* Can actually contain LassoSamlAssertion or LassoSaml2Assertion */
+	GHashTable *assertions; /* of LassoNode */
+	gboolean is_dirty;
+};
+</pre>
+<p>
+<a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> stores the assertions received or emitted during the current session. It stores
+state for using profiles like <a class="link" href="lasso-login.html#LassoLogin" title="struct LassoLogin"><span class="type">LassoLogin</span></a> or <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> <em class="structfield"><code><a name="LassoSession.parent"></a>parent</code></em>;</span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> *<em class="structfield"><code><a name="LassoSession.assertions"></a>assertions</code></em>;</span></p></td>
+<td>a hashtable of <a class="link" href="lasso-LassoSamlAssertion.html#LassoSamlAssertion" title="struct LassoSamlAssertion"><span class="type">LassoSamlAssertion</span></a> or <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a>, indexed by provider ids,. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> string LassoNode]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> <em class="structfield"><code><a name="LassoSession.is-dirty"></a>is_dirty</code></em>;</span></p></td>
+<td>whether this session object has been modified since its creation.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-new"></a><h3>lasso_session_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="returnvalue">LassoSession</span></a> *      lasso_session_new                   (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-new-from-dump"></a><h3>lasso_session_new_from_dump ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="returnvalue">LassoSession</span></a> *      lasso_session_new_from_dump         (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);</pre>
+<p>
+Restores the <em class="parameter"><code>dump</code></em> to a new <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dump</code></em> :</span></p></td>
+<td>XML server dump</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>; or NULL if an error occured</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-dump"></a><h3>lasso_session_dump ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_session_dump                  (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);</pre>
+<p>
+Dumps <em class="parameter"><code>session</code></em> content to an XML string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the dump string.  It must be freed by the caller. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-destroy"></a><h3>lasso_session_destroy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_session_destroy               (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);</pre>
+<p>
+Destroys a session.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-get-assertions"></a><h3>lasso_session_get_assertions ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             lasso_session_get_assertions        (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *provider_id</code></em>);</pre>
+<p>
+Gets the assertions for the given <em class="parameter"><code>provider_id</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>provider_id</code></em> :</span></p></td>
+<td>the provider ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a list of <a class="link" href="lasso-LassoSamlAssertion.html#LassoSamlAssertion" title="struct LassoSamlAssertion"><span class="type">LassoSamlAssertion</span></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> LassoNode]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-get-assertion"></a><h3>lasso_session_get_assertion ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_session_get_assertion         (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *providerID</code></em>);</pre>
+<p>
+Gets the assertion for the given <em class="parameter"><code>providerID</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the provider ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the assertion or NULL if it didn't exist.  This
+<a class="link" href="lasso-LassoSamlAssertion.html#LassoSamlAssertion" title="struct LassoSamlAssertion"><span class="type">LassoSamlAssertion</span></a> is internally allocated and must not be freed by
+the caller. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-remove-assertion"></a><h3>lasso_session_remove_assertion ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_session_remove_assertion      (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *providerID</code></em>);</pre>
+<p>
+Removes assertion for <em class="parameter"><code>providerID</code></em> from <em class="parameter"><code>session</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the provider ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-add-assertion"></a><h3>lasso_session_add_assertion ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_session_add_assertion         (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *assertion</code></em>);</pre>
+<p>
+Adds <em class="parameter"><code>assertion</code></em> to the principal session. This function also
+add the assertion to the index by assertionID.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the provider ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>assertion</code></em> :</span></p></td>
+<td>the assertion</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-get-provider-index"></a><h3>lasso_session_get_provider_index ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_session_get_provider_index    (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>);</pre>
+<p>
+Looks up and returns the nth provider id.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
+<td>index of requested provider</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the provider id; or NULL if there were no nth provider.  This
+string must be freed by the caller. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-session-is-empty"></a><h3>lasso_session_is_empty ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            lasso_session_is_empty              (<em class="parameter"><code><a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a> *session</code></em>);</pre>
+<p>
+Returns <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if session is empty.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSession.html#LassoSession" title="struct LassoSession"><span class="type">LassoSession</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if empty</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

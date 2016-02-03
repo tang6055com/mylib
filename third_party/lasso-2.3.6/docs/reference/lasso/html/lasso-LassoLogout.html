@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoLogout</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="idff.html" title="Identity Federation Framework - ID-FF 1.2 profiles">
+<link rel="prev" href="lasso-login.html" title="LassoLogin">
+<link rel="next" href="lasso-LassoDefederation.html" title="LassoDefederation">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-login.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="idff.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoDefederation.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoLogout.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoLogout.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoLogout"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoLogout.top_of_page"></a>LassoLogout</span></h2>
+<p>LassoLogout — Single Logout Profile</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoLogout.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout">LassoLogout</a>;
+<a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="returnvalue">LassoLogout</span></a> *       <a class="link" href="lasso-LassoLogout.html#lasso-logout-new" title="lasso_logout_new ()">lasso_logout_new</a>                    (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);
+<a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="returnvalue">LassoLogout</span></a> *       <a class="link" href="lasso-LassoLogout.html#lasso-logout-new-from-dump" title="lasso_logout_new_from_dump ()">lasso_logout_new_from_dump</a>          (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-build-request-msg" title="lasso_logout_build_request_msg ()">lasso_logout_build_request_msg</a>      (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-build-response-msg" title="lasso_logout_build_response_msg ()">lasso_logout_build_response_msg</a>     (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoLogout.html#lasso-logout-destroy" title="lasso_logout_destroy ()">lasso_logout_destroy</a>                (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoLogout.html#lasso-logout-dump" title="lasso_logout_dump ()">lasso_logout_dump</a>                   (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoLogout.html#lasso-logout-get-next-providerID" title="lasso_logout_get_next_providerID ()">lasso_logout_get_next_providerID</a>    (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-init-request" title="lasso_logout_init_request ()">lasso_logout_init_request</a>           (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *remote_providerID</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoProvider.html#LassoHttpMethod" title="enum LassoHttpMethod"><span class="type">LassoHttpMethod</span></a> request_method</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-process-request-msg" title="lasso_logout_process_request_msg ()">lasso_logout_process_request_msg</a>    (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *request_msg</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-process-response-msg" title="lasso_logout_process_response_msg ()">lasso_logout_process_response_msg</a>   (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *response_msg</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-reset-providerID-index" title="lasso_logout_reset_providerID_index ()">lasso_logout_reset_providerID_index</a> (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoLogout.html#lasso-logout-validate-request" title="lasso_logout_validate_request ()">lasso_logout_validate_request</a>       (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLogout.description"></a><h2>Description</h2>
+<p>
+This profile Send logout notifications between providers. Any receiving provider must retransmit
+the notification to any other providers with which it shares the current identity by any means
+supported by the two, that is any provider federated with the current provider. There can be
+partial failures if no binding can be found to notify a federating partner or if a partner fails
+to respond.
+</p>
+<p>
+</p>
+<p>It is generally advised to apply the local logout transaction before sending a logout request to
+a partner. In short:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>an identity provider receiving a logout request should kill the local
+session before sending logout request to other service provider and proxyied identity
+providers.</p></li>
+<li class="listitem"><p>a service provider intitiating a logout request must first kill its local session,
+then proceeds with the logout exchange with its identity provider</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<p>The following examples must not be used 'as-is' they lack most of the error checking code
+that is needed for a secured and robust program, but they give an idea of how to use the
+API</p>
+<p>
+</p>
+<p>
+</p>
+<div class="example">
+<a name="id3159201"></a><p class="title"><b>Example 4. Service Provider Initiated Logout</b></p>
+<div class="example-contents"><pre class="programlisting">
+LassoLogout *logout;
+char *session_dump; // must contain the session dump
+                    // for the current user
+int rc; // hold return codes
+char *soap_response;
+
+LassoHttpMethod method; // method to use, LASSO_HTTP_METHOD_REDIRECT, 
+                        // LASSO_HTTP_METHOD_POST or LASSO_HTTP_METHOD_SOAP,
+                        // other methods are rarely supported
+
+logout = lasso_logout_new(server);
+lasso_profile_set_session_from_dump(&amp;logout-&gt;parent, session_dump);
+// the second argument can be NULL, lasso_logout_init_request() will automatically choose the
+// identity provider from the first assertion int the session
+rc = lasso_logout_init_request(logout, "http://identity-provider-id/",
+                method);
+if (rc != 0) {
+  ... // handle errors, most of them are related to bad initialization
+      // or unsupported binding
+}
+rc = lasso_logout_build_request_msg(logout);
+if (rc != 0) {
+  ... // handle errors, most of them are related to bad initialization
+      // or impossibility to build the query string (missing private keys for signing)
+}
+
+// now send the request
+switch (method) {
+    case LASSO_HTTP_METHOD_REDIRECT:
+        // LASSO_PROFILE(logout)-&gt;msg_url contains the URL where the 
+        // User Agent must be redirected
+        ...
+        // save the session and logout object, and store them attached to the RequestID of the
+        // request, you will need them for handling the response
+        session_dump = lasso_node_dump((LassoNode*)logout-&gt;parent.session);
+        logout_dump = lasso_node_dump((LassoNode*)logout);
+        break;
+    case LASSO_HTTP_METHOD_POST:
+        // you must build a form with a field name SAMLRequest (SAML 2.0) or LAREQ (ID-FF 1.2)
+        // with the content of LASSO_PROFILE(logout)-&gt;msg_body
+        // posting to the address LASSO_PROFILE(logout)-&gt;msg_url
+        ...
+        // save the session and logout object, and store them attached to the RequestID of the
+        // request, you will need them for handling the response
+        session_dump = lasso_node_dump((LassoNode*)logout-&gt;parent.session);
+        logout_dump = lasso_node_dump((LassoNode*)logout);
+        break;
+    case LASSO_HTTP_SOAP:
+        // makes a SOAP call, soap_call is NOT a Lasso function
+        soap_response = soap_call(login-&gt;parent.msg_url, login-&gt;parent.msg_body);
+        rc = lasso_logout_process_response_msg(logout, soap_response);
+        if (rc != 0) {
+            // handle errors, important ones are LASSO_LOGOUT_ERROR_UNSUPPORTED_PROFILE meaning
+            // that one other service provider of the current session cannot be contacted by the
+            // identity provider with the current binding, for example it only accept REDIRECT
+            (asynchronous-binding) or
+            // POST an we are using SOAP (synchronous-binding).
+            ...
+        }
+        // everything is ok save the session
+        session_dump = lasso_node_dump(logout-&gt;parent.session);
+        // nothing to save because you killed the local session already
+        break;
+    default:
+        // other binding neither are frequent or largely supported
+        // so report an error
+        break;
+    }
+</pre></div>
+</div>
+<p><br class="example-break">
+</p>
+<p>
+</p>
+<p>The next example show the endpoint for handling response to request with asynchronous
+binding (POST and Redirect).</p>
+<p>
+</p>
+<p>
+</p>
+<div class="example">
+<a name="id3143649"></a><p class="title"><b>Example 5. Service Provider Logout Request Endpoint</b></p>
+<div class="example-contents"><pre class="programlisting">
+LassoLogout *logout;
+char *request_method = getenv("REQUEST_METHOD");
+
+logout = lasso_logout_new(server);
+
+if (strcmp(request_method, "GET") == 0) {
+    char query_string = getenv("QUERY_STRING");
+    rc = lasso_logout_process_response_msg(logout, query_string);
+} elif (strcmp(request_method, "POST") == 0) {
+    char *message;
+    // message should contain the content of LARES or SAMLResponse fied, depending if this is an
+    // ID-FF 1.2 or SAML 2.0 service.
+    rc = lasso_logout_process_response_msg(logout, message);
+}
+if (rc != 0) {
+    // handle errors, as we are already unlogged, those must go to a log file or audit trail,
+    // because at this time the user do not care anymore. A report about a failure to logout to
+    // the IdP can be eventually shown.
+    ...
+}
+</pre></div>
+</div>
+<p><br class="example-break">
+</p>
+<p>
+</p>
+<p>The next snippet show how to implement a logout endpoint, to receive a logout request and
+respond.</p>
+<p>
+</p>
+<p>
+</p>
+<div class="example">
+<a name="id3137500"></a><p class="title"><b>Example 6. Service Provider Logout Request Endpoint</b></p>
+<div class="example-contents"><pre class="programlisting">
+LassoLogout *logout;
+char *session_dump;
+char *request_method = getenv("REQUEST_METHOD");
+int rc;
+int method;
+
+logout = lasso_logout_new(server);
+// server must be previously initialized, it can be kept around
+// and used for many transaction, it is never modified by any profile
+if (strcmp(request_method. "GET") == 0) {
+    method = LASSO_HTTP_METHOD_REDIRECT;
+    char query_string = getenv("QUERY_STRING");
+    rc = lasso_logout_process_request_msg(logout, query_string);
+    if (rc != 0) {
+        // handle errors
+        ...
+    }
+} else if (strcmp(request_method, "POST") == 0) {
+    char *message;
+    // read submitted content if this is a form, put LAREQ or SAMLRequest field into message and
+    set method to LASSO_HTTP_METHOD_POST
+    // if content type is application/xml then put the full body of the POST inside message and
+    // set method to LASSO_HTTP_METHOD_SOAP
+    rc = lasso_logout_process_request_msg(logout, message);
+    if (rc != 0) {
+        // handle errors
+        ...
+    }
+}
+protocolProfile = lasso_provider_get_protocol_conformance(LASSO_PROVIDER(server));
+if (protocolProfile == LASSO_LIBERTY_1_2) {
+    char *session_index;
+    LassoSamlNameIdentifier *name_id;
+    LibLogoutRequest *logout_request;
+
+    logout_request = LIB_LOGOUT_REQUEST(LASSO_PROFILE(logout)-&gt;request);
+    session_index = logout_request-&gt;SessionIndex;
+    name_id = logout_request-&gt;NameIdentifier;
+    // lookup the session dump using session_index and name_id
+} else if (protocolProfile == LASSO_SAML_2_0) {
+    char *session_index;
+    LassoSaml2NameID *name_id;
+    LassoSamlp2LogoutRequest *logout_request;
+
+    logout_request = LASSO_SAMLP2_LOGOUT_REQUEST(LASSO_PROFILE(logout)-&gt;request);
+    session_index = logout_request-&gt;SessionIndex;
+    name_id = logout_request-&gt;NameID;
+    // lookup the session dump using session_index and name_id
+}
+lasso_profile_set_session_from_dump(LASSO_PROFILE(logout), session_dump);
+// you can check other property of the request here if you want
+// 
+if (request is accepted) {
+    rc = lasso_logout_validate_request(logout);
+    if (rc != 0) {
+        // handle errors..
+        ...
+    } else {
+    .... // kill the local session
+         // if local server is an identity provider, then traverse the session using
+         // lasso_logout_get_next_providerID() and send logout request to all logged 
+         // service providers.
+    }
+}
+// if lasso_logout_validate_request() was not called this will automatically create a Failure
+// response.
+rc = lasso_logout_build_response_msg(logout);
+if (rc != 0) {
+    // handle errors..
+    ...
+}
+// the response is produced with the same binding as the request
+// see the previous request example for how to send the response
+// the only change is for SOAP, you just need to print the msg_body as page content with a
+// Content-type of application/xml.
+</pre></div>
+</div>
+<p><br class="example-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoLogout.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoLogout"></a><h3>struct LassoLogout</h3>
+<pre class="programlisting">struct LassoLogout {
+	LassoProfile parent;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-new"></a><h3>lasso_logout_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="returnvalue">LassoLogout</span></a> *       lasso_logout_new                    (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> object; or NULL if an error
+occured</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-new-from-dump"></a><h3>lasso_logout_new_from_dump ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="returnvalue">LassoLogout</span></a> *       lasso_logout_new_from_dump          (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);</pre>
+<p>
+Restores the <em class="parameter"><code>dump</code></em> to a new <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dump</code></em> :</span></p></td>
+<td>XML logout dump</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>; or NULL if an error occured</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-build-request-msg"></a><h3>lasso_logout_build_request_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_build_request_msg      (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Builds the logout request message.
+</p>
+<p>
+It gets the HTTP method retrieved to send the request and:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+  if it is a SOAP method, then it builds the logout request SOAP message,
+  sets the msg_body attribute, gets the single logout service url and sets
+  <em class="parameter"><code>msg_url</code></em> in the logout object.
+</p></li>
+<li class="listitem"><p>
+  if it is a HTTP-Redirect method, then it builds the logout request QUERY
+  message, builds the logout request url, sets <em class="parameter"><code>msg_url</code></em> in the logout
+  request url, sets <em class="parameter"><code>msg_body</code></em> to NULL.
+</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+If private key and certificate are set in server object it will also signs
+the message (either with X509 if SOAP or with a simple signature for query
+strings).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-build-response-msg"></a><h3>lasso_logout_build_response_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_build_response_msg     (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Builds the logout response message.
+</p>
+<p>
+It gets the request message method and:
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+   if it is a SOAP method, then it builds the logout response SOAP message,
+   sets the msg_body attribute, gets the single logout service return url
+   and sets <em class="parameter"><code>msg_url</code></em> in the logout object.
+</p></li>
+<li class="listitem"><p>
+   if it is a HTTP-Redirect method, then it builds the logout response QUERY message,
+   builds the logout response url, sets <em class="parameter"><code>msg_url</code></em> with the logout response url,
+   sets <em class="parameter"><code>msg_body</code></em> to NULL
+</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+If private key and certificate are set in server object it will also signs
+the message (either with X509 if SOAP or with a simple signature for query
+strings).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-destroy"></a><h3>lasso_logout_destroy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_logout_destroy                (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Destroys a logout object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-dump"></a><h3>lasso_logout_dump ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_logout_dump                   (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Dumps <em class="parameter"><code>logout</code></em> content to an XML string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the dump string.  It must be freed by the caller. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-get-next-providerID"></a><h3>lasso_logout_get_next_providerID ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_logout_get_next_providerID    (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Returns the provider id from providerID_index in list of providerIDs in
+principal session with the exception of initial service provider ID.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly allocated string or NULL. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-init-request"></a><h3>lasso_logout_init_request ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_init_request           (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *remote_providerID</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoProvider.html#LassoHttpMethod" title="enum LassoHttpMethod"><span class="type">LassoHttpMethod</span></a> request_method</code></em>);</pre>
+<p>
+Initializes a new SLO request.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>remote_providerID</code></em> :</span></p></td>
+<td>the providerID of the identity provider.  If NULL the
+first identity provider is used.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>request_method</code></em> :</span></p></td>
+<td>if set, then it get the protocol profile in metadata
+corresponding of this HTTP request method.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-process-request-msg"></a><h3>lasso_logout_process_request_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_process_request_msg    (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *request_msg</code></em>);</pre>
+<p>
+Processes a SLO LogoutRequest message.  Rebuilds a request object from the
+message and optionally verifies its signature.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>request_msg</code></em> :</span></p></td>
+<td>the logout request message</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-process-response-msg"></a><h3>lasso_logout_process_response_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_process_response_msg   (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *response_msg</code></em>);</pre>
+<p>
+Parses the response message and builds the response object.
+</p>
+<p>
+Checks the status code value and if it is not success, then if the local
+provider is a Service Provider and response method is SOAP, then builds a
+new logout request message for HTTP Redirect / GET method and returns the
+error code LASSO_LOGOUT_ERROR_UNSUPPORTED_PROFILE.
+</p>
+<p>
+If it is a SOAP method or, IDP type and http method is Redirect/GET,
+then removes assertion.
+</p>
+<p>
+If local server is an Identity Provider and if there is no more assertion
+(Identity Provider has logged out every Service Providers), then restores
+the initial response.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>response_msg</code></em> :</span></p></td>
+<td>the response message</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-reset-providerID-index"></a><h3>lasso_logout_reset_providerID_index ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_reset_providerID_index (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+Reset the providerID_index attribute (set to 0).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-logout-validate-request"></a><h3>lasso_logout_validate_request ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_logout_validate_request       (<em class="parameter"><code><a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a> *logout</code></em>);</pre>
+<p>
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+  Sets the remote provider id
+</p></li>
+<li class="listitem"><p>
+  Sets a logout response with status code value to success.
+</p></li>
+<li class="listitem"><p>
+  Checks current signature status, if verification failed, stop processing
+  and set the status code value to failure.
+</p></li>
+<li class="listitem"><p>
+  Verifies federation and authentication.
+</p></li>
+<li class="listitem"><p>
+  If the request http method is a SOAP method, then verifies every other
+  Service Providers supports SOAP method : if not, then sets status code
+  value to UnsupportedProfile and returns a code error with
+  LASSO_LOGOUT_ERROR_UNSUPPORTED_PROFILE.
+</p></li>
+<li class="listitem"><p>
+  Every tests are ok, then removes assertion.
+</p></li>
+<li class="listitem"><p>
+  If local server is an Identity Provider and if there is more than one
+  Service Provider (except the initial Service Provider), then saves the
+  initial request, response and remote provider id.
+</p></li>
+</ul></div>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>logout</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoLogout.html#LassoLogout" title="struct LassoLogout"><span class="type">LassoLogout</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or
+LASSO_PROFILE_ERROR_MISSING_REQUEST if no request has been found -- usually means that
+lasso_logout_process_request_msg was not called,
+LASSO_SERVER_ERROR_PROVIDER_NOT_FOUND if the requesting provider is not known to the server object,
+LASSO_PROFILE_ERROR_BUILDING_RESPONSE_FAILED if creation of the response object failed,
+LASSO_PROFILE_ERROR_NAME_IDENTIFIER_NOT_FOUND if the request do not contain a NameID element,
+LASSO_PROFILE_ERROR_SESSION_NOT_FOUND if the logout profile object do not contain a session
+object,
+LASSO_PROFILE_ERROR_MISSING_ASSERTION if no assertion from the requesting provider was found,
+LASSO_PROFILE_ERROR_IDENTITY_NOT_FOUND if the logout profile object do not contain an identity
+object,
+LASSO_PROFILE_ERROR_FEDERATION_NOT_FOUND if no federation for the requesting provider was found,
+LASSO_LOGOUT_ERROR_UNSUPPORTED_PROFILE if the requested HTTP method is not supported by all the
+remote provider of the current session.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

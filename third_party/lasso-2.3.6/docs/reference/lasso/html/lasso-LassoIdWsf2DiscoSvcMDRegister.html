@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIdWsf2DiscoSvcMDRegister</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf2.html" title="Objects from ID-WSF 2.0 schemas">
+<link rel="prev" href="lasso-LassoIdWsf2DiscoSvcMDRegisterResponse.html" title="LassoIdWsf2DiscoSvcMDRegisterResponse">
+<link rel="next" href="lasso-LassoIdWsf2DiscoSvcMDReplaceResponse.html" title="LassoIdWsf2DiscoSvcMDReplaceResponse">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoIdWsf2DiscoSvcMDRegisterResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoIdWsf2DiscoSvcMDReplaceResponse.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoIdWsf2DiscoSvcMDRegister.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoIdWsf2DiscoSvcMDRegister.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoIdWsf2DiscoSvcMDRegister"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoIdWsf2DiscoSvcMDRegister.top_of_page"></a>LassoIdWsf2DiscoSvcMDRegister</span></h2>
+<p>LassoIdWsf2DiscoSvcMDRegister — &lt;disco:SvcMDRegister&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoIdWsf2DiscoSvcMDRegister.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister">LassoIdWsf2DiscoSvcMDRegister</a>;
+<a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="returnvalue">LassoIdWsf2DiscoSvcMDRegister</span></a> *  <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#lasso-idwsf2-disco-svc-md-register-new" title="lasso_idwsf2_disco_svc_md_register_new ()">lasso_idwsf2_disco_svc_md_register_new</a>
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="returnvalue">LassoIdWsf2DiscoSvcMDRegister</span></a> *  <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#lasso-idwsf2-disco-svc-md-register-new-full" title="lasso_idwsf2_disco_svc_md_register_new_full ()">lasso_idwsf2_disco_svc_md_register_new_full</a>
+                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *service_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *abstract</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *provider_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *soap_endpoint</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2DiscoSvcMDRegister.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3227186"></a><p class="title"><b>Figure 157. Schema fragment for disco:SvcMDRegister</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:complexType name="SvcMDRegisterType"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element ref="SvcMD" maxOccurs="unbounded" /&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:anyAttribute namespace="##other" processContents="lax"/&gt;
+&lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2DiscoSvcMDRegister.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoIdWsf2DiscoSvcMDRegister"></a><h3>struct LassoIdWsf2DiscoSvcMDRegister</h3>
+<pre class="programlisting">struct LassoIdWsf2DiscoSvcMDRegister {
+	LassoNode parent;
+
+	/* elements */
+	GList *SvcMD; /* of LassoIdWsf2DiscoSvcMetadata */
+	/* attributes */
+	GHashTable *attributes;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-disco-svc-md-register-new"></a><h3>lasso_idwsf2_disco_svc_md_register_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="returnvalue">LassoIdWsf2DiscoSvcMDRegister</span></a> *  lasso_idwsf2_disco_svc_md_register_new
+                                                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="type">LassoIdWsf2DiscoSvcMDRegister</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="type">LassoIdWsf2DiscoSvcMDRegister</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-disco-svc-md-register-new-full"></a><h3>lasso_idwsf2_disco_svc_md_register_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="returnvalue">LassoIdWsf2DiscoSvcMDRegister</span></a> *  lasso_idwsf2_disco_svc_md_register_new_full
+                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *service_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *abstract</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *provider_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *soap_endpoint</code></em>);</pre>
+<p>
+Create and initialize a complete message for registering new metadatas at a discovery service.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service_type</code></em> :</span></p></td>
+<td>the service type for the registered metadatas</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>abstract</code></em> :</span></p></td>
+<td>the human description for the service</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>provider_id</code></em> :</span></p></td>
+<td>the SAML provider id of the service</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>soap_endpoint</code></em> :</span></p></td>
+<td>the SOAP endpoint URL for the service</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new filled and initialized <a class="link" href="lasso-LassoIdWsf2DiscoSvcMDRegister.html#LassoIdWsf2DiscoSvcMDRegister" title="struct LassoIdWsf2DiscoSvcMDRegister"><span class="type">LassoIdWsf2DiscoSvcMDRegister</span></a> if successfull, NULL
+otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

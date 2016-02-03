@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIdWsf2PsNotify</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf2.html" title="Objects from ID-WSF 2.0 schemas">
+<link rel="prev" href="lasso-LassoIdWsf2PsNotification.html" title="LassoIdWsf2PsNotification">
+<link rel="next" href="lasso-LassoIdWsf2PsObject.html" title="LassoIdWsf2PsObject">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoIdWsf2PsNotification.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoIdWsf2PsObject.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoIdWsf2PsNotify.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoIdWsf2PsNotify.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoIdWsf2PsNotify"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoIdWsf2PsNotify.top_of_page"></a>LassoIdWsf2PsNotify</span></h2>
+<p>LassoIdWsf2PsNotify — &lt;ps:Notify&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoIdWsf2PsNotify.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoIdWsf2PsNotify.html#LassoIdWsf2PsNotify" title="struct LassoIdWsf2PsNotify">LassoIdWsf2PsNotify</a>;
+<a class="link" href="lasso-LassoIdWsf2PsNotify.html#LassoIdWsf2PsNotify" title="struct LassoIdWsf2PsNotify"><span class="returnvalue">LassoIdWsf2PsNotify</span></a> *  <a class="link" href="lasso-LassoIdWsf2PsNotify.html#lasso-idwsf2-ps-notify-new" title="lasso_idwsf2_ps_notify_new ()">lasso_idwsf2_ps_notify_new</a>       (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2PsNotify.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3271086"></a><p class="title"><b>Figure 212. Schema fragment for ps:Notify</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:complexType name="NotifyType"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="RequestAbstractType"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="Notification" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attributeGroup ref="subs:NotifyAttributeGroup"/&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2PsNotify.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoIdWsf2PsNotify"></a><h3>struct LassoIdWsf2PsNotify</h3>
+<pre class="programlisting">struct LassoIdWsf2PsNotify {
+	LassoIdWsf2PsRequestAbstract parent;
+
+	/* elements */
+	GList *Notification; /* of LassoNode */
+	/* attributes */
+	char *timeStamp;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-ps-notify-new"></a><h3>lasso_idwsf2_ps_notify_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2PsNotify.html#LassoIdWsf2PsNotify" title="struct LassoIdWsf2PsNotify"><span class="returnvalue">LassoIdWsf2PsNotify</span></a> *  lasso_idwsf2_ps_notify_new       (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2PsNotify.html#LassoIdWsf2PsNotify" title="struct LassoIdWsf2PsNotify"><span class="type">LassoIdWsf2PsNotify</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2PsNotify.html#LassoIdWsf2PsNotify" title="struct LassoIdWsf2PsNotify"><span class="type">LassoIdWsf2PsNotify</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

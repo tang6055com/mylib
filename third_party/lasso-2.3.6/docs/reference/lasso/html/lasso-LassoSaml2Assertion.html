@@ -1,0 +1,769 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSaml2Assertion</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-samlv2.html" title="Objects from SAML 2.0 schemas">
+<link rel="prev" href="lasso-LassoSaml2Advice.html" title="LassoSaml2Advice">
+<link rel="next" href="lasso-LassoSaml2AttributeStatement.html" title="LassoSaml2AttributeStatement">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSaml2Advice.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-samlv2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSaml2AttributeStatement.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSaml2Assertion.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSaml2Assertion.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSaml2Assertion"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSaml2Assertion.top_of_page"></a>LassoSaml2Assertion</span></h2>
+<p>LassoSaml2Assertion — &lt;saml2:Assertion&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSaml2Assertion.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion">LassoSaml2Assertion</a>;
+enum                <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState">LassoSaml2AssertionValidationState</a>;
+#define             <a class="link" href="lasso-LassoSaml2Assertion.html#LASSO-DURATION-DAY:CAPS" title="LASSO_DURATION_DAY">LASSO_DURATION_DAY</a>
+#define             <a class="link" href="lasso-LassoSaml2Assertion.html#LASSO-DURATION-HOUR:CAPS" title="LASSO_DURATION_HOUR">LASSO_DURATION_HOUR</a>
+#define             <a class="link" href="lasso-LassoSaml2Assertion.html#LASSO-DURATION-MINUTE:CAPS" title="LASSO_DURATION_MINUTE">LASSO_DURATION_MINUTE</a>
+#define             <a class="link" href="lasso-LassoSaml2Assertion.html#LASSO-DURATION-WEEK:CAPS" title="LASSO_DURATION_WEEK">LASSO_DURATION_WEEK</a>
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-new" title="lasso_saml2_assertion_new ()">lasso_saml2_assertion_new</a>           (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-has-audience-restriction" title="lasso_saml2_assertion_has_audience_restriction ()">lasso_saml2_assertion_has_audience_restriction</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-is-audience-restricted" title="lasso_saml2_assertion_is_audience_restricted ()">lasso_saml2_assertion_is_audience_restricted</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *providerID</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-set-subject-name-id" title="lasso_saml2_assertion_set_subject_name_id ()">lasso_saml2_assertion_set_subject_name_id</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *node</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-set-subject-confirmation-name-id" title="lasso_saml2_assertion_set_subject_confirmation_name_id ()">lasso_saml2_assertion_set_subject_confirmation_name_id</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *node</code></em>);
+<a class="link" href="lasso-LassoSaml2SubjectConfirmationData.html#LassoSaml2SubjectConfirmationData" title="struct LassoSaml2SubjectConfirmationData"><span class="returnvalue">LassoSaml2SubjectConfirmationData</span></a> * <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-get-subject-confirmation-data" title="lasso_saml2_assertion_get_subject_confirmation_data ()">lasso_saml2_assertion_get_subject_confirmation_data</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> create</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-set-subject-confirmation-data" title="lasso_saml2_assertion_set_subject_confirmation_data ()">lasso_saml2_assertion_set_subject_confirmation_data</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> length</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *Recipient</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *InResponseTo</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *Address</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-set-basic-conditions" title="lasso_saml2_assertion_set_basic_conditions ()">lasso_saml2_assertion_set_basic_conditions</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> length</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> one_time_use</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-add-audience-restriction" title="lasso_saml2_assertion_add_audience_restriction ()">lasso_saml2_assertion_add_audience_restriction</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-add-proxy-limit" title="lasso_saml2_assertion_add_proxy_limit ()">lasso_saml2_assertion_add_proxy_limit</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> proxy_count</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *proxy_audiences</code></em>);
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-validate-conditions" title="lasso_saml2_assertion_validate_conditions ()">lasso_saml2_assertion_validate_conditions</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *relaying_party_providerID</code></em>);
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-validate-time-checks" title="lasso_saml2_assertion_validate_time_checks ()">lasso_saml2_assertion_validate_time_checks</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> now</code></em>);
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-validate-audience" title="lasso_saml2_assertion_validate_audience ()">lasso_saml2_assertion_validate_audience</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *audience</code></em>);
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-allows-proxying" title="lasso_saml2_assertion_allows_proxying ()">lasso_saml2_assertion_allows_proxying</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-allows-proxying-to" title="lasso_saml2_assertion_allows_proxying_to ()">lasso_saml2_assertion_allows_proxying_to</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *audience</code></em>);
+<a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="returnvalue">LassoProvider</span></a> *     <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-get-issuer-provider" title="lasso_saml2_assertion_get_issuer_provider ()">lasso_saml2_assertion_get_issuer_provider</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-add-attribute-with-node" title="lasso_saml2_assertion_add_attribute_with_node ()">lasso_saml2_assertion_add_attribute_with_node</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *nameformat</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *content</code></em>);
+const <span class="returnvalue">char</span> *        <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-get-in-response-to" title="lasso_saml2_assertion_get_in_response_to ()">lasso_saml2_assertion_get_in_response_to</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-decrypt-subject" title="lasso_saml2_assertion_decrypt_subject ()">lasso_saml2_assertion_decrypt_subject</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-has-one-time-use" title="lasso_saml2_assertion_has_one_time_use ()">lasso_saml2_assertion_has_one_time_use</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoSaml2Assertion.html#lasso-saml2-assertion-set-one-time-use" title="lasso_saml2_assertion_set_one_time_use ()">lasso_saml2_assertion_set_one_time_use</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> one_time_use</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2Assertion.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3206445"></a><p class="title"><b>Figure 44. Schema fragment for saml2:Assertion</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;complexType name="AssertionType"&gt;
+  &lt;sequence&gt;
+    &lt;element ref="saml:Issuer"/&gt;
+    &lt;element ref="ds:Signature" minOccurs="0"/&gt;
+    &lt;element ref="saml:Subject" minOccurs="0"/&gt;
+    &lt;element ref="saml:Conditions" minOccurs="0"/&gt;
+    &lt;element ref="saml:Advice" minOccurs="0"/&gt;
+    &lt;choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;element ref="saml:Statement"/&gt;
+      &lt;element ref="saml:AuthnStatement"/&gt;
+      &lt;element ref="saml:AuthzDecisionStatement"/&gt;
+      &lt;element ref="saml:AttributeStatement"/&gt;
+    &lt;/choice&gt;
+  &lt;/sequence&gt;
+  &lt;attribute name="Version" type="string" use="required"/&gt;
+  &lt;attribute name="ID" type="ID" use="required"/&gt;
+  &lt;attribute name="IssueInstant" type="dateTime" use="required"/&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2Assertion.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSaml2Assertion"></a><h3>struct LassoSaml2Assertion</h3>
+<pre class="programlisting">struct LassoSaml2Assertion {
+	LassoNode parent;
+
+	/* elements */
+	LassoSaml2NameID *Issuer;
+	LassoSaml2Subject *Subject;
+	LassoSaml2Conditions *Conditions;
+	LassoSaml2Advice *Advice;
+	GList *Statement; /* of LassoSaml2StatementAbstract */
+	GList *AuthnStatement; /* of LassoSaml2AuthnStatement */
+	GList *AuthzDecisionStatement; /* of LassoSaml2AuthzDecisionStatement */
+	GList *AttributeStatement; /* of LassoSaml2AttributeStatement */
+	/* attributes */
+	char *Version;
+	char *ID;
+	char *IssueInstant;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LassoSaml2AssertionValidationState"></a><h3>enum LassoSaml2AssertionValidationState</h3>
+<pre class="programlisting">typedef enum {
+	LASSO_SAML2_ASSERTION_VALID,
+	LASSO_SAML2_ASSERTION_INVALID,
+	LASSO_SAML2_ASSERTION_INDETERMINATE
+} LassoSaml2AssertionValidationState;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LASSO-DURATION-DAY:CAPS"></a><h3>LASSO_DURATION_DAY</h3>
+<pre class="programlisting">#define LASSO_DURATION_DAY 24*LASSO_DURATION_HOUR
+</pre>
+<p>
+Number of seconds in a day.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LASSO-DURATION-HOUR:CAPS"></a><h3>LASSO_DURATION_HOUR</h3>
+<pre class="programlisting">#define LASSO_DURATION_HOUR 3600
+</pre>
+<p>
+Number of seconds in a hour.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LASSO-DURATION-MINUTE:CAPS"></a><h3>LASSO_DURATION_MINUTE</h3>
+<pre class="programlisting">#define LASSO_DURATION_MINUTE 60
+</pre>
+<p>
+Number of seconds in a minute.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LASSO-DURATION-WEEK:CAPS"></a><h3>LASSO_DURATION_WEEK</h3>
+<pre class="programlisting">#define LASSO_DURATION_WEEK 7*LASSO_DURATION_DAY
+</pre>
+<p>
+Number of seconds in a week.
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-new"></a><h3>lasso_saml2_assertion_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_saml2_assertion_new           (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-has-audience-restriction"></a><h3>lasso_saml2_assertion_has_audience_restriction ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            lasso_saml2_assertion_has_audience_restriction
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);</pre>
+<p>
+Verify that a <a class="link" href="lasso-LassoSaml2AudienceRestriction.html#LassoSaml2AudienceRestriction" title="struct LassoSaml2AudienceRestriction"><span class="type">LassoSaml2AudienceRestriction</span></a> is present in the assertion.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>TRUE if a <a class="link" href="lasso-LassoSaml2AudienceRestriction.html#LassoSaml2AudienceRestriction" title="struct LassoSaml2AudienceRestriction"><span class="type">LassoSaml2AudienceRestriction</span></a> is present in the Conditions of the
+<a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-is-audience-restricted"></a><h3>lasso_saml2_assertion_is_audience_restricted ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            lasso_saml2_assertion_is_audience_restricted
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">char</span> *providerID</code></em>);</pre>
+<p>
+Verify that the assertion is restricted to the given providerID.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the providerID that will be compared to the audience restriction declarations.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>TRUE if <em class="parameter"><code>providerID</code></em> is part of a <a class="link" href="lasso-LassoSaml2AudienceRestriction.html#LassoSaml2AudienceRestriction" title="struct LassoSaml2AudienceRestriction"><span class="type">LassoSaml2AudienceRestriction</span></a> element in the
+assertion, FALSE otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-set-subject-name-id"></a><h3>lasso_saml2_assertion_set_subject_name_id ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_set_subject_name_id
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *node</code></em>);</pre>
+<p>
+Set the subject NameID, which can be a simple <a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> object or an encrypted
+<a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> as a <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>node</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> or <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-set-subject-confirmation-name-id"></a><h3>lasso_saml2_assertion_set_subject_confirmation_name_id ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_set_subject_confirmation_name_id
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *node</code></em>);</pre>
+<p>
+Set the subject NameID, which can be a simple <a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> object or an encrypted
+<a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> as a <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>node</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2NameID.html#LassoSaml2NameID" title="struct LassoSaml2NameID"><span class="type">LassoSaml2NameID</span></a> or <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-get-subject-confirmation-data"></a><h3>lasso_saml2_assertion_get_subject_confirmation_data ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2SubjectConfirmationData.html#LassoSaml2SubjectConfirmationData" title="struct LassoSaml2SubjectConfirmationData"><span class="returnvalue">LassoSaml2SubjectConfirmationData</span></a> * lasso_saml2_assertion_get_subject_confirmation_data
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> create</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-set-subject-confirmation-data"></a><h3>lasso_saml2_assertion_set_subject_confirmation_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_set_subject_confirmation_data
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> length</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *Recipient</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *InResponseTo</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *Address</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-set-basic-conditions"></a><h3>lasso_saml2_assertion_set_basic_conditions ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_set_basic_conditions
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> length</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> one_time_use</code></em>);</pre>
+<p>
+Set conditions limiting usage of the assertion.
+</p>
+<p>
+<em class="parameter"><code>tolerance</code></em> and <em class="parameter"><code>length</code></em> are time quantity measured in seconds, it defines the time range in which
+the assertion is valid, it is computed as [<code class="function">now()</code>-tolerance, <code class="function">now()</code>+length+tolerance].
+<em class="parameter"><code>one_time_use</code></em> allows the issuer to limit caching of the assertion.
+<em class="parameter"><code>proxy_count</code></em> specify how many proxy hop can be traversed before this assertion should lose any trust.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tolerance</code></em> :</span></p></td>
+<td>tolerance to the range of time when the assertion is valid. <span class="annotation">[<acronym title="Default parameter value (for in case the shadows-to function has less parameters)."><span class="acronym">default</span></acronym> -1]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td>length of the range of time when the assertion is valid. <span class="annotation">[<acronym title="Default parameter value (for in case the shadows-to function has less parameters)."><span class="acronym">default</span></acronym> -1]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>one_time_use</code></em> :</span></p></td>
+<td>can the assertion be kept or should it be used immediately. <span class="annotation">[<acronym title="Default parameter value (for in case the shadows-to function has less parameters)."><span class="acronym">default</span></acronym> FALSE]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-add-audience-restriction"></a><h3>lasso_saml2_assertion_add_audience_restriction ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_add_audience_restriction
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>);</pre>
+<p>
+Add an audience restriction to a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerId</code></em> :</span></p></td>
+<td>the provider id to restrict audience to</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-add-proxy-limit"></a><h3>lasso_saml2_assertion_add_proxy_limit ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_add_proxy_limit
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> proxy_count</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *proxy_audiences</code></em>);</pre>
+<p>
+A <a class="link" href="lasso-LassoSaml2ProxyRestriction.html#LassoSaml2ProxyRestriction" title="struct LassoSaml2ProxyRestriction"><span class="type">LassoSaml2ProxyRestriction</span></a> to the conditions of consumption of <em class="parameter"><code>saml2_assertion</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>proxy_count</code></em> :</span></p></td>
+<td>the number of hops in the proxy chain, a negative value means no limitation. <span class="annotation">[<acronym title="Default parameter value (for in case the shadows-to function has less parameters)."><span class="acronym">default</span></acronym> -1]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>proxy_audiences</code></em> :</span></p></td>
+<td>a list of audience restriction for newly issued assertion
+based on the <em class="parameter"><code>saml2_assertion</code></em> assertion. An empty list means no audience restriction. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> string]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-validate-conditions"></a><h3>lasso_saml2_assertion_validate_conditions ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  lasso_saml2_assertion_validate_conditions
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *relaying_party_providerID</code></em>);</pre>
+<p>
+Check the validation of the assertion with respect to the conditions of consumption that it
+contains. System functions are used for getting current time and checking eventual time
+constraints.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>relaying_party_providerID:(allow-none)</code></em> :</span></p></td>
+<td>the providerID of the current relaying party, use to
+check for audience restrictions.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>LASSO_SAML2_ASSERTION_VALID if the assertion is valid,
+LASSO_SAML2_ASSERTION_INVALID is some check failed, LASSO_SAML2_ASSERTION_INDETERMINATE if
+somehting was impossible to eveluate.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-validate-time-checks"></a><h3>lasso_saml2_assertion_validate_time_checks ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  lasso_saml2_assertion_validate_time_checks
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>unsigned <span class="type">int</span> tolerance</code></em>,
+                                                         <em class="parameter"><code><span class="type">time_t</span> now</code></em>);</pre>
+<p>
+Check if the <em class="parameter"><code>saml2_assertion</code></em> conditions about NotBefore and NotOnOrAfter are valid with respect
+to the <em class="parameter"><code>now</code></em> time or the current time. <em class="parameter"><code>tolerance</code></em> allows to loosely check for validatity, i.e.
+start time is decreased of <em class="parameter"><code>tolerance</code></em> seconds and end time is increased of <em class="parameter"><code>tolerance</code></em> seconds.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tolerance</code></em> :</span></p></td>
+<td>a duration as seconds</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>now</code></em> :</span></p></td>
+<td>the current time as seconds since EPOCH or 0 to use the system time. <span class="annotation">[<acronym title="Default parameter value (for in case the shadows-to function has less parameters)."><span class="acronym">default</span></acronym> 0]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a value among <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="type">LassoSaml2AssertionValidationState</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-validate-audience"></a><h3>lasso_saml2_assertion_validate_audience ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  lasso_saml2_assertion_validate_audience
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *audience</code></em>);</pre>
+<p>
+Check if the <em class="parameter"><code>saml2_assertion</code></em> is directed to a given <em class="parameter"><code>audience</code></em>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audience</code></em> :</span></p></td>
+<td>the name of an entity</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a value among <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="type">LassoSaml2AssertionValidationState</span></a> enumeration.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-allows-proxying"></a><h3>lasso_saml2_assertion_allows_proxying ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  lasso_saml2_assertion_allows_proxying
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);</pre>
+<p>
+</p>
+<p>Test whether this <em class="parameter"><code>saml2_assertion</code></em> allows to mint new assertion on the basis of it.</p>
+<p>
+</p>
+<p>It verifies that the proxying count is positive (or absent).</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a value among <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="type">LassoSaml2AssertionValidationState</span></a> enumeration.
+<span class="type">LASSO_SAML2_ASSERTION_INDETERMINATE</span> usually means that an element was not conform to the XML
+Schema for SAML 2.0.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-allows-proxying-to"></a><h3>lasso_saml2_assertion_allows_proxying_to ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="returnvalue">LassoSaml2AssertionValidationState</span></a>  lasso_saml2_assertion_allows_proxying_to
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *audience</code></em>);</pre>
+<p>
+</p>
+<p>Test whether this <em class="parameter"><code>saml2_assertion</code></em> allows to mint new assertion on the basis of it targetted for
+<em class="parameter"><code>audience</code></em>. </p>
+<p>It verifies that if <em class="parameter"><code>audience</code></em> is
+non-NULL it is part of the proxy Audience restriction. If <em class="parameter"><code>audience</code></em> is NULL, it checks that no
+proxying Audience restriction is present.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>audience:(allow-none)</code></em> :</span></p></td>
+<td>the relaying party which we want to proxy to</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a value among <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2AssertionValidationState" title="enum LassoSaml2AssertionValidationState"><span class="type">LassoSaml2AssertionValidationState</span></a> enumeration.
+<span class="type">LASSO_SAML2_ASSERTION_INDETERMINATE</span> usually means that an element was not conform to the XML
+Schema for SAML 2.0.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-get-issuer-provider"></a><h3>lasso_saml2_assertion_get_issuer_provider ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="returnvalue">LassoProvider</span></a> *     lasso_saml2_assertion_get_issuer_provider
+                                                        (<em class="parameter"><code>const <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);</pre>
+<p>
+Return the <a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="type">LassoProvider</span></a> object for the provider who created this assertion.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <span class="type">LassoSaml2</span> assertion</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="type">LassoProvider</span></a> object, or NULL if the Issuer element is missing, or the given
+provider unknown to the <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> object.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-add-attribute-with-node"></a><h3>lasso_saml2_assertion_add_attribute_with_node ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_saml2_assertion_add_attribute_with_node
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *nameformat</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> *content</code></em>);</pre>
+<p>
+Add a new attribute declaration and set this node as the content.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>the attribute name</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name_format</code></em> :</span></p></td>
+<td>the attribute name format (the namespace of the name)</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>content</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> object to put as content of the attribute</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful, an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-get-in-response-to"></a><h3>lasso_saml2_assertion_get_in_response_to ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *        lasso_saml2_assertion_get_in_response_to
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>);</pre>
+<p>
+Return the ID of the request this assertion respond to.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the InResponseTo attribute content of the SubjectConfirmationData if found</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-decrypt-subject"></a><h3>lasso_saml2_assertion_decrypt_subject ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_saml2_assertion_decrypt_subject
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *assertion</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);</pre>
+<p>
+Decipher (if needed) the EncryptedID of the Subject.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful, an error code otherwise. See
+<a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-server-decrypt" title="lasso_saml2_encrypted_element_server_decrypt ()"><code class="function">lasso_saml2_encrypted_element_server_decrypt()</code></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-has-one-time-use"></a><h3>lasso_saml2_assertion_has_one_time_use ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            lasso_saml2_assertion_has_one_time_use
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>);</pre>
+<p>
+Return whether this assertion has the OneTimeUse property.
+</p>
+<p>
+In this case the relaying party must add the assertion ID to a OneTimeUser cache and discards any
+assertion received in the future with the same ID.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>TRUE if this assertion has the property OneTimeUse, FALSE otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-assertion-set-one-time-use"></a><h3>lasso_saml2_assertion_set_one_time_use ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_saml2_assertion_set_one_time_use
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> *saml2_assertion</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> one_time_use</code></em>);</pre>
+<p>
+Set the one time use condition on this assertion.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>saml2_assertion</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2Assertion.html#LassoSaml2Assertion" title="struct LassoSaml2Assertion"><span class="type">LassoSaml2Assertion</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>one_time_use</code></em> :</span></p></td>
+<td>is this assertion to be used one time only ?</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

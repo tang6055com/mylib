@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIdWsf2UtilStatus</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf2.html" title="Objects from ID-WSF 2.0 schemas">
+<link rel="prev" href="lasso-LassoIdWsf2UtilResponse.html" title="LassoIdWsf2UtilResponse">
+<link rel="next" href="soap.html" title="Object from the SOAP 1.1 schemas">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoIdWsf2UtilResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="soap.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoIdWsf2UtilStatus.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoIdWsf2UtilStatus.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoIdWsf2UtilStatus"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoIdWsf2UtilStatus.top_of_page"></a>LassoIdWsf2UtilStatus</span></h2>
+<p>LassoIdWsf2UtilStatus — &lt;util:Status&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoIdWsf2UtilStatus.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus">LassoIdWsf2UtilStatus</a>;
+<a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="returnvalue">LassoIdWsf2UtilStatus</span></a> *  <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#lasso-idwsf2-util-status-new" title="lasso_idwsf2_util_status_new ()">lasso_idwsf2_util_status_new</a>   (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="returnvalue">LassoIdWsf2UtilStatus</span></a> *  <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#lasso-idwsf2-util-status-new-with-code" title="lasso_idwsf2_util_status_new_with_code ()">lasso_idwsf2_util_status_new_with_code</a>
+                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *code1</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *code2</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2UtilStatus.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3230758"></a><p class="title"><b>Figure 268. Schema fragment for util:Status</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:complexType name="StatusType"&gt;
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      A type that may be used for status codes.
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element ref="Status" minOccurs="0" maxOccurs="unbounded"/&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="code" type="xs:string" use="required"/&gt;
+  &lt;xs:attribute name="ref" type="IDReferenceType" use="optional"/&gt;
+  &lt;xs:attribute name="comment" type="xs:string" use="optional"/&gt;
+&lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdWsf2UtilStatus.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoIdWsf2UtilStatus"></a><h3>struct LassoIdWsf2UtilStatus</h3>
+<pre class="programlisting">struct LassoIdWsf2UtilStatus {
+	LassoNode parent;
+
+	/* elements */
+	GList *Status; /* of LassoIdWsf2UtilStatus */
+	/* attributes */
+	char *code;
+	char *ref;
+	char *comment;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-util-status-new"></a><h3>lasso_idwsf2_util_status_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="returnvalue">LassoIdWsf2UtilStatus</span></a> *  lasso_idwsf2_util_status_new   (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="type">LassoIdWsf2UtilStatus</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="type">LassoIdWsf2UtilStatus</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-idwsf2-util-status-new-with-code"></a><h3>lasso_idwsf2_util_status_new_with_code ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="returnvalue">LassoIdWsf2UtilStatus</span></a> *  lasso_idwsf2_util_status_new_with_code
+                                                        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *code1</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *code2</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="type">LassoIdWsf2UtilStatus</span></a> containing code1 and if code2 is not-NULL a nested
+<a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="type">LassoIdWsf2UtilStatus</span></a> containing code2.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>code1</code></em> :</span></p></td>
+<td>first level code</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>code2</code></em> :</span></p></td>
+<td>second level code</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdWsf2UtilStatus.html#LassoIdWsf2UtilStatus" title="struct LassoIdWsf2UtilStatus"><span class="type">LassoIdWsf2UtilStatus</span></a> object</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

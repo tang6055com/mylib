@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoSaml2EncryptedElement</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-samlv2.html" title="Objects from SAML 2.0 schemas">
+<link rel="prev" href="lasso-LassoSaml2Conditions.html" title="LassoSaml2Conditions">
+<link rel="next" href="lasso-LassoSaml2Evidence.html" title="LassoSaml2Evidence">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoSaml2Conditions.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-samlv2.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoSaml2Evidence.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoSaml2EncryptedElement.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoSaml2EncryptedElement.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoSaml2EncryptedElement"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoSaml2EncryptedElement.top_of_page"></a>LassoSaml2EncryptedElement</span></h2>
+<p>LassoSaml2EncryptedElement — &lt;saml2:EncryptedElement&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoSaml2EncryptedElement.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement">LassoSaml2EncryptedElement</a>;
+<a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         <a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-new" title="lasso_saml2_encrypted_element_new ()">lasso_saml2_encrypted_element_new</a>   (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-decrypt" title="lasso_saml2_encrypted_element_decrypt ()">lasso_saml2_encrypted_element_decrypt</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> *encrypted_element</code></em>,
+                                                         <em class="parameter"><code><span class="type">xmlSecKey</span> *encryption_private_key</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> **decrypted_node</code></em>);
+<a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="returnvalue">LassoSaml2EncryptedElement</span></a> * <a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-build-encrypted-persistent-name-id" title="lasso_saml2_encrypted_element_build_encrypted_persistent_name_id ()">lasso_saml2_encrypted_element_build_encrypted_persistent_name_id</a>
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *id</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *idpID</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="type">LassoProvider</span></a> *provider</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-server-decrypt" title="lasso_saml2_encrypted_element_server_decrypt ()">lasso_saml2_encrypted_element_server_decrypt</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> *encrypted_element</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> **decrypted_node</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2EncryptedElement.description"></a><h2>Description</h2>
+<p>
+This element can contain an encrypted XML document fragment, use
+<a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-decrypt" title="lasso_saml2_encrypted_element_decrypt ()"><code class="function">lasso_saml2_encrypted_element_decrypt()</code></a> to retrieve it.
+</p>
+<p>
+</p>
+<div class="figure">
+<a name="id3161951"></a><p class="title"><b>Figure 55. Schema fragment for saml2:EncryptedElement</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;complexType name="EncryptedElementType"&gt;
+  &lt;sequence&gt;
+    &lt;element ref="xenc:EncryptedData"/&gt;
+    &lt;element ref="xenc:EncryptedKey" minOccurs="0" maxOccurs="unbounded"/&gt;
+  &lt;/sequence&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoSaml2EncryptedElement.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoSaml2EncryptedElement"></a><h3>struct LassoSaml2EncryptedElement</h3>
+<pre class="programlisting">struct LassoSaml2EncryptedElement {
+	LassoNode parent;
+
+	/* elements */
+	xmlNode *EncryptedData;
+	GList *EncryptedKey; /* of xmlNode* */
+	LassoNode *original_data;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-encrypted-element-new"></a><h3>lasso_saml2_encrypted_element_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="returnvalue">LassoNode</span></a> *         lasso_saml2_encrypted_element_new   (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> object</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-encrypted-element-decrypt"></a><h3>lasso_saml2_encrypted_element_decrypt ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_saml2_encrypted_element_decrypt
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> *encrypted_element</code></em>,
+                                                         <em class="parameter"><code><span class="type">xmlSecKey</span> *encryption_private_key</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> **decrypted_node</code></em>);</pre>
+<p>
+Decrypt the content of a <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> using the given <span class="type">xmlSecKey</span>.
+The <span class="type">xmlNode</span> resulting of decrypting it is converted into a <a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>encrypted_element</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> to decrypt</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>encryption_private_key</code></em> :</span></p></td>
+<td>the <span class="type">xmlSecKey</span> to decrypt the node</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful, an error otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-encrypted-element-build-encrypted-persistent-name-id"></a><h3>lasso_saml2_encrypted_element_build_encrypted_persistent_name_id ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="returnvalue">LassoSaml2EncryptedElement</span></a> * lasso_saml2_encrypted_element_build_encrypted_persistent_name_id
+                                                        (<em class="parameter"><code>const <span class="type">char</span> *id</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *idpID</code></em>,
+                                                         <em class="parameter"><code>const <a class="link" href="lasso-LassoProvider.html#LassoProvider" title="struct LassoProvider"><span class="type">LassoProvider</span></a> *provider</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-saml2-encrypted-element-server-decrypt"></a><h3>lasso_saml2_encrypted_element_server_decrypt ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_saml2_encrypted_element_server_decrypt
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> *encrypted_element</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a> **decrypted_node</code></em>);</pre>
+<p>
+Decrypt the given encrypted element using the encryption private key of the <em class="parameter"><code>server</code></em> object
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>encrypted_element</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoSaml2EncryptedElement.html#LassoSaml2EncryptedElement" title="struct LassoSaml2EncryptedElement"><span class="type">LassoSaml2EncryptedElement</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>decrypted_node:(out)</code></em> :</span></p></td>
+<td>an output arg for a <a class="link" href="lasso-node.html#LassoNode" title="struct LassoNode"><span class="type">LassoNode</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful, an error code otherwise. See
+<a class="link" href="lasso-LassoSaml2EncryptedElement.html#lasso-saml2-encrypted-element-server-decrypt" title="lasso_saml2_encrypted_element_server_decrypt ()"><code class="function">lasso_saml2_encrypted_element_server_decrypt()</code></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

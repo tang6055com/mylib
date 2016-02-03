@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoIdentity</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="architecture.html" title="Lasso Architecture">
+<link rel="prev" href="lasso-LassoProvider.html" title="LassoProvider">
+<link rel="next" href="lasso-LassoFederation.html" title="LassoFederation">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoProvider.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="architecture.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoFederation.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoIdentity.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoIdentity.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoIdentity"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoIdentity.top_of_page"></a>LassoIdentity</span></h2>
+<p>LassoIdentity — Principal identity</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoIdentity.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity">LassoIdentity</a>;
+<a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="returnvalue">LassoIdentity</span></a> *     <a class="link" href="lasso-LassoIdentity.html#lasso-identity-new" title="lasso_identity_new ()">lasso_identity_new</a>                  (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="returnvalue">LassoIdentity</span></a> *     <a class="link" href="lasso-LassoIdentity.html#lasso-identity-new-from-dump" title="lasso_identity_new_from_dump ()">lasso_identity_new_from_dump</a>        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);
+<a class="link" href="lasso-LassoFederation.html#LassoFederation" title="struct LassoFederation"><span class="returnvalue">LassoFederation</span></a> *   <a class="link" href="lasso-LassoIdentity.html#lasso-identity-get-federation" title="lasso_identity_get_federation ()">lasso_identity_get_federation</a>       (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoIdentity.html#lasso-identity-destroy" title="lasso_identity_destroy ()">lasso_identity_destroy</a>              (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoIdentity.html#lasso-identity-dump" title="lasso_identity_dump ()">lasso_identity_dump</a>                 (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdentity.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> object records the identifers that a principal use two federate pairs of
+providers.
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoIdentity.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoIdentity"></a><h3>struct LassoIdentity</h3>
+<pre class="programlisting">struct LassoIdentity {
+	LassoNode parent;
+
+	GHashTable *federations; /* of LassoFederation */
+	gboolean is_dirty;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-identity-new"></a><h3>lasso_identity_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="returnvalue">LassoIdentity</span></a> *     lasso_identity_new                  (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-identity-new-from-dump"></a><h3>lasso_identity_new_from_dump ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="returnvalue">LassoIdentity</span></a> *     lasso_identity_new_from_dump        (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *dump</code></em>);</pre>
+<p>
+Restores the <em class="parameter"><code>dump</code></em> to a new <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dump</code></em> :</span></p></td>
+<td>XML server dump</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>; or NULL if an error occured</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-identity-get-federation"></a><h3>lasso_identity_get_federation ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoFederation.html#LassoFederation" title="struct LassoFederation"><span class="returnvalue">LassoFederation</span></a> *   lasso_identity_get_federation       (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *providerID</code></em>);</pre>
+<p>
+Looks up and returns the <a class="link" href="lasso-LassoFederation.html#LassoFederation" title="struct LassoFederation"><span class="type">LassoFederation</span></a> for this provider ID.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>identity</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>providerID</code></em> :</span></p></td>
+<td>the provider ID</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoFederation.html#LassoFederation" title="struct LassoFederation"><span class="type">LassoFederation</span></a>; or NULL if it didn't exist.  The
+<a class="link" href="lasso-LassoFederation.html#LassoFederation" title="struct LassoFederation"><span class="type">LassoFederation</span></a> is internally allocated.  It must not be freed,
+modified or stored. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-identity-destroy"></a><h3>lasso_identity_destroy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_identity_destroy              (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>);</pre>
+<p>
+Destroys an identity.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>identity</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-identity-dump"></a><h3>lasso_identity_dump ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_identity_dump                 (<em class="parameter"><code><a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a> *identity</code></em>);</pre>
+<p>
+Dumps <em class="parameter"><code>identity</code></em> content to an XML string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>identity</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoIdentity.html#LassoIdentity" title="struct LassoIdentity"><span class="type">LassoIdentity</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the dump string.  It must be freed by the caller. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

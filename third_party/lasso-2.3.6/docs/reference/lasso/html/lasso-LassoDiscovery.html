@@ -1,0 +1,563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoDiscovery</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="idwsf.html" title="Identity Web Services Framework 1.0">
+<link rel="prev" href="idwsf.html" title="Identity Web Services Framework 1.0">
+<link rel="next" href="lasso-LassoDataService.html" title="LassoDataService">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="idwsf.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="idwsf.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoDataService.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoDiscovery.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoDiscovery.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoDiscovery"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoDiscovery.top_of_page"></a>LassoDiscovery</span></h2>
+<p>LassoDiscovery — ID-WSF Discovery Service Profile</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoDiscovery.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery">LassoDiscovery</a>;
+<a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="returnvalue">LassoDiscovery</span></a> *    <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-new" title="lasso_discovery_new ()">lasso_discovery_new</a>                 (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);
+<a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="returnvalue">LassoDiscovery</span></a> *    <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-new-full" title="lasso_discovery_new_full ()">lasso_discovery_new_full</a>            (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-init-modify" title="lasso_discovery_init_modify ()">lasso_discovery_init_modify</a>         (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *security_mech_id</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-add-insert-entry" title="lasso_discovery_add_insert_entry ()">lasso_discovery_add_insert_entry</a>    (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoServiceInstance.html#LassoDiscoServiceInstance" title="struct LassoDiscoServiceInstance"><span class="type">LassoDiscoServiceInstance</span></a> *serviceInstance</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceID.html#LassoDiscoResourceID" title="struct LassoDiscoResourceID"><span class="type">LassoDiscoResourceID</span></a> *resourceId</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-add-remove-entry" title="lasso_discovery_add_remove_entry ()">lasso_discovery_add_remove_entry</a>    (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *entryID</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-init-query" title="lasso_discovery_init_query ()">lasso_discovery_init_query</a>          (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *security_mech_id</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-add-requested-service-type" title="lasso_discovery_add_requested_service_type ()">lasso_discovery_add_requested_service_type</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *service_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *option</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-process-request-msg" title="lasso_discovery_process_request_msg ()">lasso_discovery_process_request_msg</a> (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *security_mech_id</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-build-response-msg" title="lasso_discovery_build_response_msg ()">lasso_discovery_build_response_msg</a>  (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-process-modify-response-msg" title="lasso_discovery_process_modify_response_msg ()">lasso_discovery_process_modify_response_msg</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>);
+<span class="returnvalue">lasso_error_t</span>       <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-process-query-response-msg" title="lasso_discovery_process_query_response_msg ()">lasso_discovery_process_query_response_msg</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>);
+<a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="returnvalue">LassoWsfProfile</span></a> *   <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-get-service" title="lasso_discovery_get_service ()">lasso_discovery_get_service</a>         (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *service_type</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-get-services" title="lasso_discovery_get_services ()">lasso_discovery_get_services</a>        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>);
+<a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="returnvalue">LassoWsfProfile</span></a> *   (<a class="link" href="lasso-LassoDiscovery.html#LassoWsfProfileConstructor" title="LassoWsfProfileConstructor ()">*LassoWsfProfileConstructor</a>)       (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-register-constructor-for-service-type" title="lasso_discovery_register_constructor_for_service_type ()">lasso_discovery_register_constructor_for_service_type</a>
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> const *service_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoWsfProfileConstructor" title="LassoWsfProfileConstructor ()"><span class="type">LassoWsfProfileConstructor</span></a> constructor</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-unregister-constructor-for-service-type" title="lasso_discovery_unregister_constructor_for_service_type ()">lasso_discovery_unregister_constructor_for_service_type</a>
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> const *service_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoWsfProfileConstructor" title="LassoWsfProfileConstructor ()"><span class="type">LassoWsfProfileConstructor</span></a> constructor</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoDiscovery.description"></a><h2>Description</h2>
+<p>
+The Discovery service usually runs on the principal identity provider and
+knowns about resources and services related to the principal.  Attribute
+providers can register themselves as offering resources for an user while
+other services can ask where to find a given resource.
+</p>
+<p>
+The following example is a service provider asking for a "PP" service (an
+attribute provider for the "Personal Profile"):
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+LassoServer *server;  // initialized before
+char* session_dump;   // initialized before
+
+LassoDiscovery *discovery;    // discovery service
+char *soap_answer;            // SOAP answer from disco service
+LassoProfileService *service; // instance to perform on requested service
+
+discovery = lasso_discovery_new(server);
+lasso_wsf_profile_set_session_from_dump(LASSO_WSF_PROFILE(discovery), session_dump);
+lasso_discovery_init_query(discovery);
+lasso_discovery_add_requested_service(discovery, LASSO_PP10_HREF);
+lasso_discovery_build_request_msg(discovery);
+
+// service must perform SOAP call to LASSO_WSF_PROFILE(discovery)-&gt;msg_url
+// the SOAP message is LASSO_WSF_PROFILE(discovery)-&gt;msg_body.  The answer
+// is stored in char* soap_answer;
+
+lasso_discovery_process_query_response_msg(discovery, soap_answer);
+
+// get an object to access the first service returned, or NULL if an error happened
+service = lasso_discovery_get_service(discovery);
+</pre></div>
+<p>
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoDiscovery.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoDiscovery"></a><h3>struct LassoDiscovery</h3>
+<pre class="programlisting">struct LassoDiscovery {
+	LassoWsfProfile parent;
+
+	LassoDiscoResourceID *ResourceID;
+	LassoDiscoEncryptedResourceID *EncryptedResourceID;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-new"></a><h3>lasso_discovery_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="returnvalue">LassoDiscovery</span></a> *    lasso_discovery_new                 (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object; or NULL if an error occured.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-new-full"></a><h3>lasso_discovery_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="returnvalue">LassoDiscovery</span></a> *    lasso_discovery_new_full            (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);</pre>
+<p>
+Creates a new <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offering</code></em> :</span></p></td>
+<td>the <a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object; or NULL if an error occured.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-init-modify"></a><h3>lasso_discovery_init_modify ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_init_modify         (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *security_mech_id</code></em>);</pre>
+<p>
+Initializes a disco Modify/InsertEntry
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>security_mech_id</code></em> :</span></p></td>
+<td>the security mechanism identifier. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-add-insert-entry"></a><h3>lasso_discovery_add_insert_entry ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_add_insert_entry    (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoServiceInstance.html#LassoDiscoServiceInstance" title="struct LassoDiscoServiceInstance"><span class="type">LassoDiscoServiceInstance</span></a> *serviceInstance</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceID.html#LassoDiscoResourceID" title="struct LassoDiscoResourceID"><span class="type">LassoDiscoResourceID</span></a> *resourceId</code></em>);</pre>
+<p>
+Add an <a class="link" href="lasso-LassoDiscoInsertEntry.html#LassoDiscoInsertEntry" title="struct LassoDiscoInsertEntry"><span class="type">LassoDiscoInsertEntry</span></a> containing a new <a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a>, and initialize the
+<a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> using the <a class="link" href="lasso-LassoDiscoServiceInstance.html#LassoDiscoServiceInstance" title="struct LassoDiscoServiceInstance"><span class="type">LassoDiscoServiceInstance</span></a> and <span class="type">LassoDiscoResourceId</span>
+object.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>serviceInstance</code></em> :</span></p></td>
+<td>an optional <a class="link" href="lasso-LassoDiscoServiceInstance.html#LassoDiscoServiceInstance" title="struct LassoDiscoServiceInstance"><span class="type">LassoDiscoServiceInstance</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>resourceID</code></em> :</span></p></td>
+<td>the new <a class="link" href="lasso-LassoDiscoResourceID.html#LassoDiscoResourceID" title="struct LassoDiscoResourceID"><span class="type">LassoDiscoResourceID</span></a> used to create the <span class="type">LassoDiscoResrouceOffering</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created <a class="link" href="lasso-LassoDiscoInsertEntry.html#LassoDiscoInsertEntry" title="struct LassoDiscoInsertEntry"><span class="type">LassoDiscoInsertEntry</span></a> or NULL if some preconditions failed.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-add-remove-entry"></a><h3>lasso_discovery_add_remove_entry ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_add_remove_entry    (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *entryID</code></em>);</pre>
+<p>
+Add a RemoveEntry to the current Modify message for a Discovery service,
+to remove the resource offering identified by entryID (returned in the
+response to a Modify/InsertEntry message).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entryID</code></em> :</span></p></td>
+<td>the idenitfier of a ResourceOffering to remove.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful, an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-init-query"></a><h3>lasso_discovery_init_query ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_init_query          (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *security_mech_id</code></em>);</pre>
+<p>
+Initializes a disco:Query message.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>security_mech_id</code></em> :</span></p></td>
+<td>identifier of a wished security mechanism, or NULL if any is ok. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-add-requested-service-type"></a><h3>lasso_discovery_add_requested_service_type ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_add_requested_service_type
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *service_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *option</code></em>);</pre>
+<p>
+Adds a request for service of <em class="parameter"><code>service_type</code></em> to the disco:Query being built.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service_type</code></em> :</span></p></td>
+<td>requested service type</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>option</code></em> :</span></p></td>
+<td>option to the requested service</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successful</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-process-request-msg"></a><h3>lasso_discovery_process_request_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_process_request_msg (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *security_mech_id</code></em>);</pre>
+<p>
+Process a received SOAP message for the discovery service.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
+<td>a serialized SOAP message</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>security_mech_id</code></em> :</span></p></td>
+<td>the security mech id to use for validating authorizations. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 if successfull, an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-build-response-msg"></a><h3>lasso_discovery_build_response_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_build_response_msg  (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>);</pre>
+<p>
+Execute needed action for the received request, and produce a response message.
+</p>
+<p>
+If any critical error occur, it tries to produce a SOAP fault.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> object</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or an error code otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-process-modify-response-msg"></a><h3>lasso_discovery_process_modify_response_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_process_modify_response_msg
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>);</pre>
+<p>
+Processes a disco:ModifyResponse SOAP message.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
+<td>the disco:ModifyResponse SOAP message</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-process-query-response-msg"></a><h3>lasso_discovery_process_query_response_msg ()</h3>
+<pre class="programlisting"><span class="returnvalue">lasso_error_t</span>       lasso_discovery_process_query_response_msg
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>);</pre>
+<p>
+Processes a disco:QueryResponse message.
+Extract credentials from the response and put them in the session,
+for later use by a request from a <a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="type">LassoWsfProfile</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
+<td>the disco:QueryResponse message</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>0 on success; or a negative value otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-get-service"></a><h3>lasso_discovery_get_service ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="returnvalue">LassoWsfProfile</span></a> *   lasso_discovery_get_service         (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *service_type</code></em>);</pre>
+<p>
+After a disco:query message, creates a <a class="link" href="lasso-LassoDataService.html#LassoDataService" title="struct LassoDataService"><span class="type">LassoDataService</span></a> instance for the
+requested <em class="parameter"><code>service_type</code></em> with the first resource offering found or the first resource offering
+matching the service type.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service_type</code></em> :</span></p></td>
+<td>the requested service type</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created <a class="link" href="lasso-LassoDataService.html#LassoDataService" title="struct LassoDataService"><span class="type">LassoDataService</span></a> object; or NULL if an
+error occured. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-get-services"></a><h3>lasso_discovery_get_services ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             lasso_discovery_get_services        (<em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a> *discovery</code></em>);</pre>
+<p>
+After a disco:query message, creates a GList object of <a class="link" href="lasso-LassoDataService.html#LassoDataService" title="struct LassoDataService"><span class="type">LassoDataService</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>discovery</code></em> :</span></p></td>
+<td>a <a class="link" href="lasso-LassoDiscovery.html#LassoDiscovery" title="struct LassoDiscovery"><span class="type">LassoDiscovery</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a newly created GList object of <a class="link" href="lasso-LassoDataService.html#LassoDataService" title="struct LassoDataService"><span class="type">LassoDataService</span></a>;
+or NULL if an error occured. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> LassoNode]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="LassoWsfProfileConstructor"></a><h3>LassoWsfProfileConstructor ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="returnvalue">LassoWsfProfile</span></a> *   (*LassoWsfProfileConstructor)       (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-register-constructor-for-service-type"></a><h3>lasso_discovery_register_constructor_for_service_type ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_discovery_register_constructor_for_service_type
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> const *service_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoWsfProfileConstructor" title="LassoWsfProfileConstructor ()"><span class="type">LassoWsfProfileConstructor</span></a> constructor</code></em>);</pre>
+<p>
+This function permits to subclass of <a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="type">LassoWsfProfile</span></a> to register a
+constructor for the service type they supports.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service_type</code></em> :</span></p></td>
+<td>the URI of the service type</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>constructor</code></em> :</span></p></td>
+<td>a constructor function for the profile handling this service type</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-discovery-unregister-constructor-for-service-type"></a><h3>lasso_discovery_unregister_constructor_for_service_type ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lasso_discovery_unregister_constructor_for_service_type
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> const *service_type</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscovery.html#LassoWsfProfileConstructor" title="LassoWsfProfileConstructor ()"><span class="type">LassoWsfProfileConstructor</span></a> constructor</code></em>);</pre>
+<p>
+This function permits to subclass of <a class="link" href="lasso-LassoWsfProfile.html#LassoWsfProfile" title="struct LassoWsfProfile"><span class="type">LassoWsfProfile</span></a> to unregister a
+constructor for the service type they previously registered using
+<a class="link" href="lasso-LassoDiscovery.html#lasso-discovery-register-constructor-for-service-type" title="lasso_discovery_register_constructor_for_service_type ()"><code class="function">lasso_discovery_register_constructor_for_service_type()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>service_type</code></em> :</span></p></td>
+<td>the URI of the service type</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>constructor</code></em> :</span></p></td>
+<td>a constructor function for the profile handling this service type</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

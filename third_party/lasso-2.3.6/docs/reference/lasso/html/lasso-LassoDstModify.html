@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoDstModify</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="xml-idwsf.html" title="Objects from ID-WSF 1.0 schemas">
+<link rel="prev" href="lasso-LassoDstModifyResponse.html" title="LassoDstModifyResponse">
+<link rel="next" href="lasso-LassoDstNewData.html" title="LassoDstNewData">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoDstModifyResponse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="xml-idwsf.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-LassoDstNewData.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoDstModify.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoDstModify.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoDstModify"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoDstModify.top_of_page"></a>LassoDstModify</span></h2>
+<p>LassoDstModify — &lt;dst:Modify&gt;</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoDstModify.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoDstModify.html#LassoDstModify" title="struct LassoDstModify">LassoDstModify</a>;
+<a class="link" href="lasso-LassoDstModify.html#LassoDstModify" title="struct LassoDstModify"><span class="returnvalue">LassoDstModify</span></a> *    <a class="link" href="lasso-LassoDstModify.html#lasso-dst-modify-new" title="lasso_dst_modify_new ()">lasso_dst_modify_new</a>                ();
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoDstModify.description"></a><h2>Description</h2>
+<p>
+</p>
+<div class="figure">
+<a name="id3230861"></a><p class="title"><b>Figure 115. Schema fragment for dst:Modify</b></p>
+<div class="figure-contents"><pre class="programlisting">
+
+&lt;xs:element name="Modify" type="ModifyType"/&gt;
+&lt;xs:complexType name="ModifyType"&gt;
+    &lt;xs:sequence&gt;
+        &lt;xs:group ref="ResourceIDGroup" minOccurs="0"/&gt;
+        &lt;xs:element name="Modification" maxOccurs="unbounded"&gt;
+            &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element name="Select" type="SelectType"/&gt;
+                    &lt;xs:element name="NewData" minOccurs="0"&gt;
+                        &lt;xs:complexType&gt;
+                            &lt;xs:sequence&gt;
+                                &lt;xs:any minOccurs="0" maxOccurs="unbounded"/&gt;
+                            &lt;/xs:sequence&gt;
+                        &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:attribute name="id" type="xs:ID"/&gt;
+                &lt;xs:attribute name="notChangedSince" type="xs:dateTime"/&gt;
+                &lt;xs:attribute name="overrideAllowed" type="xs:boolean" default="0"/&gt;
+            &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element ref="Extension" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="id" type="xs:ID"/&gt;
+    &lt;xs:attribute name="itemID" type="IDType"/&gt;
+&lt;/xs:complexType&gt;
+</pre></div>
+</div>
+<p><br class="figure-break">
+</p>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoDstModify.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoDstModify"></a><h3>struct LassoDstModify</h3>
+<pre class="programlisting">struct LassoDstModify {
+	LassoNode parent;
+
+	LassoDiscoResourceID *ResourceID;
+	LassoDiscoEncryptedResourceID *EncryptedResourceID;
+	GList *Modification; /* of LassoNode */
+	GList *Extension; /* of xmlNode* */
+
+	char *id;
+	char *itemID;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-dst-modify-new"></a><h3>lasso_dst_modify_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoDstModify.html#LassoDstModify" title="struct LassoDstModify"><span class="returnvalue">LassoDstModify</span></a> *    lasso_dst_modify_new                ();</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>

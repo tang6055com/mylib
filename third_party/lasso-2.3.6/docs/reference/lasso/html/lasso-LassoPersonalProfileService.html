@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LassoPersonalProfileService</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Lasso Reference Manual">
+<link rel="up" href="idwsf.html" title="Identity Web Services Framework 1.0">
+<link rel="prev" href="lasso-LassoDataService.html" title="LassoDataService">
+<link rel="next" href="lasso-authentication.html" title="LassoAuthentication">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="lasso-LassoDataService.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="idwsf.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Lasso Reference Manual</th>
+<td><a accesskey="n" href="lasso-authentication.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#lasso-LassoPersonalProfileService.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#lasso-LassoPersonalProfileService.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="lasso-LassoPersonalProfileService"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="lasso-LassoPersonalProfileService.top_of_page"></a>LassoPersonalProfileService</span></h2>
+<p>LassoPersonalProfileService — a subclass of LassoDataService to access Personal Profile datas</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="lasso-LassoPersonalProfileService.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv">
+<a name="lasso-LassoPersonalProfileService.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService">LassoPersonalProfileService</a>;
+<a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="returnvalue">LassoPersonalProfileService</span></a> *  <a class="link" href="lasso-LassoPersonalProfileService.html#lasso-personal-profile-service-new" title="lasso_personal_profile_service_new ()">lasso_personal_profile_service_new</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);
+<a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="returnvalue">LassoPersonalProfileService</span></a> *  <a class="link" href="lasso-LassoPersonalProfileService.html#lasso-personal-profile-service-new-full" title="lasso_personal_profile_service_new_full ()">lasso_personal_profile_service_new_full</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="lasso-LassoPersonalProfileService.html#lasso-personal-profile-service-get-email" title="lasso_personal_profile_service_get_email ()">lasso_personal_profile_service_get_email</a>
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="type">LassoPersonalProfileService</span></a> *service</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoPersonalProfileService.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="lasso-LassoPersonalProfileService.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="LassoPersonalProfileService"></a><h3>struct LassoPersonalProfileService</h3>
+<pre class="programlisting">struct LassoPersonalProfileService {
+	LassoDataService parent;
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-personal-profile-service-new"></a><h3>lasso_personal_profile_service_new ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="returnvalue">LassoPersonalProfileService</span></a> *  lasso_personal_profile_service_new
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-personal-profile-service-new-full"></a><h3>lasso_personal_profile_service_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="returnvalue">LassoPersonalProfileService</span></a> *  lasso_personal_profile_service_new_full
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoServer.html#LassoServer" title="struct LassoServer"><span class="type">LassoServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="lasso-LassoDiscoResourceOffering.html#LassoDiscoResourceOffering" title="struct LassoDiscoResourceOffering"><span class="type">LassoDiscoResourceOffering</span></a> *offering</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lasso-personal-profile-service-get-email"></a><h3>lasso_personal_profile_service_get_email ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             lasso_personal_profile_service_get_email
+                                                        (<em class="parameter"><code><a class="link" href="lasso-LassoPersonalProfileService.html#LassoPersonalProfileService" title="struct LassoPersonalProfileService"><span class="type">LassoPersonalProfileService</span></a> *service</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.17</div>
+</body>
+</html>
