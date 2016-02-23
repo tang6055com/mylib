@@ -445,7 +445,7 @@ warrper_redis_reply_t* RedisDoCommand(warrper_redis_context_t* context,
 	//va_list ap;
 
 	//va_start(ap, format);
-	reply = redisCommand(context, format/*, ap*/);
+	reply = redisCommand(context->context, format/*, ap*/);
 	//va_end(ap);
 
 	if (NULL == reply)
