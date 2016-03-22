@@ -357,6 +357,31 @@ bool RedisStorageEngineImpl::GetHashValues(const char* hash_name,
 	return true;
 }
 
+bool RedisStorageEngineImpl::GetHashKeys(const char* hash_name,
+    const size_t hash_name_len,
+    std::list<std::string>& list){
+  int r = 0;
+	if (PingRedis()!=1)
+		return false;
+	char** pptr = NULL;
+	int n = 0;
+	warrper_redis_reply_t*  rp = NULL;
+  rp = RedisGetHashKeysAll(c_, hash_name, hash_name_len, &pptr, &n);
+	if(n == 0 || pptr == NULL)
+		return false;
+	for(r =0;r<n;r++){
+		std::string str;
+		str.assign(pptr[r]);
+		list.push_back(str);
+	}
+	free(pptr);
+	if(rp==NULL)
+		return false;
+	RedisFreeReply(rp);
+	return true;
+    return true;
+}
+
 bool RedisStorageEngineImpl::GetListAll(const char* key,const size_t key_len,
 	                                    std::list<std::string>& list){
 
@@ -443,6 +468,25 @@ CommandReply* RedisStorageEngineImpl::_CreateReply(redisReply* reply) {
 		break;
 	}
 	return NULL;
+}
+
+
+bool RedisStorageEngineImpl::DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list){
+  for(std::list<std::string>::const_iterator it = command_list.begin();                     
+      it != command_list.end();                                                             
+      ++it                                                                                  
+     ){
+    //MIG_INFO(USER_LEVEL, "[RedisAppendCommand]:%s",it->c_str());    
+    RedisAppendCommand(c_, it->c_str());
+  }            
+  for (size_t i = 0; i < command_list.size(); ++i){
+    warrper_redis_reply_t *warrper_rep  =  new warrper_redis_reply_t; 
+    RedisGetReply(c_, (void **)&(warrper_rep->reply));
+    CommandReply *cmd_reply = _CreateReply(warrper_rep->reply);
+    RedisFreeReply(warrper_rep);
+    reply_list.push_back(cmd_reply);
+  }   
+  return true;
 }
 
 }

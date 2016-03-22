@@ -461,7 +461,7 @@ warrper_redis_reply_t* RedisDoCommandV(warrper_redis_context_t* context,
 	redisReply *reply;
 	warrper_redis_reply_t *wa_re;
 
-	reply = redisvCommand(context, format, ap);
+	reply = redisvCommand(context->context, format, ap);
 
 	if (NULL == reply)
 		return NULL;
@@ -469,4 +469,44 @@ warrper_redis_reply_t* RedisDoCommandV(warrper_redis_context_t* context,
 	wa_re = (warrper_redis_reply_t*)malloc(sizeof(warrper_redis_reply_t));
 	wa_re->reply = reply;
 	return wa_re;
+}
+
+// added by tianyiheng 2016/3/4
+warrper_redis_reply_t* RedisGetHashKeysAll(warrper_redis_context_t* context,
+    const char* key,const size_t key_len,
+    char***val,int* val_len){
+  redisReply* reply;
+  int j =0;
+  warrper_redis_reply_t* wa_re = NULL;
+  reply = redisCommand(context->context,"hkeys %s",key);
+  if(reply->type==REDIS_REPLY_ARRAY){
+    wa_re = (warrper_redis_reply_t*)malloc(sizeof(warrper_redis_reply_t));
+    wa_re->reply = reply;
+    (*val_len) = wa_re->reply->elements;
+    (*val) = (char**)malloc(sizeof(char*)*(wa_re->reply->elements));
+    for(j =0;j<reply->elements;j++){
+      (*val)[j] = reply->element[j]->str;
+    }
+    return wa_re;
+  }
+  return NULL;
+}
+
+int RedisAppendCommand(warrper_redis_context_t * contex_warrper, const char *command){
+  return redisAppendCommand(contex_warrper->context, command); 
+}
+
+int RedisAppendCommandV(warrper_redis_context_t *contex_warrper, const char *format, ...){
+  va_list ap;
+  int ret;
+  
+  va_start(ap, format);
+  ret = redisvAppendCommand(contex_warrper->context, format,ap);
+  va_end(ap);
+
+  return ret;
+}
+
+int RedisGetReply(warrper_redis_context_t *contex_warrper, void **reply){
+  return redisGetReply(contex_warrper->context, reply);
 }

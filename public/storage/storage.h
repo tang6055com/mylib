@@ -229,8 +229,10 @@ public:
 
 	virtual bool GetHashValues(const char* hash_name,
 		                       const size_t hash_name_len,
-		                       std::list<std::string>& list) = 0;
-
+                           std::list<std::string>& list) = 0;
+  virtual bool GetHashKeys(const char* hash_name,
+                            const size_t hash_name_len,
+                            std::list<std::string>& list) = 0;
 	virtual bool GetAllHash(const char* hash_name,
 		                    const size_t hash_name_len,
 							std::map<std::string,std::string>& map) = 0;
@@ -248,7 +250,7 @@ public:
 				const int flag) = 0;
 
 	virtual CommandReply *DoCommand(const char *format/*, ...*/) = 0;
-
+  virtual bool DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list);
 	virtual void *GetContext() {}
 };
 

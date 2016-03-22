@@ -101,6 +101,10 @@ warrper_redis_reply_t* RedisGetListAll(warrper_redis_context_t* context,
 warrper_redis_reply_t* RedisGetHashValueAll(warrper_redis_context_t* context,
 											const char* key,const size_t key_len,
 											char***val,int* val_len);
+// add by tianyiheng at 2016/03/04
+warrper_redis_reply_t* RedisGetHashKeysAll(warrper_redis_context_t* context,
+                      const char* key,const size_t key_len,
+                      char***val,int* val_len);
 
 warrper_redis_reply_t* RedisGetAllHash(warrper_redis_context_t* context,
 									   const char* key,const size_t key_len,
@@ -124,6 +128,13 @@ warrper_redis_reply_t *RedisGetListRange(warrper_redis_context_t* context,const 
 
 warrper_redis_reply_t *RedisDoCommand(warrper_redis_context_t* context, const char *format/*, ...*/);
 warrper_redis_reply_t *RedisDoCommandV(warrper_redis_context_t* context, const char *format, va_list ap);
+
+// add by tianyiheng at 2016/03/04 11:00:00
+// pipelining command for redis
+int RedisAppendCommand(warrper_redis_context_t * contex_warrper, const char *command);
+int RedisAppendCommandV(warrper_redis_context_t *contex_warrper, const char *format, ...);
+int RedisGetReply(warrper_redis_context_t *contex_warrper, void **reply);
+
 
 #ifdef __cplusplus
 }
