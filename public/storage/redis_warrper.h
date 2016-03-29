@@ -134,7 +134,7 @@ warrper_redis_reply_t *RedisDoCommandV(warrper_redis_context_t* context, const c
 int RedisAppendCommand(warrper_redis_context_t * contex_warrper, const char *command);
 int RedisAppendCommandV(warrper_redis_context_t *contex_warrper, const char *format, ...);
 int RedisGetReply(warrper_redis_context_t *contex_warrper, void **reply);
-
+int RedisAppendCmdV(warrper_redis_context_t *context_warrper, const char *format, va_list ap);
 
 #ifdef __cplusplus
 }

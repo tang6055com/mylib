@@ -510,3 +510,7 @@ int RedisAppendCommandV(warrper_redis_context_t *contex_warrper, const char *for
 int RedisGetReply(warrper_redis_context_t *contex_warrper, void **reply){
   return redisGetReply(contex_warrper->context, reply);
 }
+
+int RedisAppendCmdV(warrper_redis_context_t *context_warrper, const char *format, va_list ap){
+  return redisvAppendCommand(context_warrper->context, format, ap);
+}

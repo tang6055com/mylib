@@ -120,6 +120,11 @@ public:
 
     // redis pipelining commands
     virtual bool DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list);
+    // redis 通用命令
+    virtual CommandReply *DoCommandV(const char *format, ...);
+    // 通用管道命令
+    virtual int AppendCommandV(const char *format, ...);
+    virtual bool GetPipleReply(size_t cmd_size, std::list<CommandReply*> &reply_list_out);
 
     virtual void *GetContext() {
       if(PingRedis()!=1) return NULL;

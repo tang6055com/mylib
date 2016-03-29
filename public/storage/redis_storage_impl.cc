@@ -489,4 +489,41 @@ bool RedisStorageEngineImpl::DoCommands(std::list<std::string> command_list, std
   return true;
 }
 
+CommandReply* RedisStorageEngineImpl::DoCommandV(const char *format, ...){
+  va_list ap;
+  va_start(ap, format);
+  warrper_redis_reply_t *warrper_rep = RedisDoCommandV(c_, format, ap);
+  CommandReply *cmd_reply = _CreateReply(warrper_rep->reply);
+  RedisFreeReply(warrper_rep);
+  va_end(ap); 
+
+  return cmd_reply;
+}
+
+// 管道命令
+int RedisStorageEngineImpl::AppendCommandV(const char *format, ...){
+  va_list ap;
+  va_start(ap, format);
+  int ret = RedisAppendCmdV(c_, format, ap);
+  va_end(ap);
+  return ret;
+}
+
+// 获取管道命令结果
+bool RedisStorageEngineImpl::GetPipleReply(size_t cmd_size, std::list<CommandReply*> &reply_list_out){
+  for(size_t s = 0; s < cmd_size; ++s){
+    warrper_redis_reply_t *warrper_rep = NULL;
+    warrper_rep = (warrper_redis_reply_t*)malloc(sizeof(warrper_redis_reply_t));
+    if (NULL == warrper_rep){
+      continue;
+    }
+    RedisGetReply(c_, (void **)&(warrper_rep->reply));
+    CommandReply *cmd_reply = _CreateReply(warrper_rep->reply);
+    RedisFreeReply(warrper_rep);
+    reply_list_out.push_back(cmd_reply);
+  } 
+  return true;
+}
+
+
 }
