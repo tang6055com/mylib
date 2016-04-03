@@ -3,6 +3,8 @@
 #include "log/mig_log.h"
 #include "basic/constants.h"
 #include "basic/basictypes.h"
+#include "logic/logic_comm.h"
+
 namespace config{
 
 static char config[] = "config";
@@ -11,6 +13,10 @@ static char cached[]= "cached";
 static char mysql[] = "mysql";
 static char mssql[] = "mssql";
 static char redis[] = "redis";
+static char hbase[] = "hbase";
+static char kafka[] = "kafka";
+static char broker[] = "broker";
+
 static char memcached[] = "memcached";
 static char host[] = "host";
 static char port[] = "port";
@@ -38,6 +44,8 @@ static int32 memcached_flag = 0;
 static int32 sso_flag = 0;
 static int32 record_flag = 0;
 static int32 remote_flag = 0;
+static int32 kafka_flag = 0;
+
 
 FileConfig*  FileConfig::config_ = NULL;
 
@@ -64,14 +72,20 @@ static void XMLCALL OnConfigStart(void* usrData,const char* name,const char** at
     std::string suser;
     std::string spass;
     std::string sname;
+    //MIG_INFO(USER_LEVEL, "[OnConfigStart,name=%s,config_flag:%d]", name, config_flag);
+
     if((strcmp(name,config)==0)&&memcached_flag==0)
         config_flag = 1;
     else if(config_flag&&(strcmp(name,database)==0))
     	data_flag = 1;
     else if(config_flag&&(strcmp(name,cached)==0))
         cached_flag = 1;
+    else if(config_flag&&(strcmp(name, kafka))==0){
+        kafka_flag = 1;
+        MIG_INFO(USER_LEVEL, "kafka_flag = 1");
+    }
     else if(config_flag&&data_flag&&
-        ((strcmp(name,mysql)==0)||(strcmp(name,mssql)==0))){
+        ((strcmp(name,mysql)==0)||(strcmp(name,mssql)==0) || 0==strcmp(name, hbase))){
         
         for(i = 0;atts[i]!=0;i+=2){
             if(strcmp(atts[i],host)==0)
@@ -91,7 +105,8 @@ static void XMLCALL OnConfigStart(void* usrData,const char* name,const char** at
             file_config->mysql_db_list_.push_back(addr);
         else if(strcmp(name,mssql)==0)
         	file_config->mssql_db_list_.push_back(addr);
-
+        else if(0==strcmp(name, hbase))
+          file_config->hbase_db_list_.push_back(addr);
         /*MIG_INFO(USER_LEVEL,"config name[%s] ip[%s] port[%d] user[%s] pass[%s] db[%s]",
                  name,shost.c_str(),atoi(sport.c_str()),suser.c_str(),spass.c_str(),
                  sname.c_str());*/
@@ -118,7 +133,25 @@ static void XMLCALL OnConfigStart(void* usrData,const char* name,const char** at
         else
             file_config->mem_list_.push_back(addr);
         	
-    }else if(config_flag&&cached_flag&&strcmp(name,memcached)==0)
+    }else if(config_flag && kafka_flag && 0==strcmp(name, broker)){
+        for(i = 0;atts[i]!=0;i+=2){
+            if(strcmp(atts[i],host)==0)
+                shost.assign(atts[i+1]);
+            else if(strcmp(atts[i],port)==0)
+                sport.assign(atts[i+1]);
+            else if(strcmp(atts[i],user)==0)
+                suser.assign(atts[i+1]);
+            else if(strcmp(atts[i],pass)==0)
+                spass.assign(atts[i+1]);
+            else if(strcmp(atts[i],source)==0)
+                sname.assign(atts[i+1]); 
+        }
+        base::ConnAddr addr(shost.c_str(),atoi(sport.c_str()),
+            suser.c_str(),spass.c_str(),sname.c_str());
+        if(strcmp(name,broker)==0)
+            file_config->kafka_conf_list_.push_back(addr);
+    }
+    else if(config_flag&&cached_flag&&strcmp(name,memcached)==0)
     	  memcached_flag = 1;
     else if(strcmp(name,sso)==0)
           sso_flag = 1;
@@ -170,7 +203,8 @@ static void XMLCALL OnConfigStart(void* usrData,const char* name,const char** at
 }
 
 static void XMLCALL OnConfigEnd(void* usrData,const char* name){
-    if(strcmp(name,config)==0)
+    //MIG_INFO(USER_LEVEL, "[OnConfigEnd,name=%s,config_flag:%d]", name, config_flag);
+    if(strcmp(name,config)==0 && memcached_flag == 0)
         config_flag = 0;
     else if(strcmp(name,database)==0)
     	data_flag = 0;
@@ -178,6 +212,8 @@ static void XMLCALL OnConfigEnd(void* usrData,const char* name){
         cached_flag = 0;
     else if(strcmp(name,memcached)==0)
     	memcached_flag = 0;
+    else if(strcmp(name, kafka)==0)
+      kafka_flag = 0;
 }
 
 

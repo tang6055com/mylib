@@ -29,8 +29,8 @@ public:
     virtual bool AddValue(const char* key,const size_t key_len,
                           const char* val,const size_t val_len);
   
-    virtual bool ReplaceValue(const char* key,const size_t key_len,
-                              const char* val,const size_t val_len);
+      virtual bool ReplaceValue(const char* key,const size_t key_len,
+                                const char* val,const size_t val_len);
 
     virtual bool GetValue(const char* key,const size_t key_len,
                           char** val,size_t* val_len);
@@ -97,9 +97,13 @@ public:
 		                       const size_t hash_name_len,
 		                       std::list<std::string>& list);
 
-	virtual bool GetAllHash(const char* hash_name,
-		                    const size_t hash_name_len,
-		                    std::map<std::string,std::string>& map);
+    virtual bool GetHashKeys(const char* hash_name,
+                             const size_t hash_name_len,
+                             std::list<std::string>& list);
+
+    virtual bool GetAllHash(const char* hash_name,
+                          const size_t hash_name_len,
+                          std::map<std::string,std::string>& map);
 
   virtual bool GetSortedSet(const char* hash_name,
                         const size_t hash_name_len,
@@ -114,12 +118,20 @@ public:
 
 	virtual CommandReply *DoCommand(const char *format/*, ...*/);
 
-	virtual void *GetContext() {
-		if(PingRedis()!=1) return NULL;
-		else return c_->context; }
-private:
-	bool PingRedis();
-	void Init();
+    // redis pipelining commands
+    virtual bool DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list);
+    // redis 通用命令
+    virtual CommandReply *DoCommandV(const char *format, ...);
+    // 通用管道命令
+    virtual int AppendCommandV(const char *format, ...);
+    virtual bool GetPipleReply(size_t cmd_size, std::list<CommandReply*> &reply_list_out);
+
+    virtual void *GetContext() {
+      if(PingRedis()!=1) return NULL;
+      else return c_->context; }
+  private:
+    bool PingRedis();
+    void Init();
 
 	CommandReply *_CreateReply(redisReply *reply);
 private:
