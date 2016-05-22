@@ -663,6 +663,21 @@ void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool
 			 break;
 		  }
 
+		case Value::TYPE_CHAR_INTEGER:
+		  {
+			int8 value;
+			bool result = node->GetAsCharInteger(&value);
+			base::BasicUtil::StringUtil::StringAppendF(json_string_,"%1d",value);
+			break;
+		  }
+
+		case Value::TYPE_SHORT_INTEGER:
+		 {
+			int16 value;
+			bool result = node->GetAsShortInteger(&value);
+			base::BasicUtil::StringUtil::StringAppendF(json_string_,"%2d",value);
+			break;
+		 }
 		case Value::TYPE_INTEGER:
 		  {
 			  int32 value;
@@ -670,6 +685,7 @@ void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool
 			  base::BasicUtil::StringUtil::StringAppendF(json_string_,"%d",value);
 			  break;
 		  }
+
 
 		case Value::TYPE_BIG_INTEGER:
 		  {
