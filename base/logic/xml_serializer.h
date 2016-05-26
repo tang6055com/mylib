@@ -26,7 +26,11 @@ public:
 public:
 	virtual bool Serialize(const Value& root);
 
+public:
 	virtual Value* Deserialize(int* error_code,std::string* error_str){}
+
+	virtual Value* Deserialize(std::string* str,
+				  int* error_code, std::string* error_str) {}
 
 	virtual void FreeValue(base_logic::Value* value){}
 
