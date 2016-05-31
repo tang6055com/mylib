@@ -41,11 +41,15 @@ public:
 public:
 	virtual bool Serialize(const Value& root);
 
+<<<<<<< HEAD
 
 	bool Serialize(const Value& rott, std::string*  str){return false;}
 
 public:
 	virtual Value* Deserialize(int* error_code,std::string* error_str){}
+=======
+	virtual Value* Deserialize(int* error_code,std::string* error_str);
+>>>>>>> ae11a21d657f08dd6ce5aa91840b465fcb07f3a5
 
 	virtual Value* Deserialize(std::string* str,
 				  int* error_code, std::string* error_str) {}
