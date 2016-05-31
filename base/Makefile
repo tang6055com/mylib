@@ -43,7 +43,7 @@ LINK = $(AR)  $(OUTPUT_FILE) $?
 all: clean output delete-temp-file
 output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
-	kafka_consumer.o kafka_producer.o\
+	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
 	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
@@ -108,7 +108,10 @@ string_escape.o:
 
 json_serializer.o:
 	$(COMPILE) ./logic/json_serializer.cc
-	
+
+xml_serializer.o:
+	$(COMPILE) ./logic/xml_serializer.cc
+
 http_serializer.o:
 	$(COMPILE) ./logic/http_serializer.cc
 	

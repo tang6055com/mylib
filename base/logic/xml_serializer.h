@@ -17,14 +17,30 @@ enum XMLELEMENT{
 	NOT_ATTR = 1,
 	HAVE_ATTR = 2
 };
+class XmlNode {
+  public:
+    XmlNode() :key(""), value(NULL){}
 
+  std::string key;
+  base_logic::Value *value;
+  std::vector<struct XmlNode *> child;
+};
 class XMLValueSerializer:public ValueSerializer{
 public:
 	XMLValueSerializer();
 	XMLValueSerializer(std::string* xml);
 	virtual ~XMLValueSerializer();
+private:
+  Value * CreateValue(std::string &origin_value);
+  class XmlNode *XmlToXmlTree(std::string &XmlStr, int *origin_pos);
+  bool MergeTree(class XmlNode * XmlRoot);
+  Value *XmlTreeToValue(class XmlNode * XmlRoot);
+  
+public:
+  static bool GetXmlAttribute(std::string &key, std::map<std::string, std::string> *attr);
 public:
 	virtual bool Serialize(const Value& root);
+
 
 	bool Serialize(const Value& rott, std::string*  str){return false;}
 

@@ -755,6 +755,20 @@ void DictionaryValue::MergeDictionary(const DictionaryValue* dictionary) {
   }
 }
 
+bool DictionaryValue::GetDicKey(std::vector<std::string> *vec) {
+  if (NULL == vec) {
+    return false;
+  }
+
+  vec->clear();
+  ValueMap::iterator it = dictionary_.begin();
+  for(; it != dictionary_.end(); ++it) {
+    vec->push_back(base::BasicUtil::StringConversions::WideToASCII(it->first));
+  }
+
+  return true;
+}
+
 
 ///////////////////// ListValue ////////////////////
 ListValue::~ListValue() {
