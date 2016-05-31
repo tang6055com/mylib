@@ -220,6 +220,35 @@ void JsonValueSerializer::FreeValue(base_logic::Value* value){
 	//if(value!=NULL){delete value;value=NULL;}
 }
 
+Value* JsonValueSerializer::Deserialize(std::string* str,
+		  int* error_code, std::string* error_str) {
+	std::wstring json_wide(base::BasicUtil::StringConversions::UTF8ToWide(*str));
+	start_pos_ = json_wide.c_str();
+
+	if(!json_wide.empty() && start_pos_[0] == 0xFEFF)
+		++start_pos_;
+
+	json_pos_ = start_pos_;
+	allow_trailing_comma_ = true;
+	stack_depth_ = 0;
+
+	error_code_ = NO_ERROR;
+
+	scoped_ptr<Value> root(BuildValue(true));
+	if(root.get()){
+		if(ParseToken().type == Token::END_OF_INPUT){ // 空值处理
+			return root.release();
+		}else{
+			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,json_pos_);
+		}
+	}
+	*error_code = error_code_;
+	//if(error_code == 0)
+	//	SetErrorCode(SYNTAX_ERROR,json_pos_);
+
+	return root.release();
+}
+
 Value* JsonValueSerializer::Deserialize(int* error_code,std::string* error_str){
 	std::wstring json_wide(base::BasicUtil::StringConversions::UTF8ToWide(*json_string_));
 	start_pos_ = json_wide.c_str();
@@ -644,6 +673,13 @@ bool JsonValueSerializer::Serialize(const Value& root){
 	BuildJSONString(&root,0,false);
 	return true;
 }
+
+bool JsonValueSerializer::Serialize(const Value& root, std::string*  str) {
+	json_string_ = str;
+	BuildJSONString(&root,0,false);
+	return true;
+}
+
 
 void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool escape){
 	if(node==NULL){//node

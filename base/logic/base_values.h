@@ -371,6 +371,7 @@ public:
 
 public:
   virtual bool Serialize(const Value& root) = 0;
+  virtual bool Serialize(const Value& rott, std::string*  str) = 0;
 
 public:
   virtual Value* Deserialize(int* error_code, std::string* error_str) = 0;

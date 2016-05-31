@@ -16,6 +16,7 @@ public:
 public:
   virtual bool Serialize(const Value& root);
 
+  bool Serialize(const Value& rott, std::string*  str){return false;}
 public:
   virtual Value* Deserialize(int* error_code, std::string* error_str);
 
