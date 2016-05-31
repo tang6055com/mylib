@@ -993,6 +993,33 @@ bool ListValue::Equals(const Value* other) const {
 
 
 
+ValueSerializer* ValueSerializer::Create(int32 type) {
+	ValueSerializer* engine = NULL;
+	switch(type) {
+	 case IMPL_JSON:{
+		 engine = new base_logic::JsonValueSerializer();
+		 break;
+	 }
+	 case IMPL_XML: {
+		engine = new base_logic::XMLValueSerializer();
+		break;
+	 }
+
+	 case IMPL_HTTP:{
+		 engine = new base_logic::HttpValueSerializer();
+		 break;
+	 }
+
+	case IMPL_JSONP: {
+		 engine = new base_logic::JsonpValueSerializer();
+		 break;
+	}
+   }
+
+   return engine;
+}
+
+
 
 ValueSerializer* ValueSerializer::Create(int32 type,std::string* str){
 	ValueSerializer* engine = NULL;

@@ -372,6 +372,44 @@ void HttpValueSerializer::BuildHTTPString(const Value* const node, int depth,boo
 	}
 }
 
+Value* HttpValueSerializer::Deserialize(std::string* str,
+		  int* error_code, std::string* error_str) {
+
+	http_string_ = str;
+	//(*http_string_)[http_string_->length() - 1] = '\0';
+	std::wstring http_wide(base::BasicUtil::StringConversions::UTF8ToWide(*http_string_));
+	start_pos_ = http_wide.c_str();
+
+	//When the input string starts with a UTF-8 Byte-Order-Mark (0xEF, 0xBB, 0xBF),
+	//the UTF8ToWide() function converts it to a Unicode BOM (U+FEFF).
+	//To avoid the BuildValue() function from mis-treating a Unicode BOM as an invalid character and returning NULL,
+	//skip a converted Unicode BOM if it exists.
+
+	if(!http_wide.empty() && start_pos_[0] == 0xFEFF)
+		++start_pos_;
+
+	http_pos_ = start_pos_;
+	allow_trailing_comma_ = true;
+	stack_depth_ = 0;
+
+	error_code_ = NO_ERROR;
+
+	scoped_ptr<Value> root(BuildValue(true));
+	if(root.get()){
+		if(ParseToken().type == Token::END_OF_INPUT||ParseToken().type == Token::LIST_SEPARATOR){ // 空值处理
+			return root.release();
+		}else{
+			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,http_pos_);
+		}
+	}
+
+	if(error_code == 0)
+		SetErrorCode(SYNTAX_ERROR,http_pos_);
+
+	return root.release();
+}
+
+
 Value* HttpValueSerializer::Deserialize(int* error_code,std::string* error_str){
 	Value*  value = NULL;
 	//The input must be in UTF-8
