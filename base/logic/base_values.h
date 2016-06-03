@@ -265,6 +265,8 @@ public:
 	DictionaryValue* DeepCopyWithoutEmptyChildren();
 
 	void MergeDictionary(const DictionaryValue* dictionary);
+	
+	bool GetDicKey(std::vector<std::string> *vec);
 
 	class key_iterator
 	    : private std::iterator<std::input_iterator_tag, const std::wstring> {
@@ -371,6 +373,7 @@ public:
 
 public:
   virtual bool Serialize(const Value& root) = 0;
+  virtual bool Serialize(const Value& rott, std::string*  str) = 0;
 
 public:
   virtual Value* Deserialize(int* error_code, std::string* error_str) = 0;
