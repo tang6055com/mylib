@@ -27,16 +27,18 @@ inline int HexToInt(wchar_t c) {
 static const char kpretty_print_line_ending[] = "\n";
 
 JsonpValueSerializer::JsonpValueSerializer()
-:pretty_print_(false)
+:pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(NULL){
+,json_string_()
+,jsonp_call_("")
+,is_init_jsonp_(false){
 
 }
 
 JsonpValueSerializer::JsonpValueSerializer(std::string* json)
 :pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(json)
+,json_string_()
 ,jsonp_call_("")
 ,is_init_jsonp_(false){
 
@@ -175,36 +177,53 @@ void JsonpValueSerializer::FreeValue(base_logic::Value* value){
     base_logic::DictionaryValue* dict = (base_logic::DictionaryValue*)(value);
     if(dict!=NULL){delete value;value=NULL;}
   }
-  //if(value!=NULL){delete value;value=NULL;}
+}
+
+Value* JsonpValueSerializer::Deserialize(std::string* str,
+		  int* error_code, std::string* error_str) {
+	json_string_ = str;
+	std::wstring json_wide(base::BasicUtil::StringConversions::UTF8ToWide(*json_string_));
+	start_pos_ = json_wide.c_str();
+	if(!json_wide.empty() && start_pos_[0] == 0xFEFF)
+		++start_pos_;
+	jsonp_pos_ = start_pos_;
+	allow_trailing_comma_ = true;
+	stack_depth_ = 0;
+	error_code_ = NO_ERROR;
+	scoped_ptr<Value> root(BuildValue(true));
+	if(root.get()){
+		if(ParseToken().type == Token::END_OF_INPUT){ // 空值处理
+			return root.release();
+		}else{
+			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,jsonp_pos_);
+		}
+	}
+	if(error_code == 0)
+		SetErrorCode(SYNTAX_ERROR,jsonp_pos_);
+	return root.release();
 }
 
 Value* JsonpValueSerializer::Deserialize(int* error_code,std::string* error_str){
-  base_logic::DictionaryValue* value = new base_logic::DictionaryValue;
-  value->SetBigInteger(L"AGE",1321321);
-  value->SetString(L"name","TTTTRRRR");
-  value->SetBigInteger(L"AGE1",1321321);
-  value->SetString(L"name1","TTTTRRRR");
 
-  value->SetBigInteger(L"AGE2",1321321);
-  value->SetString(L"name2","TTTTRRRR");
-
-  value->SetBigInteger(L"AGE3",1321321);
-  value->SetString(L"name3","TTTTRRRR");
-
-  value->SetBigInteger(L"AGE4",1321321);
-  value->SetString(L"name4","TTTTRRRR");
-
-  value->SetBigInteger(L"AGE5",1321321);
-  value->SetString(L"name5","TTTTRRRR");
-
-  value->SetBigInteger(L"AGE6",1321321);
-  value->SetString(L"name6","TTTTRRRR");
-  for(int i =0;i<10000;i++){
-    value->SetInteger(base::BasicUtil::StringConversions::ASCIIToWide(base::BasicUtil::StringUtil::Int64ToString(i)),i);
-  }
-
-
-  return NULL;
+	std::wstring json_wide(base::BasicUtil::StringConversions::UTF8ToWide(*json_string_));
+	start_pos_ = json_wide.c_str();
+	if(!json_wide.empty() && start_pos_[0] == 0xFEFF)
+		++start_pos_;
+	jsonp_pos_ = start_pos_;
+	allow_trailing_comma_ = true;
+	stack_depth_ = 0;
+	error_code_ = NO_ERROR;
+	scoped_ptr<Value> root(BuildValue(true));
+	if(root.get()){
+		if(ParseToken().type == Token::END_OF_INPUT){ // 空值处理
+			return root.release();
+		}else{
+			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,jsonp_pos_);
+		}
+	}
+	if(error_code == 0)
+		SetErrorCode(SYNTAX_ERROR,jsonp_pos_);
+	return root.release();
 }
 
 
@@ -597,6 +616,14 @@ void JsonpValueSerializer::EatWhitesspaceAndComments() {
         return;
     }
   }
+}
+
+bool JsonpValueSerializer::Serialize(const Value& root, std::string*  str) {
+	json_string_ = str;
+	BuildJsonpString(&root,0,false);
+	if (jsonp_call_ != "")
+		*json_string_ = jsonp_call_ + std::string("(") + *json_string_ + std::string(")");
+	return true;
 }
 
 bool JsonpValueSerializer::Serialize(const Value& root){
