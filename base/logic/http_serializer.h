@@ -12,14 +12,18 @@ namespace base_logic{
 class HttpValueSerializer:public ValueSerializer{
 
 public:
-	HttpValueSerializer();
+	HttpValueSerializer(){}
 	virtual ~HttpValueSerializer();
 	HttpValueSerializer(std::string* http);
 public:
 	virtual bool Serialize(const Value& root);
 
+public:
 	virtual Value* Deserialize(int* error_code,std::string* error_str);
 
+	virtual Value* Deserialize(std::string* str,
+			  int* error_code, std::string* error_str);
+public:
 	virtual void FreeValue(base_logic::Value* value){}
 
 private:
