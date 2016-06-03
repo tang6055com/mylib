@@ -47,11 +47,11 @@ output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
 	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
-	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o\
+	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o\
-	json_reader.o json_writer.o json_value.o\
+	json_reader.o json_writer.o json_value.o config.o\
 	constants.o basic_info.o basictypes.o tea.o
 	$(LINK)
 
@@ -111,6 +111,10 @@ string_escape.o:
 
 json_serializer.o:
 	$(COMPILE) ./logic/json_serializer.cc
+	
+jsonp_serializer.o:
+	$(COMPILE) ./logic/jsonp_serializer.cc
+	
 
 xml_serializer.o:
 	$(COMPILE) ./logic/xml_serializer.cc
@@ -166,6 +170,9 @@ kafka_producer.o :
 ##基础
 basic_info.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
+
+config.o:
+	$(COMPILE) $(THIRD_PATH)/config/config.cc
 	
 basictypes.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basictypes.cc

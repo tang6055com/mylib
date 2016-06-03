@@ -27,16 +27,18 @@ inline int HexToInt(wchar_t c) {
 static const char kpretty_print_line_ending[] = "\n";
 
 JsonpValueSerializer::JsonpValueSerializer()
-:pretty_print_(false)
+:pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(NULL){
+,json_string_()
+,jsonp_call_("")
+,is_init_jsonp_(false){
 
 }
 
 JsonpValueSerializer::JsonpValueSerializer(std::string* json)
 :pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(json)
+,json_string_()
 ,jsonp_call_("")
 ,is_init_jsonp_(false){
 

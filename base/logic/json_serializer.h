@@ -19,20 +19,12 @@ public:
 	virtual ~JsonValueSerializer();
 public:
 	virtual bool Serialize(const Value& root);
-<<<<<<< HEAD
-=======
 
 	bool Serialize(const Value& root, std::string*  str);
->>>>>>> dcd7e2fcf2f721c9bb99bb89dbb2532094c55ba3
 public:
 	virtual Value* Deserialize(int* error_code, std::string* error_str);
 
-	virtual Value* Deserialize(std::string* str,
-<<<<<<< HEAD
-				  int* error_code, std::string* error_str){}
-=======
-				  int* error_code, std::string* error_str);
->>>>>>> dcd7e2fcf2f721c9bb99bb89dbb2532094c55ba3
+	virtual Value* Deserialize(std::string* str,int* error_code, std::string* error_str);
 
 	virtual void FreeValue(base_logic::Value* value);
 private:
