@@ -15,8 +15,13 @@ struct tea_data {
   size_t l;
 };
 
+
+namespace algo {
+
 bool Encrypt(struct tea_data * td);
 
 bool Decrypt(struct tea_data *td);
+
+}
 
 #endif  //  _ARITHMETIC_TEA_TEA_H_

@@ -52,7 +52,7 @@ output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o\
 	json_reader.o json_writer.o json_value.o config.o\
-	constants.o basic_info.o basictypes.o tea.o
+	constants.o basic_info.o basictypes.o algo_tea.o
 	$(LINK)
 
 clean:
@@ -63,7 +63,7 @@ delete-temp-file:
 	-rm -f *.o
 
 ### 编译
-tea.o:
+algo_tea.o:
 	$(COMPILE) ./algo/tea.cc
 	
 

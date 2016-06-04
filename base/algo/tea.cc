@@ -12,6 +12,8 @@
 
 uint32_t key[4] = {0x04, 0x03, 0x02, 0x01};
 
+
+namespace algo {
 // Encrypt
 void Encrypt(uint32_t v[], uint32_t k[]) {
   uint32_t v0 = v[0], v1 = v[1], sum = 0, i;
@@ -79,4 +81,6 @@ bool Decrypt(struct tea_data *td) {
   }
 
   return true;
+}
+
 }
