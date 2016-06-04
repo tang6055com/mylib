@@ -27,16 +27,18 @@ inline int HexToInt(wchar_t c) {
 static const char kpretty_print_line_ending[] = "\n";
 
 JsonpValueSerializer::JsonpValueSerializer()
-:pretty_print_(false)
+:pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(NULL){
+,json_string_()
+,jsonp_call_("")
+,is_init_jsonp_(false){
 
 }
 
 JsonpValueSerializer::JsonpValueSerializer(std::string* json)
 :pretty_print_(true)
 ,stack_depth_(0)
-,json_string_(json)
+,json_string_()
 ,jsonp_call_("")
 ,is_init_jsonp_(false){
 
@@ -619,8 +621,11 @@ void JsonpValueSerializer::EatWhitesspaceAndComments() {
 bool JsonpValueSerializer::Serialize(const Value& root, std::string*  str) {
 	json_string_ = str;
 	BuildJsonpString(&root,0,false);
-	if (jsonp_call_ != "")
+	if (jsonp_call_ != "") {
 		*json_string_ = jsonp_call_ + std::string("(") + *json_string_ + std::string(")");
+		is_init_jsonp_ = false;
+		jsonp_call_ = "";
+	}
 	return true;
 }
 
@@ -648,6 +653,22 @@ void JsonpValueSerializer::BuildJsonpString(const Value* const node,int depth,bo
        json_string_->append(value ? "true" : "false");
        break;
       }
+
+	case Value::TYPE_CHAR_INTEGER:
+	  {
+		int8 value;
+		bool result = node->GetAsCharInteger(&value);
+		base::BasicUtil::StringUtil::StringAppendF(json_string_,"%1d",value);
+		break;
+	  }
+
+	case Value::TYPE_SHORT_INTEGER:
+	 {
+		int16 value;
+		bool result = node->GetAsShortInteger(&value);
+		base::BasicUtil::StringUtil::StringAppendF(json_string_,"%2d",value);
+		break;
+	 }
 
     case Value::TYPE_INTEGER:
       {
