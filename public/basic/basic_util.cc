@@ -553,7 +553,7 @@ void BasicUtil::ParserSpPost(const std::string& request_string,std::string& saml
     relay_state = temp_str.substr(start_pos+11,end_pos-11);
 }
 
-
+/*
 bool BasicUtil::CheckToken(const std::string& request){
      bool r =false;
      char* mem_value = NULL;
@@ -572,7 +572,7 @@ bool BasicUtil::CheckToken(const std::string& request){
      r = base_storage::MemDicSerial::GetString(token.c_str(),token.length(),
                                                 &mem_value,&mem_value_length);
      return r;
-}
+}*/
 
 const std::string& BasicUtil::FormatCurrentTime(){
     std::stringstream os;
@@ -916,7 +916,7 @@ void  BasicUtil::ResplaceString(const char* str,int len,const char c,std::string
 	MIG_DEBUG(USER_LEVEL,"%s",dest_string.c_str());
 }
 
-
+/*
 bool BasicUtil::GetUserInfo(const std::string& uid,UserInfo& usrinfo){
 	//memcached
 	//key uidinfo 10000info
@@ -944,6 +944,6 @@ bool BasicUtil::GetUserInfo(const std::string& uid,UserInfo& usrinfo){
 	usrinfo.SerializedJson(json);
 	base_storage::MemDic::SetString(key.c_str(),key.length(),json.c_str(),json.length());
 	return r;
-}
+}*/
 
 }
