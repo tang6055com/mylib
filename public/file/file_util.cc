@@ -152,4 +152,33 @@ bool DirectoryExists(const FilePath& path){
 	return false;
 }
 
+bool GetDirectoryFile(const FilePath& path, std::list<FilePath>& file_list) {
+	DIR* dir = opendir(path.value().c_str());
+	if (!dir)
+		return false;
+#if 0
+#error Port warning: depending on the definition of struct dirent, \
+         additional space for pathname may be needed
+#endif
+	struct dirent dent_buf;
+	struct dirent* dent;
+
+	while (readdir_r (dir, &dent_buf, &dent) == 0 && (dent)) {
+		if ((strcmp(dent->d_name, ".") == 0) ||
+				(strcmp(dent->d_name, "..") == 0))
+			continue;
+		else if (dent->d_type == DT_LNK)
+			continue;
+		else if (dent->d_type == DT_DIR){
+			FilePath sub_path(path.value()+ "/" + std::string(dent->d_name));
+			GetDirectoryFile(sub_path, file_list);
+		}else if (dent->d_type == DT_REG) {
+			FilePath file_path(path.value() + "/" + std::string(dent->d_name));
+			file_list.push_back(file_path);
+		}
+
+	}
+	return true;
+}
+
 }

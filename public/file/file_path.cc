@@ -49,7 +49,7 @@ bool FilePath::IsSeparator(CharType character){
     }
     return false;
 }
-void FilePath::StripTrailingSparatorsInternal(){
+void FilePath::StripTrailingSeparatorsInternal(){
 	StringType::size_type start = FindDriveLetter(path_)+2;
 	StringType::size_type last_stripped = StringType::npos;
 	for(StringType::size_type pos = path_.length();
@@ -64,7 +64,7 @@ void FilePath::StripTrailingSparatorsInternal(){
 
 FilePath  FilePath::DirName() const{
     FilePath new_path(path_);
-	new_path.StripTrailingSparatorsInternal();
+	new_path.StripTrailingSeparatorsInternal();
 	StringType::size_type letter = FindDriveLetter(new_path.path_);
 
 	StringType::size_type last_separator = 
@@ -81,10 +81,36 @@ FilePath  FilePath::DirName() const{
 		new_path.path_.resize(last_separator);
 	}
 
-	new_path.StripTrailingSparatorsInternal();
+	new_path.StripTrailingSeparatorsInternal();
 	if(!new_path.path_.length())
 		new_path.path_= kCurrentDirectory;
 	return new_path;
+}
+
+
+FilePath FilePath::Append(const StringType& component){
+
+  if (path_.compare(kCurrentDirectory) == 0) {
+    return FilePath(component);
+  }
+
+  FilePath new_path(path_);
+  new_path.StripTrailingSeparatorsInternal();
+
+  if (component.length() > 0 && new_path.path_.length() > 0) {
+    if (!IsSeparator(new_path.path_[new_path.path_.length() - 1])) {
+      if (FindDriveLetter(new_path.path_) + 1 != new_path.path_.length()) {
+        new_path.path_.append(1, kSeparators[0]);
+      }
+    }
+  }
+
+  new_path.path_.append(component);
+  return new_path;
+}
+
+FilePath FilePath::Append(const FilePath& component){
+  return Append(component.value());
 }
 
 }
