@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include <list>
 #include "file_path.h"
 
 #define HANDLER_EINTR(x) ({\
@@ -45,6 +46,8 @@ bool SetCurrentDirectory(const FilePath& path);
 bool CreateDirectory(const FilePath& path);
 
 bool DirectoryExists(const FilePath& path);
+
+bool GetDirectoryFile(const FilePath& path, std::list<FilePath>& file_list);
 
 }
 #endif
