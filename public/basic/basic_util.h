@@ -280,15 +280,15 @@ public:
 	static int SplitStringChr( const char *str, const char *char_set,
 		std::vector<std::string> &out );
 
-	static bool GetUserToken(const std::string& uid,std::string& token);
+	/*static bool GetUserToken(const std::string& uid,std::string& token);
 	
-	static bool CheckUserToken(const std::string& uid,const std::string& token);
+	static bool CheckUserToken(const std::string& uid,const std::string& token);*/
 
 	//static bool GetUserInfo(const std::string& uid,UserInfo& usrinfo);
 
 	static bool ConverNum(const int num,std::string& conver_num);
 
-	static int HttpgzdeCompress(Byte *zdata, uLong nzdata, Byte *data, uLong *ndata);
+	//static int HttpgzdeCompress(Byte *zdata, uLong nzdata, Byte *data, uLong *ndata);
 };
 
 }

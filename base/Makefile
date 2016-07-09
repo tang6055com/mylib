@@ -41,7 +41,7 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
-output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
@@ -51,8 +51,8 @@ output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o\
-	json_reader.o json_writer.o json_value.o config.o\
-	constants.o basic_info.o basictypes.o algo_tea.o
+	file_util.o file_path.o config.o\
+	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o
 	$(LINK)
 
 clean:
@@ -158,7 +158,7 @@ push_db_comm.o:
 	
 push_logic_unit.o:
 	$(COMPILE) ./pushmsg/push_logic_unit.cc
-	
+
 ##kafka
 kafka_consumer.o :
 	$(COMPILE) ./queue/kafka_consumer.cc
@@ -168,6 +168,10 @@ kafka_producer.o :
 	
 	
 ##基础
+
+data_packet.o:
+	$(COMPILE) $(THIRD_PATH)/protocol/data_packet.cc
+
 basic_info.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
 
@@ -182,6 +186,9 @@ basic_util.o:
 	
 constants.o:
 	$(COMPILE) $(THIRD_PATH)/basic/constants.cc
+
+base64.o:
+	$(COMPILE) $(THIRD_PATH)/basic/base64.cc
 	
 icu_utf.o:
 	$(COMPILE) $(THIRD_PATH)/basic/icu_utf.cc
@@ -213,16 +220,25 @@ redis_warrper.o:
 
 storage.o:
 	$(COMPILE) $(THIRD_PATH)/storage/storage.cc
+
+
+##file
+
+file_path.o:
+	$(COMPILE) $(THIRD_PATH)/file/file_path.cc
+
+file_util.o:
+	$(COMPILE) $(THIRD_PATH)/file/file_util.cc
 	
 ##JSON
-json_reader.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_reader.cpp
+#json_reader.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_reader.cpp
 
-json_value.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_value.cpp
+#json_value.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_value.cpp
 
-json_writer.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_writer.cpp
+#json_writer.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_writer.cpp
 	
 #日志
 mig_log.o:
