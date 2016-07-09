@@ -28,9 +28,13 @@ FILE* OpenFile(const FilePath& filename,const char* mode);
 
 bool CloseFile(const FilePath& filename);
 
+bool CloseFile(FILE* file);
+
 bool TruncateFile(FILE* file);
 
 int ReadFile(const FilePath& filename,char* data,int size);
+
+bool ReadFileToString(const FilePath& path, std::string* contents);
 
 int WriteFile(const FilePath& filename,const char* data,int size);
 
