@@ -1,4 +1,5 @@
 #include "kafka_consumer.h"
+#include "logic/logic_comm.h"
 
 kafka_consumer::kafka_consumer()
 {
@@ -28,7 +29,7 @@ int kafka_consumer::Init(const int partition, const char* topic, const char* bro
 	rk_ = rd_kafka_new(RD_KAFKA_CONSUMER, conf, err_str, sizeof(err_str));
 	if (NULL == rk_) 
 		return CONSUMER_INIT_FAILED;
-	rd_kafka_set_log_level(rk_, LOG_DEBUG);
+	rd_kafka_set_log_level(rk_, 7);
 	if (0 == rd_kafka_brokers_add(rk_, brokers))
 		return CONSUMER_INIT_FAILED;
 	rd_kafka_topic_conf_t *topic_conf = rd_kafka_topic_conf_new();
@@ -54,7 +55,7 @@ int kafka_consumer::PullData(std::string& data)
 	int consume_result = PULL_DATA_SUCCESS;
 	printf("rkt_=%p, partition_%d\n", rkt_, partition_);
 	rd_kafka_poll(rk_, 0);
-	rkmessage = rd_kafka_consume(rkt_, partition_, 1000);
+	rkmessage = rd_kafka_consume(rkt_, partition_, 100);
 	if (!rkmessage) 
 		return PULL_DATA_TIMEOUT;
 	if (rkmessage->err) {
@@ -63,11 +64,35 @@ int kafka_consumer::PullData(std::string& data)
 			return CONSUMER_CONFIG_ERROR;
 		return PULL_DATA_FAILED;
 	}
-	printf("payload%s,len%d\n", (const char*)rkmessage->payload, (int)rkmessage->len);
+	LOG_MSG2("payload%s,len%d offset=%lld\n", (const char*)rkmessage->payload, (int)rkmessage->len, rkmessage->offset);
 	data = std::string((const char*)rkmessage->payload, rkmessage->len);
 	rd_kafka_message_destroy(rkmessage);
 
 	return consume_result;
+}
+
+int kafka_consumer::PullDataBatch(std::list<std::string>* list)
+{
+	rd_kafka_message_t *rkmessage = NULL;
+	int consume_result = PULL_DATA_SUCCESS;
+	int error_code;
+	std::string error_str;
+	std::string data;
+	rd_kafka_poll(rk_, 0);
+	ssize_t msg_num = rd_kafka_consume_batch(rkt_, partition_, 100, &rkmessage, MAX_MSG_NUM_PER_TIME);
+	if(-1 == msg_num)
+		return PULL_DATA_FAILED;
+	else
+	{
+		for(ssize_t i = 0; i < msg_num; i++)
+		{
+			if(1 > rkmessage->len)
+				continue;
+			data = std::string((const char*)rkmessage->payload, rkmessage->len);
+			list->push_back(data);
+		}
+	}
+	return PULL_DATA_SUCCESS;
 }
 
 void kafka_consumer::Close()
