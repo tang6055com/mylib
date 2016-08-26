@@ -41,7 +41,7 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
-output:	basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+output:	native_library.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	kafka_consumer.o kafka_producer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
@@ -172,6 +172,9 @@ constants.o:
 	
 icu_utf.o:
 	$(COMPILE) $(THIRD_PATH)/basic/icu_utf.cc
+
+native_library.o:
+	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
 	
 	
 ##操作
