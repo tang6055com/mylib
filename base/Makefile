@@ -41,6 +41,7 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
+
 output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	data_engine.o data_mysql_engine.o mysql_pool.o\
@@ -202,7 +203,7 @@ config_info.o:
 
 config.o:
 	$(COMPILE) $(THIRD_PATH)/config/config.cc
-	
+
 ##操作
 http_method.o:
 	$(COMPILE) $(THIRD_PATH)/http/http_method.cc
