@@ -90,6 +90,32 @@ uint32 MysqlStorageEngineImpl::RecordCount() {
   MIG_DEBUG(USER_LEVEL, "ulconut ==%d===\n", ulCount);
   return ulCount;
 }
+
+bool MysqlStorageEngineImpl::SQLExecs(std::list<std::string>& sqls) {
+  bool r = CheckConnect();
+  if(!r){
+    MIG_ERROR(USER_LEVEL,"lost connection");
+    return false;
+  }
+  FreeRes();
+  MYSQL* mysql = (MYSQL*)conn_.get()->proc;
+  mysql_autocommit(mysql, 0);
+  std::list<std::string>::iterator it = sqls.begin();
+  while (it != sqls.end()) {
+    int r = mysql_query(mysql, (*it).c_str());
+    if (r != 0) {
+      MIG_ERROR(USER_LEVEL,"mysql error code [%d] [%s]",
+      mysql_errno(mysql),mysql_error(mysql));
+      ++it;
+      continue;
+    }
+    ++it;
+  }
+  mysql_commit(mysql);
+  mysql_autocommit(mysql, 1);
+  return true;
+}
+
 bool MysqlStorageEngineImpl::Affected(unsigned long& rows) {
   rows = (unsigned long) mysql_affected_rows((MYSQL*) conn_.get()->proc);
   return true;
