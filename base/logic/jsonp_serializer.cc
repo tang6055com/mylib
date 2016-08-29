@@ -35,8 +35,8 @@ JsonpValueSerializer::JsonpValueSerializer()
 
 }
 
-JsonpValueSerializer::JsonpValueSerializer(std::string* json)
-:pretty_print_(true)
+JsonpValueSerializer::JsonpValueSerializer(std::string* json,bool pretty_print)
+:pretty_print_(pretty_print)
 ,stack_depth_(0)
 ,json_string_()
 ,jsonp_call_("")

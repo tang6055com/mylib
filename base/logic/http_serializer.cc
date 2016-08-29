@@ -280,8 +280,8 @@ Value* HttpValueSerializer::DecodeString(const Token& token){
 
 //http
 
-HttpValueSerializer::HttpValueSerializer(std::string* http)
-:pretty_print_(true)
+HttpValueSerializer::HttpValueSerializer(std::string* http,bool pretty_print )
+:pretty_print_(pretty_print)
 ,http_string_(http){
 
 }
