@@ -243,8 +243,8 @@ Value* XMLValueSerializer::DecodeString(const Token& token){
 
 static const char kpretty_print_line_ending[] = "\n";
 
-XMLValueSerializer::XMLValueSerializer(std::string* xml)
-:pretty_print_(false)
+XMLValueSerializer::XMLValueSerializer(std::string* xml,bool pretty_print)
+:pretty_print_(pretty_print)
 ,xml_string_(xml){
 
 }

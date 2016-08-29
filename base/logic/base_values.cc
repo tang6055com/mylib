@@ -1021,20 +1021,20 @@ ValueSerializer* ValueSerializer::Create(int32 type) {
 
 
 
-ValueSerializer* ValueSerializer::Create(int32 type,std::string* str){
+ValueSerializer* ValueSerializer::Create(int32 type,std::string* str,bool pretty_print){
 	ValueSerializer* engine = NULL;
 	switch(type){
 	case IMPL_JSON:
-		engine = new base_logic::JsonValueSerializer(str);
+		engine = new base_logic::JsonValueSerializer(str,pretty_print);
 		break;
 	case IMPL_XML:
-		engine = new base_logic::XMLValueSerializer(str);
+		engine = new base_logic::XMLValueSerializer(str,pretty_print);
 		break;
 	case IMPL_HTTP:
-		engine = new base_logic::HttpValueSerializer(str);
+		engine = new base_logic::HttpValueSerializer(str,pretty_print);
 		break;
 	case IMPL_JSONP:
-	    engine = new base_logic::JsonpValueSerializer(str);
+	    engine = new base_logic::JsonpValueSerializer(str,pretty_print);
 	    break;
 	default:
 		break;

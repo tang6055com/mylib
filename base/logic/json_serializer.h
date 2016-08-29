@@ -15,7 +15,7 @@ namespace base_logic{
 class JsonValueSerializer:public ValueSerializer{
 public:
 	JsonValueSerializer();
-	JsonValueSerializer(std::string* json);
+	JsonValueSerializer(std::string* json,bool pretty_print = true);
 	virtual ~JsonValueSerializer();
 public:
 	virtual bool Serialize(const Value& root);

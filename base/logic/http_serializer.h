@@ -14,7 +14,7 @@ class HttpValueSerializer:public ValueSerializer{
 public:
 	HttpValueSerializer(){}
 	virtual ~HttpValueSerializer();
-	HttpValueSerializer(std::string* http);
+	HttpValueSerializer(std::string* http,bool pretty_print = true);
 public:
 	virtual bool Serialize(const Value& root);
 

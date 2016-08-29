@@ -28,7 +28,7 @@ class XmlNode {
 class XMLValueSerializer:public ValueSerializer{
 public:
 	XMLValueSerializer();
-	XMLValueSerializer(std::string* xml);
+	XMLValueSerializer(std::string* xml,bool pretty_print = true);
 	virtual ~XMLValueSerializer();
 private:
   Value * CreateValue(std::string &origin_value);
