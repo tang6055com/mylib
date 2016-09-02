@@ -94,6 +94,7 @@ int log_impl(const char *file, const int line, const char *func, int level,
   else
     openlog(_prog_name, LOG_PID | LOG_CONS | LOG_NDELAY, _facility);
 
+
   switch (priority) {
     case NO_PRIORITY:
       syslog(LOG_INFO, "%s", message);
