@@ -29,7 +29,7 @@ INCLUDE_PATHS = -I./ -I ../ -I/usr/local/libmemcached-1.0.7/include/ -I../core -
 LINK_PATHS = -L./ -L/usr/local/libmemcached-1.0.7/lib/  -L/usr/lib64/mysql
 LINK_LIBRARYS = -lmemcached -lmemcachedutil  -lexpat -lrt -lpthread -ldl -liconv -lmysqlclient -lcurl\
 				../lib/libbreakpad_client.a ../lib/libhiredis.a  ../third_party/dmg_fp/lib/dmg_fp.a\
-				../third_party//librdkafka/librdkafka.a
+				../third_party/librdkafka/librdkafka.a
 
 ##3rd
 THIRD_PATH = ../public
@@ -43,6 +43,7 @@ LINK = $(AR)  $(OUTPUT_FILE) $?
 all: clean output delete-temp-file
 output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
+	data_engine.o data_mysql_engine.o mysql_pool.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
@@ -50,8 +51,8 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
-	redis_warrper.o http_method.o http_method.o mig_log.o\
-	file_util.o file_path.o config.o\
+	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
+	file_util.o file_path.o config.o dtoa.o g_fmt.o radom_in.o md5sum.o\
 	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o
 	$(LINK)
 
@@ -192,7 +193,15 @@ base64.o:
 	
 icu_utf.o:
 	$(COMPILE) $(THIRD_PATH)/basic/icu_utf.cc
-	
+
+native_library.o:
+	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
+
+radom_in.o:
+	$(COMPILE) $(THIRD_PATH)/basic/radom_in.cc
+
+md5sum.o:
+	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
 	
 ##操作
 http_method.o:
@@ -203,6 +212,15 @@ http_packet.o:
 	$(COMPILE) $(THIRD_PATH)/protocol/http_method.cc
 	
 ##数据库存储
+data_engine.o:
+	$(COMPILE) ./storage/data_engine.cc
+
+data_mysql_engine.o:
+	$(COMPILE) ./storage/data_mysql_engine.cc
+	
+mysql_pool.o:
+	$(COMPILE) ./storage/mysql_pool.cc
+
 mem_storage_impl.o:
 	$(COMPILE) $(THIRD_PATH)/storage/mem_storage_impl.cc
 
@@ -245,4 +263,8 @@ mig_log.o:
 	$(COMPILE) $(THIRD_PATH)/log/mig_log.cc
 	
 
+dtoa.o:
+	$(COMPILE) ../third_party/dmg_fp/dtoa.cc
 
+g_fmt.o:
+	$(COMPILE) ../third_party/dmg_fp/g_fmt.cc

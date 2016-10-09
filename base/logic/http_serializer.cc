@@ -70,7 +70,7 @@ bool HttpValueSerializer::NextNumberMatch(){
 			continue;
 		}
 
-		if('-' == c||'+' == c){
+		if(('-' == c||'+' == c)&&(pos == 0)){
 			++pos;
 			c = http_pos_[pos];
 			continue;

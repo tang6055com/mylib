@@ -40,7 +40,7 @@ void Decrypt(uint32_t v[], uint32_t k[]) {
   v[0] = v0; v[1] = v1;
 }
 
-bool Encrypt(struct tea_data * td) {
+bool Encrypt(struct algo_tea_data * td) {
   if (td == NULL || td->d == NULL) {
     return false;
   }
@@ -68,7 +68,7 @@ bool Encrypt(struct tea_data * td) {
   return true;
 }
 
-bool Decrypt(struct tea_data *td) {
+bool Decrypt(struct algo_tea_data *td) {
   if (td == NULL || td->d == NULL || td->l % 8 != 0) {
     return false;
   }
