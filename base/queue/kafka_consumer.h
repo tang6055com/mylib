@@ -17,6 +17,7 @@ const int CONSUMER_CONFIG_ERROR = 3;
 const int PULL_DATA_SUCCESS = 0;
 const int PULL_DATA_FAILED = -1;
 const int PULL_DATA_TIMEOUT = 2;
+const int PULL_DATA_DATA_NULL = -4;
 const size_t MAX_MSG_NUM_PER_TIME = 80;
 
 typedef void(*MsgConsume)(rd_kafka_message_t *rkmessage, void *opaque);
