@@ -55,6 +55,8 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
 	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
 	constants.o basictypes.o data_packet.o native_library.o
+
+
 	$(LINK)
 
 clean:
@@ -203,14 +205,17 @@ config_info.o:
 
 config.o:
 	$(COMPILE) $(THIRD_PATH)/config/config.cc
-
+	
+md5sum.o:
+	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
+	
 ##操作
 http_method.o:
 	$(COMPILE) $(THIRD_PATH)/http/http_method.cc
 	
 ##协议层
 http_packet.o:
-	$(COMPILE) $(THIRD_PATH)/protocol/http_method.cc
+	$(COMPILE) $(THIRD_PATH)/protocol/http_packet.cc
 	
 ##数据库存储
 data_engine.o:
