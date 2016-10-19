@@ -53,7 +53,7 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
 	file_util.o file_path.o config.o dtoa.o g_fmt.o radom_in.o md5sum.o\
-	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o
+	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o native_library.o
 	$(LINK)
 
 clean:
@@ -202,6 +202,9 @@ radom_in.o:
 
 md5sum.o:
 	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
+
+native_library.o:
+	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
 	
 ##操作
 http_method.o:
