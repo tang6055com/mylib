@@ -41,7 +41,8 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
-output:	native_library.o base64.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+
+output:	md5sum.o base64.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	data_engine.o data_mysql_engine.o mysql_pool.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
@@ -51,7 +52,7 @@ output:	native_library.o base64.o basic_util.o icu_utf.o base_db_mysql_auto.o ba
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
-	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
+	redis_warrper.o http_method.o http_packet.o mig_log.o native_library.o\
 	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
 	constants.o basic_info.o basictypes.o data_packet.o native_library.o
 	$(LINK)
@@ -193,6 +194,7 @@ icu_utf.o:
 
 native_library.o:
 	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
+<<<<<<< 04cc8d38f1f94e0876855c346c94a70cb39e43c0
 
 radom_in.o:
 	$(COMPILE) $(THIRD_PATH)/basic/radom_in.cc
@@ -206,13 +208,20 @@ config_info.o:
 config.o:
 	$(COMPILE) $(THIRD_PATH)/config/config.cc
 
+=======
+	
+md5sum.o:
+	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
+	
+	
+>>>>>>> redis 连接判断，增加重连
 ##操作
 http_method.o:
 	$(COMPILE) $(THIRD_PATH)/http/http_method.cc
 	
 ##协议层
 http_packet.o:
-	$(COMPILE) $(THIRD_PATH)/protocol/http_method.cc
+	$(COMPILE) $(THIRD_PATH)/protocol/http_packet.cc
 	
 ##数据库存储
 data_engine.o:
