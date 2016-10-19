@@ -161,6 +161,8 @@ public:
 public:
 	
     virtual bool  Release() = 0;
+
+    virtual bool CheckConnect(void) = 0;
  
     virtual bool  SetValue(const char* key,const size_t key_len,
     						const char* val,const size_t val_len) = 0;

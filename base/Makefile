@@ -41,7 +41,7 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
-output:	native_library.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+output:	md5sum.o native_library.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	kafka_consumer.o kafka_producer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
@@ -50,7 +50,7 @@ output:	native_library.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_re
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
-	redis_warrper.o http_method.o http_method.o mig_log.o\
+	redis_warrper.o http_method.o http_packet.o mig_log.o\
 	json_reader.o json_writer.o json_value.o\
 	constants.o basic_info.o basictypes.o 
 	$(LINK)
@@ -176,6 +176,9 @@ icu_utf.o:
 native_library.o:
 	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
 	
+md5sum.o:
+	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
+	
 	
 ##操作
 http_method.o:
@@ -183,7 +186,7 @@ http_method.o:
 	
 ##协议层
 http_packet.o:
-	$(COMPILE) $(THIRD_PATH)/protocol/http_method.cc
+	$(COMPILE) $(THIRD_PATH)/protocol/http_packet.cc
 	
 ##数据库存储
 mem_storage_impl.o:

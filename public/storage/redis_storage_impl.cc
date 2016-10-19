@@ -6,6 +6,10 @@
 #include "hiredis.h"
 
 namespace base_storage{
+
+bool RedisStorageEngineImpl::CheckConnect() {
+  return PingRedis();
+}
 	
 RedisStorageEngineImpl::RedisStorageEngineImpl(){
 	Init();
