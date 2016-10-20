@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include <list>
 #include "file_path.h"
 
 #define HANDLER_EINTR(x) ({\
@@ -28,9 +29,13 @@ FILE* OpenFile(const FilePath& filename,const char* mode);
 
 bool CloseFile(const FilePath& filename);
 
+bool CloseFile(FILE* file);
+
 bool TruncateFile(FILE* file);
 
 int ReadFile(const FilePath& filename,char* data,int size);
+
+bool ReadFileToString(const FilePath& path, std::string* contents);
 
 int WriteFile(const FilePath& filename,const char* data,int size);
 
@@ -41,6 +46,8 @@ bool SetCurrentDirectory(const FilePath& path);
 bool CreateDirectory(const FilePath& path);
 
 bool DirectoryExists(const FilePath& path);
+
+bool GetDirectoryFile(const FilePath& path, std::list<FilePath>& file_list);
 
 }
 #endif

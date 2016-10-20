@@ -233,8 +233,10 @@ public:
 
 	virtual bool GetHashValues(const char* hash_name,
 		                       const size_t hash_name_len,
-		                       std::list<std::string>& list) = 0;
-
+                           std::list<std::string>& list) = 0;
+  virtual bool GetHashKeys(const char* hash_name,
+                            const size_t hash_name_len,
+                            std::list<std::string>& list) = 0;
 	virtual bool GetAllHash(const char* hash_name,
 		                    const size_t hash_name_len,
 							std::map<std::string,std::string>& map) = 0;
@@ -252,6 +254,11 @@ public:
 				const int flag) = 0;
 
 	virtual CommandReply *DoCommand(const char *format/*, ...*/) = 0;
+  virtual bool DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list);
+  // 通用接口命令
+  virtual CommandReply *DoCommandV(const char *format, ...){return NULL;};
+  virtual int AppendCommandV(const char *format, ...) {return 0;}
+  virtual bool GetPipleReply(size_t cmd_size, std::list<CommandReply*> &reply_list_out){return true;}
 
 	virtual void *GetContext() {}
 };

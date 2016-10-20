@@ -39,8 +39,8 @@ public:
 
 private:
 	int partition_;
-	rd_kafka_conf_t *conf_;
-	rd_kafka_topic_conf_t *topic_conf_;
+	//rd_kafka_conf_t *conf_;
+	//rd_kafka_topic_conf_t *topic_conf_;
 	rd_kafka_t *rk_;
 	rd_kafka_topic_t *rkt_;
 	base_logic::ValueSerializer* engine_;

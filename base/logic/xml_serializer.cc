@@ -11,7 +11,10 @@
 #include "basic/basictypes.h"
 #include "basic/basic_util.h"
 #include "basic/scoped_ptr.h"
+#include "logic/logic_comm.h"
 #include <math.h>
+#include <map>
+#include <vector>
 
 
 namespace base_logic{
@@ -240,19 +243,140 @@ Value* XMLValueSerializer::DecodeString(const Token& token){
 
 static const char kpretty_print_line_ending[] = "\n";
 
-XMLValueSerializer::XMLValueSerializer(std::string* xml)
-:pretty_print_(false)
+XMLValueSerializer::XMLValueSerializer(std::string* xml,bool pretty_print)
+:pretty_print_(pretty_print)
 ,xml_string_(xml){
 
 }
 
 XMLValueSerializer::~XMLValueSerializer(){
+	
+}
 
+//  static
+//  有限状态机取出属性
+bool XMLValueSerializer::GetXmlAttribute(std::string &key, std::map<std::string, std::string> *attr) {
+  if (attr == NULL) 
+    return false;
+
+  attr->clear();
+
+  int len = key.length();
+  int start;
+  int end;
+  std::string map_key;
+  std::string map_value;
+
+  //  初始状态为1
+  int status = 1;
+  for (int i = 0; i < len; ++i) {
+
+    if (key[i] == '<' || key[i] == '>')
+      return false;
+
+    switch(status) {
+      case 1:
+        if (key[i] == ' ') {
+          status = 2;
+          --i;
+
+        }else if (key[i] == '\"' || key[i] == '=') {
+          status = 9;
+
+        }else {
+          status = 1;
+        }
+        break;
+
+      case 2:
+        if (key[i] == ' ') {
+          status = 2;
+        } else if (key[i] == '\"' || key[i] == '=') {
+          status = 9;
+        } else {
+          status = 3;
+          start = i;
+          --i;
+        }
+        break;
+
+      case 3:
+        if (key[i] == ' ') {
+          end = i;
+          map_key = key.substr(start, end - start);
+          status = 4;
+          --i;
+        } else if(key[i] == '\"') {
+          status = 9;
+        } else if (key[i] == '=') {
+          end = i;
+          map_key = key.substr(start, end - start);
+          status = 5;
+        } else {
+          status = 3;
+        }
+        break;
+      case 4:
+        if (key[i] == ' ') {
+          status = 4;
+        } else if(key[i] == '=') {
+          status = 5;
+        } else {
+          status = 9;
+        }
+        break;
+      case 5:
+        if (key[i] == ' ') {
+          status = 6;
+          --i;
+        } else if(key[i] == '\"') {
+          start = i + 1;
+          status = 7;
+        } else {
+          status = 9;
+        }
+        break;
+      case 6:
+        if (key[i] == ' ') {
+          status = 6;
+        } else if (key[i] == '\"') {
+          start = i + 1;
+          status = 7;
+        } else {
+          status = 9;
+        }
+        break;
+      case 7:
+        if (key[i] == '\"') {
+          end = i;
+          map_value = key.substr(start, end - start);
+          (*attr)[map_key] = map_value;
+          status = 8;
+        } else {
+          status = 7;
+        }
+        break;
+      case 8:
+        if (key[i] == ' ') {
+          status = 2;
+          --i;
+        } else {
+          status = 9;
+        }
+        break;
+      case 9:
+        return false;
+    }
+  }
+
+  return true;
 }
 
 bool XMLValueSerializer::Serialize(const Value& root){
 	key_map_.clear();
-	BuildXMLString(&root,0,false);
+    xml_string_->append("<xml>");
+    key_map_[0] = base::BasicUtil::StringConversions::ASCIIToWide("xml");
+	BuildXMLString(&root,1,false);
 	return true;
 }
 
@@ -313,94 +437,202 @@ void XMLValueSerializer::BuildXMLString(const Value* const node,int depth,bool e
 		std::string value;
 		bool result = node->GetAsString(&value);
 		if(escape){
-
 		}else{
 			StringEscape::XMLDoubleQuote(value,true,xml_string_);
 		}
 		break;
 	}
-
 	case Value::TYPE_LIST:
 	{
-		const ListValue* list = static_cast<const ListValue*>(node);
-		for(size_t i = 0; i< list->GetSize(); ++i){
-			if(i != 0){
-				if (pretty_print_)
-					xml_string_->append("\n");
-			}
-			Value* value = NULL;
-			bool result = list->Get(i, &value);
-			BuildXMLString(value,depth,escape);
-		}
+      std::wstring pair_key(base::BasicUtil::StringConversions::ASCIIToWide(""));
+      int mark = 0;
+      if (key_map_.find(depth-1) != key_map_.end()) {
+        pair_key = key_map_[depth-1];
+        mark = 1;
+      }
+
+      const ListValue* list = static_cast<const ListValue*>(node);
+      for(size_t i = 0; i< list->GetSize(); ++i){
+        if(i != 0){
+          if (pretty_print_)
+            xml_string_->append("\n");
+        }
+        Value* value = NULL;
+        bool result = list->Get(i, &value);
+        BuildXMLString(value,depth,escape);
+        if ((i < list->GetSize() - 1) && mark) {
+          xml_string_->append("<");
+          AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(pair_key));
+          key_map_[depth-1] = pair_key;
+          xml_string_->append(">");
+        }
+      }
 		break;
 	}
 
 	case Value::TYPE_DICTIONARY:
 	{
-		const DictionaryValue* dict =
-				static_cast<const DictionaryValue*>(node);
-		int32 type = 1;
-		dict->GetInteger(L"#xmltype",&type);
-		//操作属性
-		if(type==HAVE_ATTR){
-			xml_string_->erase(xml_string_->end() - 1);
-			for(DictionaryValue::key_iterator key_itr = dict->begin_keys();
-				key_itr!=dict->end_keys();++key_itr){//操作属性值
-				Value* value = NULL;
-				bool result = dict->GetWithoutPathExpansion(*key_itr,&value);
-				if((*key_itr)[0]==L'-'){
-					std::wstring key = (*key_itr).substr(1,(*key_itr).length());
-					xml_string_->append(" ");
-					AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(key));
-					xml_string_->append("=");
-					BuildXMLString(value,depth+1,escape);
-				}
-			}
-			xml_string_->append(">");
-			for(DictionaryValue::key_iterator key_itr = dict->begin_keys();
-							key_itr!=dict->end_keys();++key_itr){
-				Value* value = NULL;
-				bool result = dict->GetWithoutPathExpansion(*key_itr,&value);
-				key_map_[depth] = (*key_itr);
-				if((*key_itr)==L"#xmltype"||(*key_itr)[0]==L'-')
-					continue;
-				if((*key_itr)!=L"#text"){
-					xml_string_->append("<");
-					AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(*key_itr));
-					xml_string_->append(">");
-				}
-				BuildXMLString(value,depth+1,escape);
-			}
-			xml_string_->append("</");
-			std::wstring pair_key = key_map_[depth-1];
-			AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(pair_key));
-			xml_string_->append(">");
-			key_map_.erase(key_map_.find(depth));
-		}else{
-			for(DictionaryValue::key_iterator key_itr = dict->begin_keys();
-							key_itr!=dict->end_keys();++key_itr){
-				Value* value = NULL;
-				bool result = dict->GetWithoutPathExpansion(*key_itr,&value);
-				if((*key_itr)==L"#xmltype")
-					continue;
-				if((*key_itr)!=L"#text"){
-					xml_string_->append("<");
-					AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(*key_itr));
-					key_map_[depth] = *key_itr;
-					xml_string_->append(">");
-				}
-				BuildXMLString(value,depth+1,escape);
-			}
-		}
-		break;
+      const DictionaryValue* dict =
+        static_cast<const DictionaryValue*>(node);
+
+      DictionaryValue::key_iterator key_itr = dict->begin_keys();
+      for(; key_itr!=dict->end_keys(); ++key_itr){
+        Value* value = NULL;
+        bool result = dict->GetWithoutPathExpansion(*key_itr,&value);
+        key_map_[depth] = (*key_itr);
+        xml_string_->append("<");
+        AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(*key_itr));
+        key_map_[depth] = *key_itr;
+        xml_string_->append(">");
+       
+        BuildXMLString(value,depth+1,escape);
+      }
+      break;
 	}
-
-
-	}
-
+	
+  }
+  
+  if (key_map_.find(depth-1) != key_map_.end()) {
+    xml_string_->append("</");
+    std::wstring pair_key = key_map_[depth-1];
+    AppendQuoteString(base::BasicUtil::StringConversions::WideToASCII(pair_key));
+    xml_string_->append(">");
+    std::map<int,std::wstring>::iterator it = key_map_.find(depth - 1);
+    key_map_.erase(it);
+  }
 }
 
+Value* XMLValueSerializer::Deserialize(int* error_code,std::string* error_str){
+  int pos = 0;
+  class XmlNode *root = XmlToXmlTree(*xml_string_, &pos);
+  if (NULL == root) {
+    return NULL;
+  }
 
+  return XmlTreeToValue(root);
+}
+
+Value *XMLValueSerializer::CreateValue(std::string &origin_value) {
+  return base_logic::Value::CreateStringValue(origin_value);
+}
+
+class XmlNode *XMLValueSerializer::XmlToXmlTree(std::string &XmlStr, int *origin_pos) {
+  int start = *origin_pos;
+  int end;
+
+  class XmlNode *cur_node = new XmlNode();
+  if (cur_node == NULL) {
+    LOG_DEBUG2("%s", "内存分配出错");
+    return NULL;
+  }
+
+  //  寻找key
+  start = start + 1;
+  end = XmlStr.find('>', start);
+  cur_node->key = XmlStr.substr(start, end - start);
+  
+  //  设置儿子节点
+  start = end + 1;
+  end = XmlStr.find('<', start);
+  if (XmlStr[end + 1] == '/') {
+    std::string in_value = XmlStr.substr(start, end - start);
+    cur_node->value = CreateValue(in_value);
+
+    start = end + 1;
+    end = XmlStr.find('>', start);
+    *origin_pos = end + 1;
+    return cur_node;
+  }
+  
+  for(;;) {
+    end = XmlStr.find('<', start);
+    if (XmlStr[end + 1] == '/') {  // 儿子结点查找结束
+      start = end + 1;
+      end = XmlStr.find('>', start);
+      *origin_pos = end + 1;
+      break;
+
+    } else {
+      class XmlNode * child = XmlToXmlTree(XmlStr, &end);
+      cur_node->child.push_back(child);
+      start = end;
+    }
+  }
+
+  return cur_node;
+}
+
+bool XMLValueSerializer::MergeTree(class XmlNode * XmlRoot) {
+  if (XmlRoot == NULL) {
+    LOG_DEBUG2("函数MergeTree:%s", "传入了空指针");
+    return false;
+  }
+
+  int ChildMax = XmlRoot->child.size();
+  for (int i = 0; i < ChildMax; ++i) {
+    if (!MergeTree(XmlRoot->child[i])) {
+      LOG_DEBUG2("函数MergeTree:%s", "子节点出错");
+      return false;
+    }
+  }
+
+  if (ChildMax == 0) {  //  基本节点
+    return true;
+  } else {  // 该节点是字典
+    XmlRoot->value = new base_logic::DictionaryValue();
+
+    //  将key值相同的子节点放在一起组成list.
+    std::map<std::string, std::vector<int> > key_map;
+    std::string key;
+    for (int i = 0; i < ChildMax; ++i) {
+      key = XmlRoot->child[i]->key;
+      if (key_map.find(key) == key_map.end()) {
+        std::vector<int> tmp;
+        tmp.push_back(i);
+        key_map[key] = tmp;
+      } else {
+        key_map[key].push_back(i);
+      }
+    }
+    
+    std::map<std::string, std::vector<int> >::iterator it = key_map.begin();
+    for (; it != key_map.end(); ++it) {
+      //  子节点是list
+      if ((it->second).size() > 1) {
+        key = XmlRoot->child[(it->second)[0]]->key;  //  获取list的key
+        base_logic::ListValue *l = new base_logic::ListValue();
+        if (NULL == l) {
+          LOG_DEBUG2("MergeTree:%s", "内存分配出错");
+          return false; 
+        }
+             
+        int len = (it->second).size();
+        for(int i = 0; i < len; ++i) {
+          int pos = (it->second)[i];
+          l->Append(XmlRoot->child[pos]->value);
+        }
+
+        (reinterpret_cast<DictionaryValue*>(XmlRoot->value))->Set(key, l);
+     
+      } else {  //  正常节点
+        key = XmlRoot->child[(it->second)[0]]->key;
+        (reinterpret_cast<DictionaryValue*>(XmlRoot->value))->Set(key, XmlRoot->child[(it->second)[0]]->value);
+      }
+    }
+  }
+
+  return true;
+}
+
+Value *XMLValueSerializer::XmlTreeToValue(class XmlNode * XmlRoot) {
+  bool r = MergeTree(XmlRoot);
+  if (r == false) {
+    LOG_DEBUG2("函数 XmlTreeToValue:%s", "合并出错");
+    return NULL;
+  }
+    
+  return XmlRoot->value;
+}
 
 void XMLValueSerializer::SetErrorCode(ParseError error,const wchar_t* error_pos){
 	int line_number = 1;

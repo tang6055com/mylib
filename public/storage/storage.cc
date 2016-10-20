@@ -25,6 +25,10 @@ DictionaryStorageEngine* DictionaryStorageEngine::Create(int32 type){
     return engine;
 }
 
+bool DictionaryStorageEngine::DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list){
+  return true;
+}
+
 
 DBStorageEngine* DBStorageEngine::Create(int32 type){
 	DBStorageEngine* engine = NULL;

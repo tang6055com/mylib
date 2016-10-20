@@ -755,6 +755,20 @@ void DictionaryValue::MergeDictionary(const DictionaryValue* dictionary) {
   }
 }
 
+bool DictionaryValue::GetDicKey(std::vector<std::string> *vec) {
+  if (NULL == vec) {
+    return false;
+  }
+
+  vec->clear();
+  ValueMap::iterator it = dictionary_.begin();
+  for(; it != dictionary_.end(); ++it) {
+    vec->push_back(base::BasicUtil::StringConversions::WideToASCII(it->first));
+  }
+
+  return true;
+}
+
 
 ///////////////////// ListValue ////////////////////
 ListValue::~ListValue() {
@@ -979,21 +993,48 @@ bool ListValue::Equals(const Value* other) const {
 
 
 
+ValueSerializer* ValueSerializer::Create(int32 type) {
+	ValueSerializer* engine = NULL;
+	switch(type) {
+	 case IMPL_JSON:{
+		 engine = new base_logic::JsonValueSerializer();
+		 break;
+	 }
+	 case IMPL_XML: {
+		engine = new base_logic::XMLValueSerializer();
+		break;
+	 }
 
-ValueSerializer* ValueSerializer::Create(int32 type,std::string* str){
+	 case IMPL_HTTP:{
+		 engine = new base_logic::HttpValueSerializer();
+		 break;
+	 }
+
+	case IMPL_JSONP: {
+		 engine = new base_logic::JsonpValueSerializer();
+		 break;
+	}
+   }
+
+   return engine;
+}
+
+
+
+ValueSerializer* ValueSerializer::Create(int32 type,std::string* str,bool pretty_print){
 	ValueSerializer* engine = NULL;
 	switch(type){
 	case IMPL_JSON:
-		engine = new base_logic::JsonValueSerializer(str);
+		engine = new base_logic::JsonValueSerializer(str,pretty_print);
 		break;
 	case IMPL_XML:
-		engine = new base_logic::XMLValueSerializer(str);
+		engine = new base_logic::XMLValueSerializer(str,pretty_print);
 		break;
 	case IMPL_HTTP:
-		engine = new base_logic::HttpValueSerializer(str);
+		engine = new base_logic::HttpValueSerializer(str,pretty_print);
 		break;
 	case IMPL_JSONP:
-	    engine = new base_logic::JsonpValueSerializer(str);
+	    engine = new base_logic::JsonpValueSerializer(str,pretty_print);
 	    break;
 	default:
 		break;

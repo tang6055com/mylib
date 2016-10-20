@@ -38,8 +38,13 @@ public:
 	bool IsSeparator(CharType character);
 
 	FilePath DirName() const;
+
+	FilePath Append(const StringType& component);
+
+	FilePath Append(const FilePath& component);
+
 private:
-	void StripTrailingSparatorsInternal();
+	void StripTrailingSeparatorsInternal();
 private:
 	StringType  path_;
 };

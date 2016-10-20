@@ -78,8 +78,8 @@ JsonValueSerializer::JsonValueSerializer()
 
 }
 
-JsonValueSerializer::JsonValueSerializer(std::string* json)
-:pretty_print_(true)
+JsonValueSerializer::JsonValueSerializer(std::string* json,bool pretty_print)
+:pretty_print_(pretty_print)
 ,json_string_(json){
 
 }
@@ -218,6 +218,35 @@ void JsonValueSerializer::FreeValue(base_logic::Value* value){
 		if(dict!=NULL){delete value;value=NULL;}
 	}
 	//if(value!=NULL){delete value;value=NULL;}
+}
+
+Value* JsonValueSerializer::Deserialize(std::string* str,
+		  int* error_code, std::string* error_str) {
+	std::wstring json_wide(base::BasicUtil::StringConversions::UTF8ToWide(*str));
+	start_pos_ = json_wide.c_str();
+
+	if(!json_wide.empty() && start_pos_[0] == 0xFEFF)
+		++start_pos_;
+
+	json_pos_ = start_pos_;
+	allow_trailing_comma_ = true;
+	stack_depth_ = 0;
+
+	error_code_ = NO_ERROR;
+
+	scoped_ptr<Value> root(BuildValue(true));
+	if(root.get()){
+		if(ParseToken().type == Token::END_OF_INPUT){ // 空值处理
+			return root.release();
+		}else{
+			SetErrorCode(UNEXPECTED_DATA_AFTER_ROOT,json_pos_);
+		}
+	}
+	*error_code = error_code_;
+	//if(error_code == 0)
+	//	SetErrorCode(SYNTAX_ERROR,json_pos_);
+
+	return root.release();
 }
 
 Value* JsonValueSerializer::Deserialize(int* error_code,std::string* error_str){
@@ -645,6 +674,13 @@ bool JsonValueSerializer::Serialize(const Value& root){
 	return true;
 }
 
+bool JsonValueSerializer::Serialize(const Value& root, std::string*  str) {
+	json_string_ = str;
+	BuildJSONString(&root,0,false);
+	return true;
+}
+
+
 void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool escape){
 	if(node==NULL){//node
 		assert(0);
@@ -663,6 +699,21 @@ void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool
 			 break;
 		  }
 
+		case Value::TYPE_CHAR_INTEGER:
+		  {
+			int8 value;
+			bool result = node->GetAsCharInteger(&value);
+			base::BasicUtil::StringUtil::StringAppendF(json_string_,"%1d",value);
+			break;
+		  }
+
+		case Value::TYPE_SHORT_INTEGER:
+		 {
+			int16 value;
+			bool result = node->GetAsShortInteger(&value);
+			base::BasicUtil::StringUtil::StringAppendF(json_string_,"%2d",value);
+			break;
+		 }
 		case Value::TYPE_INTEGER:
 		  {
 			  int32 value;
@@ -670,6 +721,7 @@ void JsonValueSerializer::BuildJSONString(const Value* const node,int depth,bool
 			  base::BasicUtil::StringUtil::StringAppendF(json_string_,"%d",value);
 			  break;
 		  }
+
 
 		case Value::TYPE_BIG_INTEGER:
 		  {

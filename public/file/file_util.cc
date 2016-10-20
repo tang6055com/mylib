@@ -32,6 +32,24 @@ int ReadFile(const FilePath& filename,char* data,int size){
     return bytes_read;
 }
 
+bool ReadFileToString(const FilePath& path, std::string* contents) {
+  FILE* file = OpenFile(path, "rb");
+  if (!file) {
+    return false;
+  }
+
+  char buf[1 << 16];
+  size_t len;
+  while ((len = fread(buf, 1, sizeof(buf), file)) > 0) {
+    if (contents)
+      contents->append(buf, len);
+  }
+  CloseFile(file);
+
+  return true;
+}
+
+
 int WriteFile(const FilePath& filename,const char* data,int size){
     int ret = 0;
 	  //int fd = creat(filename.value().c_str(),0666);
@@ -66,6 +84,13 @@ bool CloseFile(const FilePath& filename){
         return true;
     return fclose(file)==0;
 }
+
+bool CloseFile(FILE* file) {
+  if (file == NULL)
+    return true;
+  return fclose(file) == 0;
+}
+
 
 bool TruncateFile(FILE* file){
     if(file==NULL)
@@ -125,6 +150,35 @@ bool DirectoryExists(const FilePath& path){
 	if(stat(path.value().c_str(),&file_info)==0)
 		return S_ISDIR(file_info.st_mode);
 	return false;
+}
+
+bool GetDirectoryFile(const FilePath& path, std::list<FilePath>& file_list) {
+	DIR* dir = opendir(path.value().c_str());
+	if (!dir)
+		return false;
+#if 0
+#error Port warning: depending on the definition of struct dirent, \
+         additional space for pathname may be needed
+#endif
+	struct dirent dent_buf;
+	struct dirent* dent;
+
+	while (readdir_r (dir, &dent_buf, &dent) == 0 && (dent)) {
+		if ((strcmp(dent->d_name, ".") == 0) ||
+				(strcmp(dent->d_name, "..") == 0))
+			continue;
+		else if (dent->d_type == DT_LNK)
+			continue;
+		else if (dent->d_type == DT_DIR){
+			FilePath sub_path(path.value()+ "/" + std::string(dent->d_name));
+			GetDirectoryFile(sub_path, file_list);
+		}else if (dent->d_type == DT_REG) {
+			FilePath file_path(path.value() + "/" + std::string(dent->d_name));
+			file_list.push_back(file_path);
+		}
+
+	}
+	return true;
 }
 
 }

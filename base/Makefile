@@ -29,7 +29,7 @@ INCLUDE_PATHS = -I./ -I ../ -I/usr/local/libmemcached-1.0.7/include/ -I../core -
 LINK_PATHS = -L./ -L/usr/local/libmemcached-1.0.7/lib/  -L/usr/lib64/mysql
 LINK_LIBRARYS = -lmemcached -lmemcachedutil  -lexpat -lrt -lpthread -ldl -liconv -lmysqlclient -lcurl\
 				../lib/libbreakpad_client.a ../lib/libhiredis.a  ../third_party/dmg_fp/lib/dmg_fp.a\
-				../third_party//librdkafka/librdkafka.a
+				../third_party/librdkafka/librdkafka.a
 
 ##3rd
 THIRD_PATH = ../public
@@ -41,18 +41,22 @@ COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
-output:	md5sum.o native_library.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+
+
+output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
-	kafka_consumer.o kafka_producer.o\
+	data_engine.o data_mysql_engine.o mysql_pool.o\
+	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
 	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
-	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o\
+	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
-	redis_warrper.o http_method.o http_packet.o mig_log.o\
-	json_reader.o json_writer.o json_value.o\
-	constants.o basic_info.o basictypes.o 
+	redis_warrper.o http_method.o http_packet.o mig_log.o native_library.o\
+	file_util.o file_path.o config.o dtoa.o g_fmt.o radom_in.o md5sum.o\
+	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o native_library.o
+
 	$(LINK)
 
 clean:
@@ -63,6 +67,9 @@ delete-temp-file:
 	-rm -f *.o
 
 ### 编译
+algo_tea.o:
+	$(COMPILE) ./algo/tea.cc
+	
 
 base_dic_redis_auto.o:
 	$(COMPILE) ./dic/base_dic_redis_auto.cc
@@ -109,6 +116,13 @@ string_escape.o:
 json_serializer.o:
 	$(COMPILE) ./logic/json_serializer.cc
 	
+jsonp_serializer.o:
+	$(COMPILE) ./logic/jsonp_serializer.cc
+	
+
+xml_serializer.o:
+	$(COMPILE) ./logic/xml_serializer.cc
+
 http_serializer.o:
 	$(COMPILE) ./logic/http_serializer.cc
 	
@@ -148,7 +162,7 @@ push_db_comm.o:
 	
 push_logic_unit.o:
 	$(COMPILE) ./pushmsg/push_logic_unit.cc
-	
+
 ##kafka
 kafka_consumer.o :
 	$(COMPILE) ./queue/kafka_consumer.cc
@@ -158,8 +172,15 @@ kafka_producer.o :
 	
 	
 ##基础
+
+data_packet.o:
+	$(COMPILE) $(THIRD_PATH)/protocol/data_packet.cc
+
 basic_info.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
+
+config.o:
+	$(COMPILE) $(THIRD_PATH)/config/config.cc
 	
 basictypes.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basictypes.cc
@@ -169,16 +190,21 @@ basic_util.o:
 	
 constants.o:
 	$(COMPILE) $(THIRD_PATH)/basic/constants.cc
+
+base64.o:
+	$(COMPILE) $(THIRD_PATH)/basic/base64.cc
 	
 icu_utf.o:
 	$(COMPILE) $(THIRD_PATH)/basic/icu_utf.cc
 
-native_library.o:
-	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
-	
+radom_in.o:
+	$(COMPILE) $(THIRD_PATH)/basic/radom_in.cc
+
 md5sum.o:
 	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
-	
+
+native_library.o:
+	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
 	
 ##操作
 http_method.o:
@@ -189,6 +215,15 @@ http_packet.o:
 	$(COMPILE) $(THIRD_PATH)/protocol/http_packet.cc
 	
 ##数据库存储
+data_engine.o:
+	$(COMPILE) ./storage/data_engine.cc
+
+data_mysql_engine.o:
+	$(COMPILE) ./storage/data_mysql_engine.cc
+	
+mysql_pool.o:
+	$(COMPILE) ./storage/mysql_pool.cc
+
 mem_storage_impl.o:
 	$(COMPILE) $(THIRD_PATH)/storage/mem_storage_impl.cc
 
@@ -206,20 +241,33 @@ redis_warrper.o:
 
 storage.o:
 	$(COMPILE) $(THIRD_PATH)/storage/storage.cc
+
+
+##file
+
+file_path.o:
+	$(COMPILE) $(THIRD_PATH)/file/file_path.cc
+
+file_util.o:
+	$(COMPILE) $(THIRD_PATH)/file/file_util.cc
 	
 ##JSON
-json_reader.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_reader.cpp
+#json_reader.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_reader.cpp
 
-json_value.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_value.cpp
+#json_value.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_value.cpp
 
-json_writer.o:
-	$(COMPILE) $(THIRD_PATH)/json/json_writer.cpp
+#json_writer.o:
+#	$(COMPILE) $(THIRD_PATH)/json/json_writer.cpp
 	
 #日志
 mig_log.o:
 	$(COMPILE) $(THIRD_PATH)/log/mig_log.cc
 	
 
+dtoa.o:
+	$(COMPILE) ../third_party/dmg_fp/dtoa.cc
 
+g_fmt.o:
+	$(COMPILE) ../third_party/dmg_fp/g_fmt.cc

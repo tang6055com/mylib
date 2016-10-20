@@ -39,7 +39,7 @@ static bool SingleEscapeChar(const CHAR c, std::string* dst) {
       dst->append("\\\\");
       break;
     case '"':
-      dst->append("\\\"");
+      dst->append("\"");
       break;
     default:
       return false;

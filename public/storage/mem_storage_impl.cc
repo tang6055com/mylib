@@ -287,6 +287,14 @@ bool MemStorageEngineImpl::GetHashValues(const char *hash_name,
 
 }
 
+bool MemStorageEngineImpl::GetHashKeys(const char *hash_name, 
+										 const size_t hash_name_len,
+										 std::list<std::string> &list){
+
+    return true;
+
+}
+
 bool MemStorageEngineImpl::GetAllHash(const char* hash_name, 
 									  const size_t hash_name_len, 
 									  std::map<std::string,std::string>& map){

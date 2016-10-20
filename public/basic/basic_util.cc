@@ -553,7 +553,7 @@ void BasicUtil::ParserSpPost(const std::string& request_string,std::string& saml
     relay_state = temp_str.substr(start_pos+11,end_pos-11);
 }
 
-
+/*
 bool BasicUtil::CheckToken(const std::string& request){
      bool r =false;
      char* mem_value = NULL;
@@ -572,7 +572,7 @@ bool BasicUtil::CheckToken(const std::string& request){
      r = base_storage::MemDicSerial::GetString(token.c_str(),token.length(),
                                                 &mem_value,&mem_value_length);
      return r;
-}
+}*/
 
 const std::string& BasicUtil::FormatCurrentTime(){
     std::stringstream os;
@@ -780,7 +780,7 @@ double BasicUtil::CalcGEODistance(double latitude1, double longitude1,
 	return runDistance;
 }
 
-
+/*
 bool BasicUtil::GetUserToken(const std::string &uid, std::string &token){
 	//create token
 	int32 random_num = base::SysRadom::GetInstance()->GetRandomID();
@@ -816,7 +816,7 @@ bool BasicUtil::CheckUserToken(const std::string& uid,const std::string& token){
 		mem_value = NULL;
 	}
 	return true;
-}
+}*/
 
 bool BasicUtil::ConverNum(const int num,std::string& conver_num){
 	static const std::string letter[] = {"零","一","两","三","四","五","六","七","八","九"};
@@ -869,11 +869,12 @@ bool BasicUtil::ConverNum(const int num,std::string& conver_num){
 
 /* HTTP gzip decompress */
 /* 参数1.压缩数据 2.数据长度 3.解压数据 4.解压后长度 */
+/*
 int BasicUtil::HttpgzdeCompress(Byte *zdata, uLong nzdata, Byte *data, uLong *ndata)
 {
     int err = 0;
     z_stream d_stream = {0}; /* decompression stream */
-    static char dummy_head[2] =
+    /*static char dummy_head[2] =
     {
         0x8 + 0x7 * 0x10,
         (((0x8 + 0x7 * 0x10) * 0x100 + 30) / 31 * 31) & 0xFF,
@@ -888,7 +889,7 @@ int BasicUtil::HttpgzdeCompress(Byte *zdata, uLong nzdata, Byte *data, uLong *nd
     while (d_stream.total_out < *ndata && d_stream.total_in < nzdata)
     {
         d_stream.avail_in = d_stream.avail_out = 1; /* force small buffers */
-        if((err = inflate(&d_stream, Z_NO_FLUSH)) == Z_STREAM_END) break;
+        /*if((err = inflate(&d_stream, Z_NO_FLUSH)) == Z_STREAM_END) break;
         if(err != Z_OK )
         {
             if(err == Z_DATA_ERROR)
@@ -906,7 +907,7 @@ int BasicUtil::HttpgzdeCompress(Byte *zdata, uLong nzdata, Byte *data, uLong *nd
     if(inflateEnd(&d_stream) != Z_OK) return -1;
     *ndata = d_stream.total_out;
     return 0;
-}
+}*/
 
 void  BasicUtil::ResplaceString(const char* str,int len,const char c,std::string& dest_string){
 	for (int index =0; index<len;index++){
@@ -916,7 +917,7 @@ void  BasicUtil::ResplaceString(const char* str,int len,const char c,std::string
 	MIG_DEBUG(USER_LEVEL,"%s",dest_string.c_str());
 }
 
-
+/*
 bool BasicUtil::GetUserInfo(const std::string& uid,UserInfo& usrinfo){
 	//memcached
 	//key uidinfo 10000info
@@ -944,6 +945,6 @@ bool BasicUtil::GetUserInfo(const std::string& uid,UserInfo& usrinfo){
 	usrinfo.SerializedJson(json);
 	base_storage::MemDic::SetString(key.c_str(),key.length(),json.c_str(),json.length());
 	return r;
-}
+}*/
 
 }

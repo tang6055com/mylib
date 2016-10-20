@@ -265,6 +265,8 @@ public:
 	DictionaryValue* DeepCopyWithoutEmptyChildren();
 
 	void MergeDictionary(const DictionaryValue* dictionary);
+	
+	bool GetDicKey(std::vector<std::string> *vec);
 
 	class key_iterator
 	    : private std::iterator<std::input_iterator_tag, const std::wstring> {
@@ -362,15 +364,22 @@ enum SerializerImplType{
 
 class ValueSerializer {
 public:
-	static ValueSerializer* Create(int32 type,std::string* str);
+	static ValueSerializer* Create(int32 type,std::string* str,bool pretty_print = true);
+	static ValueSerializer* Create(int32 type);
+
 	static void DeleteSerializer(int32 type, ValueSerializer* serializer);
 public:
   virtual ~ValueSerializer() {}
 
+public:
   virtual bool Serialize(const Value& root) = 0;
+  virtual bool Serialize(const Value& root, std::string*  str) = 0;
 
+public:
   virtual Value* Deserialize(int* error_code, std::string* error_str) = 0;
-
+  virtual Value* Deserialize(std::string* str,
+		  int* error_code, std::string* error_str) = 0;
+public:
   virtual void FreeValue(base_logic::Value* value) = 0;
 };
 

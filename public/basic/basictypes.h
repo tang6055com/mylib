@@ -10,6 +10,15 @@
 #include <sys/time.h>
 #include <errno.h>
 
+
+#define GG_LONGLONG(x) x##LL
+#define GG_ULONGLONG(x) x##ULL
+
+#define GG_INT8_C(x)    (x)
+#define GG_INT16_C(x)   (x)
+#define GG_INT32_C(x)   (x)
+#define GG_INT64_C(x)   GG_LONGLONG(x)
+
 #define AIOCBMAX 2048
 
 #define DUMPPACKBUF 4096

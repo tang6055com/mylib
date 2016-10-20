@@ -11,12 +11,17 @@ namespace base_logic{
 class JsonpValueSerializer:public ValueSerializer{
 public:
   JsonpValueSerializer();
-  JsonpValueSerializer(std::string* json);
+  JsonpValueSerializer(std::string* json,bool pretty_print = true);
   virtual ~JsonpValueSerializer();
 public:
   virtual bool Serialize(const Value& root);
 
+
+  virtual bool Serialize(const Value& root, std::string*  str);
+public:
   virtual Value* Deserialize(int* error_code, std::string* error_str);
+
+  virtual Value* Deserialize(std::string* str,int* error_code, std::string* error_str);
 
   virtual void FreeValue(base_logic::Value* value);
 private:

@@ -88,9 +88,14 @@ public:
 		                       const size_t hash_name_len,
 		                       std::list<std::string>& list);
 
+	virtual bool GetHashKeys(const char* hash_name,
+		                       const size_t hash_name_len,
+		                       std::list<std::string>& list);
+
 	virtual bool GetAllHash(const char* hash_name,
 		                    const size_t hash_name_len,
 		                    std::map<std::string,std::string>& map);
+
 
   virtual bool GetSortedSet(const char* hash_name,
                        const size_t hash_name_len,
