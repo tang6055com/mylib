@@ -9,7 +9,7 @@
 #define BASE_LOGIC_BLOCK_MSG_QUEUE_H_
 
 #include "logic/base_values.h"
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include "basic/scoped_ptr.h"
 #include <list>
 namespace base_queue{

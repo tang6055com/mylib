@@ -1,7 +1,7 @@
 #ifndef _MIG_FM_PUSH_CONNECTOR_H__
 #define _MIG_FM_PUSH_CONNECTOR_H__
 
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include "basic/basictypes.h"
 #include "pushmsg/basic_push_info.h"
 #include "protocol/http_packet.h"

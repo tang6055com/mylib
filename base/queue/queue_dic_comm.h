@@ -7,7 +7,7 @@
 
 #ifndef QUEUE_DIC_COMM_H_
 #define QUEUE_DIC_COMM_H_
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include <list>
 
 namespace base_queue{

@@ -2,7 +2,7 @@
 #define _MIG_FM_LBS_BAIDU_CONNECTOR_H__
 #include "lbs_connector.h"
 #include "basic_lbs_info.h"
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include <list>
 #include <string>
 

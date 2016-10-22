@@ -9,7 +9,7 @@
 #define LOCATION_SERVER_H_
 
 #include <list>
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 
 namespace base_lbs{
 
