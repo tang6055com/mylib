@@ -14,7 +14,8 @@ class ConnAddr {
   explicit ConnAddr();
   explicit ConnAddr(const int32 id, const std::string& host, const int port,
                     const std::string& usr = "", const std::string& pwd = "",
-                    const std::string& source = "", const std::string& desc = "");
+                    const std::string& source = "", const std::string& desc = "",
+                    const std::string& additional = "");
 
   ConnAddr(const ConnAddr& ca);
   ConnAddr& operator = (const ConnAddr& ca);
@@ -32,6 +33,8 @@ class ConnAddr {
   const std::string& usr() {return data_->usr_;}
   const std::string& pwd() {return data_->pwd_;}
   const std::string& source() {return data_->source_;}
+  const std::string& desc() {return data_->desc_;}
+  const std::string& additional() {return data_->additional_;}
 
 private:
   class Data {
@@ -43,7 +46,8 @@ private:
          const std::string& usr,
          const std::string& pwd,
          const std::string& source,
-         const std::string& desc)
+         const std::string& desc,
+         const std::string& additional)
     :id_(id)
     ,host_(host)
     ,port_(port)
@@ -61,6 +65,7 @@ private:
     const std::string pwd_;
     const std::string source_;
     const std::string desc_;
+    const std::string additional_;
   private:
     int refcount_;
   };

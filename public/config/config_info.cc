@@ -16,9 +16,10 @@ ConnAddr::ConnAddr() {
 
 ConnAddr::ConnAddr(const int32 id, const std::string& host, const int port,
                    const std::string& usr, const std::string& pwd,
-                   const std::string& source, const std::string& desc) {
+                   const std::string& source, const std::string& desc,
+                   const std::string& additional) {
 
-  data_ = new Data(id, host, port, usr, pwd, source, desc);
+  data_ = new Data(id, host, port, usr, pwd, source, desc, additional);
 }
 
 ConnAddr& ConnAddr::operator=(const ConnAddr& ca) {
