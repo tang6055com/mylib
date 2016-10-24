@@ -1,7 +1,6 @@
 #ifndef _MIG_FM_PUBLIC_STORAGE_MYSQL_STORAGE_IMPL_H__
 #define _MIG_FM_PUBLIC_STORAGE_MYSQL_STROAGE_IMPL_H__
 #include <list>
-#include "basic/basic_info.h"
 #include "basic/scoped_ptr.h"
 #include "storage/storage.h"
 #include <mysql.h>

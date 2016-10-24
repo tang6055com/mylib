@@ -41,7 +41,7 @@ struct {
 
 int _svr_socket = INVALID_SOCKT;
 
-fixed_buf<> recv_buffer(4096);
+fixed_buf<> recv_buffer(8192);
 
 void _set_sock(int sock) {
 	assert(INVALID_SOCKT != sock);

@@ -53,7 +53,7 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
 	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
-	constants.o basic_info.o basictypes.o data_packet.o native_library.o
+	constants.o basictypes.o data_packet.o native_library.o
 	$(LINK)
 
 clean:
@@ -173,9 +173,6 @@ kafka_producer.o :
 data_packet.o:
 	$(COMPILE) $(THIRD_PATH)/protocol/data_packet.cc
 
-basic_info.o:
-	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
-	
 basictypes.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basictypes.cc
 	

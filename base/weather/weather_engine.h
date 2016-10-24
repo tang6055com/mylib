@@ -1,7 +1,7 @@
 #ifndef _MIG_FM_WEATHER_ENGINE_H__
 #define _MIG_FM_WEATHER_ENGINE_H__
 
-#include "basic/basic_info.h"
+#include "config/config.h"
 #include <list>
 
 namespace base_weather{

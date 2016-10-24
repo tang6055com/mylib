@@ -3,7 +3,6 @@
 
 #include "storage/storage.h"
 #include "basic/basictypes.h"
-#include "basic/basic_info.h"
 #include "thread/base_thread_handler.h"
 #include "thread/base_thread_lock.h"
 #include "logic/logic_comm.h"

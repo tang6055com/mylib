@@ -88,8 +88,8 @@ int log_impl (const char *file, const int line, const char *func, int level, int
     va_end (argptr);
     snprintf (message + message_len, _LOG_LENGTH - message_len, "%s", message2);
 
-    int facility1 = LOG_LOCAL6;
-    int facility2 = _facility;
+//    int facility1 = LOG_LOCAL6;
+//    int facility2 = _facility;
 
     if (level == SYSTEM_LEVEL)
         openlog (_prog_name, LOG_PID|LOG_CONS|LOG_NDELAY, _LOG_SYSTEM);
