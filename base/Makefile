@@ -42,7 +42,8 @@ LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
 
-output:	md5sum.o base64.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+
+output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	data_engine.o data_mysql_engine.o mysql_pool.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
@@ -52,7 +53,7 @@ output:	md5sum.o base64.o basic_util.o icu_utf.o base_db_mysql_auto.o base_dic_r
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
-	redis_warrper.o http_method.o http_packet.o mig_log.o native_library.o\
+	redis_warrper.o http_method.o http_packet.o mig_log.o \
 	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
 	constants.o basic_info.o basictypes.o data_packet.o native_library.o
 	$(LINK)
@@ -192,10 +193,13 @@ base64.o:
 icu_utf.o:
 	$(COMPILE) $(THIRD_PATH)/basic/icu_utf.cc
 
+<<<<<<< HEAD
 native_library.o:
 	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
 <<<<<<< 04cc8d38f1f94e0876855c346c94a70cb39e43c0
 
+=======
+>>>>>>> f84b88277f1cf49cbde35a8cef0697704cf669f5
 radom_in.o:
 	$(COMPILE) $(THIRD_PATH)/basic/radom_in.cc
 
