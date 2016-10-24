@@ -9,7 +9,6 @@
 #define LBS_DIC_COMM_H_
 
 #include "storage/storage.h"
-#include "basic/basic_info.h"
 #include "basic/basictypes.h"
 #include <list>
 

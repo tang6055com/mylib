@@ -1,5 +1,4 @@
 #include "push_db_comm.h"
-#include "basic/basic_info.h"
 #include "db/base_db_mysql_auto.h"
 #include "storage/storage.h"
 #include <mysql.h>

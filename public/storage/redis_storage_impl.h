@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <list>
 #include <string>
-#include "basic/basic_info.h"
 #include "log/mig_log.h"
 #include "storage/storage.h"
 #include "storage/redis_warrper.h"
@@ -120,9 +119,9 @@ public:
 
     // redis pipelining commands
     virtual bool DoCommands(std::list<std::string> command_list, std::list<CommandReply*> &reply_list);
-    // redis Í¨ÓÃÃüÁî
+    // redis Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     virtual CommandReply *DoCommandV(const char *format, ...);
-    // Í¨ÓÃ¹ÜµÀÃüÁî
+    // Í¨ï¿½Ã¹Üµï¿½ï¿½ï¿½ï¿½ï¿½
     virtual int AppendCommandV(const char *format, ...);
     virtual bool GetPipleReply(size_t cmd_size, std::list<CommandReply*> &reply_list_out);
 
