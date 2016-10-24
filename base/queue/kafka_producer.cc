@@ -14,6 +14,12 @@ kafka_producer::kafka_producer() {
 kafka_producer::~kafka_producer() {
 }
 
+int kafka_producer::Init(base::ConnAddr& addr) {
+  return Init(addr.additional().empty()?0:atol(addr.additional().c_str()),
+              addr.source().c_str(), addr.host().c_str(),NULL);
+}
+
+
 int kafka_producer::Init(const int partition, const char* topic,
                          const char* brokers, MsgDelivered func_msg_delivered) {
   char errstr[512];

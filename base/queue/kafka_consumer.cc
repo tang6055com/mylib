@@ -11,6 +11,11 @@ kafka_consumer::kafka_consumer() {
 kafka_consumer::~kafka_consumer() {
 }
 
+int kafka_consumer::Init(base::ConnAddr& addr) {
+  return Init(atol(addr.additional().c_str()), addr.source().c_str(),
+       addr.host().c_str(),NULL);
+}
+
 int kafka_consumer::Init(const int partition, const char* topic,
                          const char* brokers, MsgConsume msg_consume) {
   char err_str[512];
@@ -66,7 +71,7 @@ int kafka_consumer::Init(const int partition, const char* topic,
 int kafka_consumer::PullData(std::string& data) {
   rd_kafka_message_t *rkmessage = NULL;
   int consume_result = PULL_DATA_SUCCESS;
-  LOG_MSG2("rkt_=%p, partition_%d\n", rkt_, partition_);
+  //LOG_MSG2("rkt_=%p, partition_%d\n", rkt_, partition_);
   rd_kafka_poll(rk_, 0);
   rkmessage = rd_kafka_consume(rkt_, partition_, 100);
   if (!rkmessage) {

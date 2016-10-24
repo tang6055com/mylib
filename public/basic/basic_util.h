@@ -236,6 +236,8 @@ public:
     BasicUtil(){}
     virtual ~BasicUtil(){}
 public:
+
+    /*
     static void GetHttpParamElement(const char* query,const char* name,
                                    std::string& value);
     
@@ -250,6 +252,7 @@ public:
     	                        	
     static bool ParserHttpRequest(const std::string& request,
 		                  std::map<std::string,std::string >& http_map);
+		*/
 		                          	
     //static bool CheckToken(const std::string& request);
     

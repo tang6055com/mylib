@@ -2,7 +2,7 @@
 #define _MIG_FM_LBS_BAIDU_CONNECTOR_H__
 #include "push_connector.h"
 #include "basic_push_info.h"
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include "protocol/http_packet.h"
 #include <list>
 #include <string>

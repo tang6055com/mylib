@@ -3,7 +3,8 @@
 
 #include <stdlib.h>
 #include <string>
-#include "rdkafka.h"  
+#include "rdkafka.h"
+#include "config/config.h"
 #include "basic/basictypes.h"
 #include "logic/base_values.h"
 #include "basic/scoped_ptr.h"
@@ -29,6 +30,7 @@ public:
 	~kafka_producer();
 
 	int Init(const int in_partition, const char* in_topic, const char* in_brokers, MsgDelivered in_func_msg_delivered);
+	int Init(base::ConnAddr& addr);
 	int PushData(const char* in_buf, const int in_buf_len);
 	int PushData(base_logic::Value* in_data);
 	void Close();

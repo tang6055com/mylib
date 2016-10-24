@@ -52,8 +52,8 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
-	file_util.o file_path.o config.o dtoa.o g_fmt.o radom_in.o md5sum.o\
-	constants.o basic_info.o basictypes.o algo_tea.o data_packet.o native_library.o
+	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
+	constants.o basic_info.o basictypes.o data_packet.o native_library.o
 	$(LINK)
 
 clean:
@@ -175,9 +175,6 @@ data_packet.o:
 
 basic_info.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
-
-config.o:
-	$(COMPILE) $(THIRD_PATH)/config/config.cc
 	
 basictypes.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basictypes.cc
@@ -203,8 +200,11 @@ radom_in.o:
 md5sum.o:
 	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
 
-native_library.o:
-	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
+config_info.o:
+	$(COMPILE) $(THIRD_PATH)/config/config_info.cc
+
+config.o:
+	$(COMPILE) $(THIRD_PATH)/config/config.cc
 	
 ##操作
 http_method.o:

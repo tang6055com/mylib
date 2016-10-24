@@ -1,7 +1,7 @@
 #ifndef _MIG_FM_LBS_CONNECTOR_H__
 #define _MIG_FM_LBS_CONNECTOR_H__
 
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include <list>
 
 namespace base_lbs{

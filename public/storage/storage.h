@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 #include "basic/basictypes.h"
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 
 namespace base_storage{
 

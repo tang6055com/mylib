@@ -1,7 +1,4 @@
 #include "basic_util.h"
-#include "storage/dic_serialization.h"
-#include "storage/dic_storage.h"
-#include "storage/db_storage.h"
 #include "basic/base64.h"
 #include "storage/storage.h"
 #include "basic/radom_in.h"
@@ -454,7 +451,7 @@ int BasicUtil::SplitStringChr( const char *str, const char *char_set,
 	return (int)out.size();
 }
 
-
+/*
  void BasicUtil::GetHttpParamElement(const char* query,const char* name,
                          std::string& value){
 
@@ -481,9 +478,9 @@ int BasicUtil::SplitStringChr( const char *str, const char *char_set,
       size_t str_value_len = str - format_str;
       value.assign(format_str+1,str_value_len);
     }
-}
+}*/
 
-
+/*
 void BasicUtil::PaserRecordPost(const std::string& request_string,std::string& enter,
     	                          std::string& url_code,std::string& content){
     std::map<std::string,std::string> http_map;
@@ -500,8 +497,9 @@ void BasicUtil::PaserRecordPost(const std::string& request_string,std::string& e
     it = http_map.find("content");
     if(it!=http_map.end())
         content = it->second; 
-}
+}*/
 
+/*
 bool BasicUtil::ParserHttpRequest(const std::string& request,
 		                  std::map<std::string,std::string >& http_map){
     std::string request_str = request;
@@ -517,8 +515,9 @@ bool BasicUtil::ParserHttpRequest(const std::string& request,
             request_str.clear();
     }
     return true;
-}
+}*/
 
+/*
 void BasicUtil::ParserIdpPost(const std::string& request_string,std::string& sso_info,
                               std::string& username,std::string& password){
    
@@ -536,8 +535,9 @@ void BasicUtil::ParserIdpPost(const std::string& request_string,std::string& sso
     password = temp_str.substr(start_pos+9,end_pos-9);
    
     sso_info = temp_str.substr(end_pos+1,request_string.length());
-}
+}*/
 
+/*
 void BasicUtil::ParserSpPost(const std::string& request_string,std::string& samlart,std::string& relay_state){
     int32 start_pos = request_string.find("SAMLart");
     int32 end_pos =request_string.find("&");
@@ -551,7 +551,7 @@ void BasicUtil::ParserSpPost(const std::string& request_string,std::string& saml
     end_pos = temp_str.find("&");
 
     relay_state = temp_str.substr(start_pos+11,end_pos-11);
-}
+}*/
 
 /*
 bool BasicUtil::CheckToken(const std::string& request){

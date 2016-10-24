@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <string>
 #include <list>
-#include "rdkafka.h"  
+#include "rdkafka.h"
+#include "config/config.h"
 #include "basic/basictypes.h"
 #include "logic/base_values.h"
 #include "logic/logic_comm.h"
@@ -28,6 +29,7 @@ public:
 	kafka_consumer();
 	~kafka_consumer();
 
+	int Init (base::ConnAddr& addr);
 	int Init(const int in_partition, const char* in_topic, const char* in_brokers, MsgConsume msg_consume);
 	int PullData(std::string& out_data);
 	int PullDataBatch(std::list<std::string>* list);

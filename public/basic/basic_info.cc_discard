@@ -175,6 +175,8 @@ bool MusicInfo::UnserializedJson(std::string& str){
 	return true;
 }
 
+/*
+
 ConnAddr::ConnAddr(){
   
     data_ = new Data();
@@ -204,7 +206,7 @@ ConnAddr::ConnAddr(const ConnAddr& ca)
 	if(data_!=NULL){
 	    data_->AddRef();
 	}
-}
+}*/
 
 
 CompareInfo::CompareInfo(){

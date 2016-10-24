@@ -1,7 +1,7 @@
 #ifndef _MIG_FM_PUSH_DB_COMM_H__
 #define _MIG_FM_PUSH_DB_COMM_H__
 #include "basic_push_info.h"
-#include "basic/basic_info.h"
+#include "config/config_info.h"
 #include "basic/basictypes.h"
 #include <list>
 
