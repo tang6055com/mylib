@@ -191,19 +191,16 @@ icu_utf.o:
 
 native_library.o:
 	$(COMPILE) $(THIRD_PATH)/basic/native_library.cc
-
+	
 radom_in.o:
 	$(COMPILE) $(THIRD_PATH)/basic/radom_in.cc
-
-md5sum.o:
-	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
 
 config_info.o:
 	$(COMPILE) $(THIRD_PATH)/config/config_info.cc
 
 config.o:
 	$(COMPILE) $(THIRD_PATH)/config/config.cc
-	
+
 md5sum.o:
 	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
 	
