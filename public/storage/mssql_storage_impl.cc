@@ -216,6 +216,14 @@ bool MssqlStorageEngineImpl::SQLExec(const char* sql){
 	return true;
 }
 
+bool MssqlStorageEngineImpl::SQLExecs(std::list<std::string>& sqls) {
+
+  /*DBPROCESS* proc = (DBPROCESS*)(conn_.get()->proc);
+  dbcmd(proc,sql);*/
+
+  return true;
+}
+
 //添加参数
 bool MssqlStorageEngineImpl::AddSPParam(const int32 var,const int32 type,const char* name,
         void* param,const int32 outstrlen){

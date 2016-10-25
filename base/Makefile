@@ -207,11 +207,6 @@ config.o:
 md5sum.o:
 	$(COMPILE) $(THIRD_PATH)/basic/md5sum.cc
 	
-<<<<<<< 4c8a076789275c97c8dd9db43b43e2a714ca21e1
-=======
-	
->>>>>>> redis 连接判断，增加重连
->>>>>>> redis 连接判断，增加重连
 ##操作
 http_method.o:
 	$(COMPILE) $(THIRD_PATH)/http/http_method.cc
