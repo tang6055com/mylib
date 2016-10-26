@@ -18,6 +18,7 @@ public:
 	bool Connections(std::list<base::ConnAddr>& addrlist);
 	bool Release ();
 	bool SQLExec(const char* sql); //执行语句
+	bool SQLExecs(std::list<std::string>& sqls); //执行语句
 	bool AddSPName(const char* sp_name);//添加存储过程名
 	bool StoredProcedure(); //执行存储过程
 	bool AddSPParam(const int32 var,const int32 type,const char* name,

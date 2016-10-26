@@ -16,6 +16,11 @@ MemStorageEngineImpl::~MemStorageEngineImpl(){
 
 }
 
+bool MemStorageEngineImpl::CheckConnect() {
+  //todo:
+  return true;
+}
+
 bool MemStorageEngineImpl::Connections(std::list<base::ConnAddr>& addrlist){
 	
     memcached_server_st *servers = NULL;

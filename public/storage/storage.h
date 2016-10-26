@@ -125,6 +125,8 @@ public:
 	
 	virtual bool SQLExec(const char* sql) = 0; //执行语句
 	
+  virtual bool SQLExecs(std::list<std::string>& sqls) = 0;
+
 	virtual bool StoredProcedure() = 0; //执行存储过程
 
 	virtual bool AddSPName(const char* sp_name) = 0;//添加存储过程名
@@ -159,6 +161,8 @@ public:
 public:
 	
     virtual bool  Release() = 0;
+
+    virtual bool CheckConnect(void) = 0;
  
     virtual bool  SetValue(const char* key,const size_t key_len,
     						const char* val,const size_t val_len) = 0;

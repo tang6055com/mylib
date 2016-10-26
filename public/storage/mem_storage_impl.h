@@ -16,6 +16,8 @@ public:
     virtual ~MemStorageEngineImpl();
 
     virtual bool Connections(std::list<base::ConnAddr>& addrlist);
+
+    virtual bool CheckConnect();
  
     virtual bool Release();
    
