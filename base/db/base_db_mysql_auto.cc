@@ -1,7 +1,6 @@
 #include "base_db_mysql_auto.h"
 #include "storage/storage.h"
 #include "basic/basictypes.h"
-#include "basic/basic_info.h"
 #include "thread/base_thread_handler.h"
 #include "thread/base_thread_lock.h"
 

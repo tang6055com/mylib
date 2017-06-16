@@ -18,7 +18,7 @@ CPP_FLAG = -g -Wall -w -fPIC -c -D_LINUX -DDEBUG -D_DEBUG -D_DB_POOL_ -D_DIC_POO
 ## for debug
 LINK_FLAGS = 
 ## for release
-## LINK_FLAGS = -s -O3 -shared -fPIC
+#LINK_FLAGS = -s -O3 -shared -fPIC
 
 ## 头文件
 INCLUDE_PATHS = -I./ -I ../ -I/usr/local/libmemcached-1.0.7/include/ -I../core -I../public/ -I/usr/local/include\
@@ -29,7 +29,7 @@ INCLUDE_PATHS = -I./ -I ../ -I/usr/local/libmemcached-1.0.7/include/ -I../core -
 LINK_PATHS = -L./ -L/usr/local/libmemcached-1.0.7/lib/  -L/usr/lib64/mysql
 LINK_LIBRARYS = -lmemcached -lmemcachedutil  -lexpat -lrt -lpthread -ldl -liconv -lmysqlclient -lcurl\
 				../lib/libbreakpad_client.a ../lib/libhiredis.a  ../third_party/dmg_fp/lib/dmg_fp.a\
-				../third_party/librdkafka/librdkafka.a
+				../third_party/lib/librdkafka.a
 
 ##3rd
 THIRD_PATH = ../public
@@ -48,12 +48,13 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
 	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
-	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o json_serializer.o jsonp_serializer.o\
+	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o\
+	json_serializer.o jsonp_serializer.o xml_parser.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_method.o mig_log.o native_library.o\
 	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
-	constants.o basic_info.o basictypes.o data_packet.o native_library.o
+	constants.o basictypes.o data_packet.o native_library.o
 	$(LINK)
 
 clean:
@@ -116,13 +117,14 @@ json_serializer.o:
 jsonp_serializer.o:
 	$(COMPILE) ./logic/jsonp_serializer.cc
 	
-
 xml_serializer.o:
 	$(COMPILE) ./logic/xml_serializer.cc
 
 http_serializer.o:
 	$(COMPILE) ./logic/http_serializer.cc
 	
+xml_parser.o:
+	$(COMPILE) ./logic/xml_parser.cc
 base_thread_handler.o:
 	$(COMPILE) ./thread/base_thread_handler.cc
 
@@ -173,9 +175,6 @@ kafka_producer.o :
 data_packet.o:
 	$(COMPILE) $(THIRD_PATH)/protocol/data_packet.cc
 
-basic_info.o:
-	$(COMPILE) $(THIRD_PATH)/basic/basic_info.cc
-	
 basictypes.o:
 	$(COMPILE) $(THIRD_PATH)/basic/basictypes.cc
 	
