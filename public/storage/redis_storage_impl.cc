@@ -6,6 +6,10 @@
 #include "hiredis.h"
 
 namespace base_storage{
+
+bool RedisStorageEngineImpl::CheckConnect() {
+  return PingRedis();
+}
 	
 RedisStorageEngineImpl::RedisStorageEngineImpl(){
 	Init();
@@ -17,6 +21,7 @@ RedisStorageEngineImpl::~RedisStorageEngineImpl(){
 
 void RedisStorageEngineImpl::Init(){
 	c_ = new warrper_redis_context_t;
+  c_->context = NULL;
 }
 
 bool RedisStorageEngineImpl::Connections(std::list<base::ConnAddr>& addrlist){

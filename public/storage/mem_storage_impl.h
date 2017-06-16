@@ -4,7 +4,6 @@
 #include <string>
 #include <libmemcached/memcached.h>
 #include <libmemcachedutil-1.0/pool.h>
-#include "basic/basic_info.h"
 #include "storage/storage.h"
 typedef memcached_st mcache_t;
 
@@ -17,6 +16,8 @@ public:
     virtual ~MemStorageEngineImpl();
 
     virtual bool Connections(std::list<base::ConnAddr>& addrlist);
+
+    virtual bool CheckConnect();
  
     virtual bool Release();
    

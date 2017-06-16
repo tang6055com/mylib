@@ -68,9 +68,9 @@ void RedisPool::RedisConnectionPush(base_storage::DictionaryStorageEngine* engin
 }
 
 base_storage::DictionaryStorageEngine* RedisPool::RedisConnectionPop(){
+	base_logic::WLockGd lk(dic_pool_lock_);
 	if(dic_conn_pool_.size()<=0)
 		return NULL;
-	base_logic::WLockGd lk(dic_pool_lock_);
     base_storage::DictionaryStorageEngine* engine = dic_conn_pool_.front();
     dic_conn_pool_.pop_front();
     return engine;

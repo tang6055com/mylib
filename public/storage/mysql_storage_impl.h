@@ -1,10 +1,9 @@
 #ifndef _MIG_FM_PUBLIC_STORAGE_MYSQL_STORAGE_IMPL_H__
 #define _MIG_FM_PUBLIC_STORAGE_MYSQL_STROAGE_IMPL_H__
 #include <list>
-#include "basic/basic_info.h"
 #include "basic/scoped_ptr.h"
 #include "storage/storage.h"
-#include <mysql.h>
+#include <mysql/mysql.h>
 
 namespace base_storage{
 	
@@ -21,6 +20,9 @@ public:
 	uint32 RecordCount();//由于之前错误，减少代码修改量，此函数返回记录多条
 	db_row_t* FetchRows(void);//get Recoder
 	bool CheckConnect(void);
+
+	//事物 批量提交
+	bool SQLExecs(std::list<std::string>& sqls);
 
 	//存储过程
 	bool StoredProcedure(){return true;}

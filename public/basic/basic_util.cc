@@ -198,7 +198,14 @@ bool BasicUtil::StringUtil::StringToInt64(const std::string& input,int64* output
 }
 
 bool BasicUtil::StringUtil::StringToDouble(const std::string& input,double* output){
-	return StringToNumber<StringToDoubleTraits>(input,output);
+	//return StringToNumber<StringToDoubleTraits>(input,output);
+  if (!input.empty()){
+    *output = atof(input.c_str());
+    return true;
+  } else {
+    output = NULL;
+    return false;
+  }
 }
 
 void BasicUtil::StringUtil::StringAppendV(std::string* dst,const char* format,
@@ -255,9 +262,13 @@ std::string BasicUtil::StringUtil::Int64ToString(int64 value) {
 }
 
 std::string BasicUtil::StringUtil::DoubleToString(double value){
-	char buffer[32];
+	/*char buffer[32];
 	dmg_fp::g_fmt(buffer,value);
-	return std::string(buffer);
+	return std::string(buffer);*/
+  std::stringstream os;
+  os << value;
+  std::string tp = os.str();
+  return tp;
 }
 
 std::wstring BasicUtil::StringUtil::DobleToWString(double value){
