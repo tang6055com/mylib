@@ -55,6 +55,7 @@ private:
     ,pwd_(pwd)
     ,source_(source)
     ,desc_(desc)
+    ,additional_(additional)
     ,refcount_(1) {}
     void AddRef() {refcount_++;}
     void Release() {if(!--refcount_) delete this;}

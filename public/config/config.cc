@@ -24,7 +24,7 @@ static char port[] = "port";
 static char user[] = "user";
 static char pass[] = "pass";
 static char source[] = "name";
-
+static char additional[] = "additional";
 
 static char id[] = "id";
 static char desc[] = "desc";
@@ -97,6 +97,7 @@ base::ConnAddr FileConfig::CreateBaseInfo(const char** atts) {
   std::string spass;
   std::string sname;
   std::string sdesc;
+  std::string sadd;
   for (i = 0; atts[i] != 0; i += 2) {
     if (strcmp(atts[i], host) == 0)
       shost.assign(atts[i + 1]);
@@ -112,13 +113,16 @@ base::ConnAddr FileConfig::CreateBaseInfo(const char** atts) {
       sid.assign(atts[i + 1]);
     else if (strcmp(atts[i], desc) == 0)
       sdesc.assign(atts[i + 1]);
+    else if (strcmp(atts[i], additional) == 0)
+        sadd.assign(atts[i + 1]);
+
   }
 
   if (sid.empty())
     sid = "1";
 
   base::ConnAddr addr(atoi(sid.c_str()), shost.c_str(), atoi(sport.c_str()), suser.c_str(),
-                      spass.c_str(), sname.c_str(), sdesc.c_str());
+                      spass.c_str(), sname.c_str(), sdesc.c_str(), sadd.c_str());
 
   return addr;
 }
