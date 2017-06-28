@@ -334,9 +334,28 @@ Value* DictionaryValue::DeepCopy() const {
 }
 
 bool DictionaryValue::Equals(const Value* other) const {
-  if (other->GetType() != GetType())
-    return false;
-  return true;
+    if (other->GetType() != GetType())
+        return false;
+    
+    const DictionaryValue* other_dict =
+            static_cast<const DictionaryValue*>(other);
+    
+    key_iterator lhs_it(begin_keys());
+    key_iterator rhs_it(other_dict->begin_keys());
+    while (lhs_it != end_keys() && rhs_it != other_dict->end_keys()) {
+        Value* lhs;
+        Value* rhs;
+        if (!GetWithoutPathExpansion(*lhs_it, &lhs) ||
+            !other_dict->GetWithoutPathExpansion(*rhs_it, &rhs) ||
+            !lhs->Equals(rhs)) {
+                return false;
+        }
+        ++lhs_it;
+        ++rhs_it;
+    }
+    if (lhs_it != end_keys() || rhs_it != other_dict->end_keys())
+        return false;
+    return true;
 }
 
 bool DictionaryValue::HasKey(const std::wstring& key) const {

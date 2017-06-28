@@ -47,7 +47,7 @@ output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto
 	data_engine.o data_mysql_engine.o mysql_pool.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
-	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o\
+	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o http_header.o http_util.o\
 	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o\
 	json_serializer.o jsonp_serializer.o xml_parser.o\
@@ -100,6 +100,12 @@ location_server.o:
 http_api.o:
 	$(COMPILE) ./http/http_api.cc
 		
+http_header.o:
+	$(COMPILE) ./http/http_header.cc
+
+http_util.o:
+	$(COMPILE) ./http/http_util.cc
+
 logic_comm.o:
 	$(COMPILE) ./logic/logic_comm.cc
 	
