@@ -9,6 +9,51 @@
 
 namespace base{
 
+const char kWhitespaceASCII[] = {
+      0x09,    // <control-0009> to <control-000D>
+      0x0A,
+      0x0B,
+      0x0C,
+      0x0D,
+      0x20,    // Space
+      0
+};
+
+#define WHITESPACE_UNICODE \
+      0x0009, /* <control-0009> to <control-000D> */ \
+      0x000A,                                        \
+      0x000B,                                        \
+      0x000C,                                        \
+      0x000D,                                        \
+      0x0020, /* Space */                            \
+      0x0085, /* <control-0085> */                   \
+      0x00A0, /* No-Break Space */                   \
+      0x1680, /* Ogham Space Mark */                 \
+      0x180E, /* Mongolian Vowel Separator */        \
+      0x2000, /* En Quad to Hair Space */            \
+      0x2001,                                        \
+      0x2002,                                        \
+      0x2003,                                        \
+      0x2004,                                        \
+      0x2005,                                        \
+      0x2006,                                        \
+      0x2007,                                        \
+      0x2008,                                        \
+      0x2009,                                        \
+      0x200A,                                        \
+      0x200C, /* Zero Width Non-Joiner */            \
+      0x2028, /* Line Separator */                   \
+      0x2029, /* Paragraph Separator */              \
+      0x202F, /* Narrow No-Break Space */            \
+      0x205F, /* Medium Mathematical Space */        \
+      0x3000, /* Ideographic Space */                \
+      0
+
+    const wchar_t kWhitespaceWide[] = {
+          WHITESPACE_UNICODE
+    };
+
+
 template <typename STR, typename INT, typename UINT, bool NEG>
 struct IntToStringT {
   // This is to avoid a compiler warning about unary minus on unsigned type.
@@ -170,6 +215,57 @@ void BasicUtil::StringUtil::StringAppendVT(StringType* dst,
 
 }
 
+
+template <typename STR>
+static void SplitStringUsingSubstrT(const STR& str, const STR& s,
+                                    std::vector<STR>* r) {
+    typename STR::size_type begin_index = 0;
+    while (true) {
+        const typename STR::size_type end_index = str.find(s, begin_index);
+        if (end_index == STR::npos) {
+            const STR term = str.substr(begin_index);
+            STR tmp;
+            base::BasicUtil::StringUtil::TrimWhitespace(term, TRIM_ALL, &tmp);
+            r->push_back(tmp);
+            return;
+        }
+        const STR term = str.substr(begin_index, end_index - begin_index);
+        STR tmp;
+        base::BasicUtil::StringUtil::TrimWhitespace(term, 
+                                    TRIM_ALL, &tmp);
+        base::BasicUtil::StringUtil::TrimWhitespace(term, 
+                                        TRIM_ALL, &tmp);
+        r->push_back(tmp);
+        begin_index = end_index + s.size();
+    }
+}
+
+
+template<typename STR>
+TrimPositions TrimStringT(const STR& input,
+    const typename STR::value_type trim_chars[],
+    TrimPositions positions,
+    STR* output) {
+    const typename STR::size_type last_char = input.length() - 1;
+    const typename STR::size_type first_good_char = (positions & TRIM_LEADING) ?
+                    input.find_first_not_of(trim_chars) : 0;
+    const typename STR::size_type last_good_char = (positions & TRIM_TRAILING) ?
+                    input.find_last_not_of(trim_chars) : last_char;
+
+      if (input.empty() ||
+          (first_good_char == STR::npos) || 
+          (last_good_char == STR::npos)) {
+          bool input_was_empty = input.empty();
+          output->clear();
+          return input_was_empty ? TRIM_NONE : positions;
+     *output =
+           input.substr(first_good_char, last_good_char - first_good_char + 1);
+      return static_cast<TrimPositions>(
+            ((first_good_char == 0) ? TRIM_NONE : TRIM_LEADING) |
+                  ((last_good_char == last_char) ? TRIM_NONE : TRIM_TRAILING));}
+}
+
+
 template<typename IntegerType>
 bool BasicUtil::StringUtil::StringToInteger(const std::string& input,IntegerType* output){
 	//
@@ -206,6 +302,24 @@ bool BasicUtil::StringUtil::StringToDouble(const std::string& input,double* outp
     output = NULL;
     return false;
   }
+}
+
+TrimPositions BasicUtil::StringUtil::TrimWhitespaceASCII(const std::string& input,
+                                TrimPositions positions,
+                                std::string* output) {
+    return TrimStringT(input, kWhitespaceASCII, positions, output);
+}
+
+
+TrimPositions BasicUtil::StringUtil::TrimWhitespace(const std::string& input,
+                    TrimPositions positions,
+                    std::string* output) {
+    //return TrimStringT(input, kWhitespaceWide, positions, output);
+    TrimWhitespaceASCII(input, positions, output);
+}
+
+void BasicUtil::StringUtil::SplitStringUsingSubstr(const std::string& str, const std::string& s,std::vector<std::string>* r) {
+    SplitStringUsingSubstrT(str, s, r);
 }
 
 void BasicUtil::StringUtil::StringAppendV(std::string* dst,const char* format,
@@ -322,6 +436,7 @@ bool BasicUtil::StringConversions::IsValidCharacter(uint32 code_point){
 	      code_point < 0xFDD0u) || (code_point > 0xFDEFu &&
 	      code_point <= 0x10FFFFu && (code_point & 0xFFFEu) != 0xFFFEu);
 }
+
 
 template<typename SRC_CHAR,typename DEST_STRING>
 bool BasicUtil::StringConversions::ConverUnicode(const SRC_CHAR* src,

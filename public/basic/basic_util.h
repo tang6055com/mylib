@@ -23,6 +23,13 @@
 namespace base{
 
 
+enum TrimPositions {
+      TRIM_NONE     = 0,
+      TRIM_LEADING  = 1 << 0,
+      TRIM_TRAILING = 1 << 1,
+      TRIM_ALL      = TRIM_LEADING | TRIM_TRAILING,
+};
+
 class BasicUtil{
 
 
@@ -147,6 +154,8 @@ public:
 
 		static void StringAppendV(std::wstring* dst,const wchar_t* format, va_list ap);
 
+        static void SplitStringUsingSubstr(const std::string& str,const std::string& s,
+                                    std::vector<std::string>* r);
 
 		static inline int vsnprintfT(char* buffer,size_t buf_size,const char* format,
 				va_list argptr){
@@ -166,6 +175,14 @@ public:
 			*/
 			return vswprintf(buff,buf_size,format,argptr);
 		}
+
+
+
+        static TrimPositions TrimWhitespaceASCII(const std::string& input,TrimPositions positions,std::string* output);
+
+        static TrimPositions TrimWhitespace(const std::string& input,
+                                    TrimPositions positions,
+                                    std::string* output);
 
 	private:
 		template<class STR>

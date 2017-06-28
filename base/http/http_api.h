@@ -15,6 +15,7 @@ private:
 public:
 	static base_logic::Value*  ResponseJsonSerialization(std::string* content);
 	static base_logic::Value*  ResponseXmlSerializetion(std::string* content);
+
 };
 
 }

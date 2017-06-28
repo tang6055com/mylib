@@ -21,6 +21,8 @@ bool HttpAPI::RequestGetMethod(const std::string& url,base_logic::DictionaryValu
 		return false;
 	std::string query = url+std::string("?")+content;
 	http::HttpMethodGet http(query);
+    std::string  headers = "Authorization:APPCODE e361298186714a6faea52316ff1d5c32";
+    http.SetHeaders(headers);
 	int32 i = 0;
 	do{
 		r = http.Get();
