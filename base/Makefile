@@ -10,13 +10,13 @@ AR = ar cr
 
 ## 编译选项
 ## for debug -DROOM_DEBUG_MCACHE
-CPP_FLAG = -g -Wall -w -fPIC -c -D_LINUX -DDEBUG -D_DEBUG -D_DB_POOL_ -D_DIC_POOL_ -D_REENTRANT -D_GNU_SOURCE -DUSR_LOG_ERROR -DUSR_LOG_MSG
+CPP_FLAG = -g -Wall -w -fPIC -c  -m64  -DMULTIPLE_THREADS -D_LINUX -DDEBUG -D_DEBUG -D_DB_POOL_ -D_DIC_POOL_ -D_REENTRANT -D_GNU_SOURCE -DUSR_LOG_ERROR -DUSR_LOG_MSG
 ## for release
-#CPP_FLAG = -O3 -Wall -s -w -fPIC -c -D_LINUX -DNDEBUG -D_DB_POOL_ -D_DIC_POOL_ -D_REENTRANT -D_GNU_SOURCE -DUSR_LOG_ERROR -DUSR_LOG_MSG
+#CPP_FLAG = -O3 -Wall -s -w -fPIC -c -DARCH_CPU_64_BITS -D_LINUX -DNDEBUG -D_DB_POOL_ -D_DIC_POOL_ -D_REENTRANT -D_GNU_SOURCE -DUSR_LOG_ERROR -DUSR_LOG_MSG
 
 ## 链接选项
 ## for debug
-LINK_FLAGS = 
+LINK_FLAGS = -m64 
 ## for release
 #LINK_FLAGS = -s -O3 -shared -fPIC
 
@@ -28,7 +28,7 @@ INCLUDE_PATHS = -I./ -I ../ -I/usr/local/libmemcached-1.0.7/include/ -I../core -
 ## 库
 LINK_PATHS = -L./ -L/usr/local/libmemcached-1.0.7/lib/  -L/usr/lib64/mysql
 LINK_LIBRARYS = -lmemcached -lmemcachedutil  -lexpat -lrt -lpthread -ldl -liconv -lmysqlclient -lcurl\
-				../lib/libbreakpad_client.a ../lib/libhiredis.a  ../third_party/dmg_fp/lib/dmg_fp.a\
+			../lib/libbreakpad_client.a ../lib/libhiredis.a\
 				../third_party/lib/librdkafka.a
 
 ##3rd
@@ -36,25 +36,27 @@ THIRD_PATH = ../public
 
 # 编译
 COMPILE = $(COMPIlER) $(CPP_FLAG) $(INCLUDE_PATHS) -o $@ 
-
+COMPILEC = $(COMPIlERC) $(INCLUDE_PATHS) -o $@ 
 # 链接
 LINK = $(AR)  $(OUTPUT_FILE) $?
 
 all: clean output delete-temp-file
 
-output:	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
+output:	dtoa_wrapper.o g_fmt.o dynamic_annotations.o\
+	lazy_instance.o atomicops_gcc.o lock.o lock_impl.o\
+	basic_util.o base64.o icu_utf.o base_db_mysql_auto.o base_dic_redis_auto.o\
 	basic_lbs_info.o lbs_baidu_connector.o lbs_dic_comm.o location_server.o\
 	data_engine.o data_mysql_engine.o mysql_pool.o\
 	kafka_consumer.o kafka_producer.o xml_serializer.o\
 	block_msg_queue.o  queue_dic_comm.o lbs_connector.o string_escape.o\
 	lbs_db_comm.o lbs_logic_unit.o logic_comm.o base_values.o http_api.o http_header.o http_util.o\
-	base_thread_handler.o base_thread_lock.o caiyun_weather_engine.o\
+	base_thread_handler.o base_thread_lock.o platform_thread.o\
 	weather_engine.o weather_logic_unit.o value_serializer.o http_serializer.o\
 	json_serializer.o jsonp_serializer.o xml_parser.o\
 	basic_push_info.o push_baidu_connector.o push_connector.o push_db_comm.o push_logic_unit.o\
 	storage.o mem_storage_impl.o mysql_storage_impl.o redis_storage_impl.o\
 	redis_warrper.o http_method.o http_packet.o mig_log.o native_library.o\
-	file_util.o file_path.o config.o config_info.o dtoa.o g_fmt.o radom_in.o md5sum.o\
+	file_util.o file_path.o config.o config_info.o radom_in.o md5sum.o\
 	constants.o basictypes.o data_packet.o native_library.o
 	$(LINK)
 
@@ -106,6 +108,12 @@ http_header.o:
 http_util.o:
 	$(COMPILE) ./http/http_util.cc
 
+lazy_instance.o:
+	$(COMPILE) ./logic/lazy_instance.cc
+
+atomicops_gcc.o:
+	$(COMPILE) ./logic/atomicops_gcc.cc
+
 logic_comm.o:
 	$(COMPILE) ./logic/logic_comm.cc
 	
@@ -132,12 +140,21 @@ http_serializer.o:
 	
 xml_parser.o:
 	$(COMPILE) ./logic/xml_parser.cc
+
 base_thread_handler.o:
 	$(COMPILE) ./thread/base_thread_handler.cc
 
 base_thread_lock.o:
 	$(COMPILE) ./thread/base_thread_lock.cc
 	
+platform_thread.o:
+	$(COMPILE) ./thread/platform_thread.cc
+
+lock.o:
+	$(COMPILE) ./synchronization/lock.cc
+
+lock_impl.o:
+	$(COMPILE) ./synchronization/lock_impl.cc
 
 caiyun_weather_engine.o:
 	$(COMPILE) ./weather/caiyun_weather_engine.cc
@@ -168,6 +185,21 @@ push_db_comm.o:
 	
 push_logic_unit.o:
 	$(COMPILE) ./pushmsg/push_logic_unit.cc
+
+
+#third
+dynamic_annotations.o:
+	$(COMPILERC) -std=c99 -pedantic -c $(INCLUDE_PATHS) -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb ./third/dynamic_annotations/dynamic_annotations.c
+
+
+dtoa.o:
+	$(COMPILE) ./third/dmg_fp/dtoa.cc
+
+g_fmt.o:
+	$(COMPILE) ./third/dmg_fp/g_fmt.cc
+
+dtoa_wrapper.o:
+	$(COMPILE) ./third/dmg_fp/dtoa_wrapper.cc
 
 ##kafka
 kafka_consumer.o :
@@ -272,8 +304,3 @@ mig_log.o:
 	$(COMPILE) $(THIRD_PATH)/log/mig_log.cc
 	
 
-dtoa.o:
-	$(COMPILE) ../third_party/dmg_fp/dtoa.cc
-
-g_fmt.o:
-	$(COMPILE) ../third_party/dmg_fp/g_fmt.cc

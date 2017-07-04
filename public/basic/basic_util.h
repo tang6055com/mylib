@@ -11,7 +11,7 @@
 #include "basic/basictypes.h"
 #include "basic/md5sum.h"
 //#include "basic/basic_info.h"
-#include "dmg_fp/dmg_fp.h"
+#include "third/dmg_fp/dmg_fp.h"
 
 // (This is undocumented but matches what the system C headers do.)
 #define PRINTF_FORMAT(format_param, dots_param) \

@@ -27,9 +27,9 @@ class ConnAddr {
   }
 
 
-  const int32 id() const {return data_->id_;}
-  const int port() const {return data_->port_;}
-  const std::string& host() const {return data_->host_;}
+  const int32 id()  {return data_->id_;}
+  const int port()  {return data_->port_;}
+  const std::string& host()  {return data_->host_;}
   const std::string& usr() {return data_->usr_;}
   const std::string& pwd() {return data_->pwd_;}
   const std::string& source() {return data_->source_;}
