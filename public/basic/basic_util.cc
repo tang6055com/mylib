@@ -377,12 +377,15 @@ std::string BasicUtil::StringUtil::Int64ToString(int64 value) {
 
 std::string BasicUtil::StringUtil::DoubleToString(double value){
 	/*char buffer[32];
+    sprintf(buffer, "%.15g",value);
+    return std::string(buffer);*/
+    char buffer[32];
 	dmg_fp::g_fmt(buffer,value);
-	return std::string(buffer);*/
-  std::stringstream os;
+	return std::string(buffer);
+  /*std::stringstream os;
   os << value;
   std::string tp = os.str();
-  return tp;
+  return tp;*/
 }
 
 std::wstring BasicUtil::StringUtil::DobleToWString(double value){
