@@ -890,6 +890,30 @@ bool BasicUtil::UTF8ToGBK (const char *input, size_t inlen, char **output, size_
 	return rc == -1 ? false : true;
 }
 
+bool BasicUtil::CharracterSetConv(const char* in_character,
+            const char *input, size_t inlen, 
+            const char* out_character, char **output, 
+            size_t *outlen)
+{
+	char *ib;
+	char *ob;
+	size_t rc;
+
+	iconv_t cd = iconv_open (in_character, out_character);
+	if (cd == 0) {
+		*output = strdup (input);
+		return true;
+	} else if (cd == (iconv_t)-1)
+		return false;
+	*outlen = inlen * 8 + 1;
+	ob = *output = (char *) malloc (*outlen);
+	ib = (char *) input;
+	rc = iconv (cd, &ib, &inlen, &ob, outlen);
+	*ob = 0;
+	iconv_close (cd);
+	return rc == -1 ? false : true;
+}
+
 double BasicUtil::CalcGEODistance(double latitude1, double longitude1,
 		double latitude2, double longitude2) {
 

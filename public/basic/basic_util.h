@@ -295,7 +295,10 @@ public:
 
 	static bool UTF8ToGBK(const char *input, size_t inlen, char **output /* free */, size_t *outlen);
 
-	static double CalcGEODistance(double latitude1, double longitude1, double latitude2, double longitude2);
+	static bool CharracterSetConv(const char* in_character, const char *input,size_t inlen,
+                                const char* out_character, char** output, size_t* outlen);
+
+    static double CalcGEODistance(double latitude1, double longitude1, double latitude2, double longitude2);
 
 	static int SplitStringChr( const char *str, const char *char_set,
 		std::vector<std::string> &out );
